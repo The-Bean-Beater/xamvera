@@ -126,8 +126,8 @@ button {
 }
 
 .brand-mark {
-  width: 42px;
-  height: 42px;
+  width: 50px;
+  height: 50px;
   display: grid;
   place-items: center;
   border-radius: var(--radius);
@@ -137,8 +137,8 @@ button {
 }
 
 .brand-mark img {
-  width: 32px;
-  height: 32px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
   filter: var(--logo-filter);
 }
@@ -217,14 +217,14 @@ button {
 
 .topbar-title {
   display: grid;
-  grid-template-columns: 34px minmax(0, max-content);
-  column-gap: 10px;
+  grid-template-columns: 44px minmax(0, max-content);
+  column-gap: 12px;
   align-items: center;
 }
 
 .topbar-title img {
-  width: 34px;
-  height: 34px;
+  width: 44px;
+  height: 44px;
   object-fit: contain;
   filter: var(--logo-filter);
   grid-row: span 2;
@@ -452,8 +452,8 @@ button {
 }
 
 .hero-brand-lockup img {
-  width: 56px;
-  height: 56px;
+  width: 68px;
+  height: 68px;
   object-fit: contain;
   filter: var(--logo-filter);
 }
