@@ -9,7 +9,7 @@ const themeStorageKey = "xamvera-theme";
 const seedPracticeSet = {
   course: "AP World History: Modern",
   unit: "Starter Practice",
-  rights: "Original Xanvera seed questions for public demo use.",
+  rights: "Original XamVera seed questions for public demo use.",
   questions: [
     {
       id: "xan-apwh-001",

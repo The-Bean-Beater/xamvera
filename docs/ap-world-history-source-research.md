@@ -6,7 +6,7 @@ The reliable official source is College Board AP Central. For AP World History: 
 
 It does not publicly provide every complete past exam with all multiple-choice questions. College Board states that AP Central provides the three most recent years of released exam materials, while older comprehensive and secure practice questions are available through AP Classroom for authorized educators.
 
-For Xanvera, the safe first database should use official AP Central links and store source metadata. We should not build production ingestion from Course Hero, Studocu, Scribd, or random reposts.
+For XamVera, the safe first database should use official AP Central links and store source metadata. We should not build production ingestion from Course Hero, Studocu, Scribd, or random reposts.
 
 ## Priority Sources
 
@@ -44,7 +44,7 @@ For Xanvera, the safe first database should use official AP Central links and st
 ### 2020
 
 - I did not confirm an official public AP Central released test packet for 2020 AP World History: Modern.
-- Third-party sites appear to repost practice-exam material, including multiple-choice content. We should not ingest those into Xanvera without a rights review.
+- Third-party sites appear to repost practice-exam material, including multiple-choice content. We should not ingest those into XamVera without a rights review.
 
 ## Legal/Product Rule
 

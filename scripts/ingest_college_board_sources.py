@@ -38,7 +38,7 @@ def parse_local_pdfs(values: list[str] | None) -> dict[str, Path]:
 
 def download_pdf(url: str, destination: Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
-    request = urllib.request.Request(url, headers={"User-Agent": "Xanvera source indexer"})
+    request = urllib.request.Request(url, headers={"User-Agent": "XamVera source indexer"})
     with urllib.request.urlopen(request, timeout=30) as response:
         destination.write_bytes(response.read())
 

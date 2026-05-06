@@ -8,7 +8,7 @@
   },
   "usage_policy": {
     "status": "third_party_review_required",
-    "note": "Scrape only into the local ignored content cache for evaluation. Do not publish copied question text or images in Xanvera without permission or a rights review."
+    "note": "Scrape only into the local ignored content cache for evaluation. Do not publish copied question text or images in XamVera without permission or a rights review."
   },
   "pages": [
     {

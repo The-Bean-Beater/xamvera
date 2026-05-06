@@ -1,4 +1,4 @@
-# Xanvera Plan
+# XamVera Plan
 
 ## Recommended Direction
 

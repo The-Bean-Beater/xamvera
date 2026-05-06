@@ -57,7 +57,7 @@ class TextAndImageParser(HTMLParser):
 
 
 def fetch(url: str, allow_insecure_ssl: bool) -> str:
-    request = urllib.request.Request(url, headers={"User-Agent": "Xanvera source reviewer"})
+    request = urllib.request.Request(url, headers={"User-Agent": "XamVera source reviewer"})
     context = ssl._create_unverified_context() if allow_insecure_ssl else None
     with urllib.request.urlopen(request, timeout=30, context=context) as response:
         return response.read().decode("utf-8", errors="replace")
