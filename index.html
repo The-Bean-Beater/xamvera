@@ -24,7 +24,7 @@
           </span>
           <span>
             <strong>XamVera</strong>
-            <small>AP study platform</small>
+            <small>AP mastery workspace</small>
           </span>
         </a>
 
@@ -37,8 +37,9 @@
         </nav>
 
         <div class="sidebar-note">
-          <span>Build priority</span>
-          <p>Start with trusted practice and human-reviewed content. Add AI only after the review workflow is solid.</p>
+          <span>Current Build</span>
+          <strong>AP World beta</strong>
+          <p>Course shell, practice flow, and review pipeline are staged before public question expansion.</p>
         </div>
       </aside>
 
@@ -52,141 +53,212 @@
 
           <div class="topbar-title">
             <img src="assets/xanvera-mark-192.png" alt="" aria-hidden="true">
-            <strong>XamVera</strong>
-            <span>Study smarter for AP exams</span>
+            <span>AP Practice Hub</span>
+            <strong id="topbarContext">Home</strong>
           </div>
 
-          <div class="theme-toggle" role="group" aria-label="Theme">
-            <button class="active" type="button" data-theme-option="system">System</button>
-            <button type="button" data-theme-option="light">Light</button>
-            <button type="button" data-theme-option="dark">Dark</button>
+          <div class="topbar-actions">
+            <button class="secondary-button compact" type="button" data-view-target="courses">Courses</button>
+            <button class="primary-button compact" type="button" data-view-target="practice">Practice</button>
           </div>
         </header>
 
         <section class="view active" id="home">
-          <section class="landing-hero">
-            <div class="hero-background" aria-hidden="true">
-              <div class="hero-window">
-                <div class="window-bar">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-                <div class="window-grid">
-                  <div class="mock-sidebar"></div>
-                  <div class="mock-main">
-                    <div class="mock-line wide"></div>
-                    <div class="mock-line"></div>
-                    <div class="mock-cards">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div class="mock-question"></div>
-                  </div>
-                </div>
+          <section class="hero-study">
+            <div class="hero-copy">
+              <span class="hero-seal" aria-hidden="true">
+                <img src="assets/xanvera-mark.png" alt="">
+              </span>
+              <p class="eyebrow">Focused AP prep</p>
+              <h1>XamVera</h1>
+              <p>Choose a course, build a unit plan, practice exam-style questions, and track what still needs review.</p>
+              <div class="hero-actions">
+                <button class="primary-button" type="button" data-view-target="courses">Browse Courses</button>
+                <button class="secondary-button" type="button" data-view-target="dashboard">Open Dashboard</button>
               </div>
             </div>
 
-            <div class="hero-content">
-              <img class="hero-seal" src="assets/xanvera-mark.png" alt="" aria-hidden="true">
-              <p class="eyebrow">AP prep, built for accuracy</p>
-              <h1>XamVera</h1>
-              <p>AP-style practice, source review, and progress tools for students who want exam prep that feels careful, accurate, and built for serious study.</p>
-              <div class="hero-actions">
-                <button class="primary-button" type="button" data-view-target="dashboard">Open App Shell</button>
-                <button class="secondary-button" type="button" data-view-target="practice">Preview Practice</button>
+            <div class="study-console" aria-label="Study dashboard preview">
+              <div class="console-header">
+                <span>Today</span>
+                <strong>AP World History</strong>
               </div>
-              <div class="study-strip" aria-label="XamVera study workflow">
-                <span>AP World first</span>
-                <span>Human-reviewed questions</span>
-                <span>Progress by unit</span>
+              <div class="console-grid">
+                <div class="console-block strong">
+                  <span>Unit 2</span>
+                  <strong>Networks of Exchange</strong>
+                </div>
+                <div class="console-block">
+                  <span>Accuracy</span>
+                  <strong>Seed</strong>
+                </div>
+                <div class="console-block">
+                  <span>Mode</span>
+                  <strong>MCQ</strong>
+                </div>
+              </div>
+              <div class="unit-map" aria-hidden="true">
+                <span class="complete"></span>
+                <span class="active"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="console-question">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
               </div>
             </div>
           </section>
 
-          <section class="landing-section">
-            <div class="section-heading">
-              <p class="eyebrow">Study workflow</p>
-              <h2>Built around review before release</h2>
-            </div>
-            <div class="feature-grid">
-              <article class="panel">
-                <span class="panel-label">Students</span>
-                <h3>Practice by course</h3>
-                <p>Start with a small set of trusted AP-style questions, explanations, and progress tracking.</p>
-              </article>
-              <article class="panel">
-                <span class="panel-label">Reviewers</span>
-                <h3>Approve every question</h3>
-                <p>Keep quality high with source notes, answer validation, skill tags, and reviewer notes.</p>
-              </article>
-              <article class="panel">
-                <span class="panel-label">Future AI</span>
-                <h3>Assist, then verify</h3>
-                <p>Use AI to draft and classify later, but keep publishing gated behind human approval.</p>
-              </article>
-            </div>
+          <section class="home-grid">
+            <article class="panel focus-card">
+              <span class="panel-label">Study Flow</span>
+              <h2>Pick course, drill units, review misses</h2>
+              <div class="flow-steps" aria-label="XamVera study flow">
+                <span>Course</span>
+                <span>Unit</span>
+                <span>Practice</span>
+                <span>Review</span>
+              </div>
+            </article>
+            <article class="panel">
+              <span class="panel-label">Live Course</span>
+              <h2>AP World History: Modern</h2>
+              <p>Seed practice is active while source and remix databases stay behind admin review.</p>
+            </article>
+            <article class="panel">
+              <span class="panel-label">Catalog</span>
+              <h2>Core AP courses</h2>
+              <p>History, social science, English, math, computer science, and science shells are ready as placeholders.</p>
+            </article>
           </section>
         </section>
 
         <section class="view" id="dashboard">
           <div class="page-heading">
-            <p class="eyebrow">App shell</p>
+            <p class="eyebrow">Student home</p>
             <h1>Dashboard</h1>
-            <p>This will become the logged-in student home screen.</p>
+            <p>Daily practice, unit readiness, and missed-question review live here once accounts are added.</p>
           </div>
 
-          <div class="layout-grid">
-            <section class="panel large">
-              <span class="panel-label">Daily focus</span>
-              <h2>Study workspace</h2>
-              <p>Use this area for the next recommended assignment, weak-skill review, or current AP course.</p>
-              <div class="placeholder-box"></div>
+          <div class="dashboard-grid">
+            <section class="panel plan-panel">
+              <div class="panel-heading-inline">
+                <span class="panel-label">Today&apos;s Plan</span>
+                <span class="status-badge">Beta</span>
+              </div>
+              <h2>Start with one focused AP World set</h2>
+              <div class="task-list">
+                <button type="button" data-view-target="practice">
+                  <span>01</span>
+                  <strong>10 minute MCQ warmup</strong>
+                  <small>Original seed questions</small>
+                </button>
+                <button type="button" data-view-target="courses">
+                  <span>02</span>
+                  <strong>Choose next course shell</strong>
+                  <small>Catalog placeholders</small>
+                </button>
+                <button type="button" data-view-target="settings">
+                  <span>03</span>
+                  <strong>Confirm study preferences</strong>
+                  <small>Theme and workspace settings</small>
+                </button>
+              </div>
             </section>
 
-            <section class="panel">
-              <span class="panel-label">Progress</span>
-              <h2>Stats card</h2>
-              <p>Accuracy, streaks, minutes studied, or exam readiness can go here.</p>
+            <section class="panel readiness-panel">
+              <span class="panel-label">Readiness</span>
+              <h2>Course status</h2>
+              <div class="readiness-list">
+                <div>
+                  <strong>AP World History</strong>
+                  <span>Seed practice active</span>
+                  <meter min="0" max="100" value="35">35%</meter>
+                </div>
+                <div>
+                  <strong>AP U.S. History</strong>
+                  <span>Placeholder ready</span>
+                  <meter min="0" max="100" value="8">8%</meter>
+                </div>
+                <div>
+                  <strong>AP Biology</strong>
+                  <span>Placeholder ready</span>
+                  <meter min="0" max="100" value="8">8%</meter>
+                </div>
+              </div>
             </section>
 
-            <section class="panel">
-              <span class="panel-label">Next action</span>
-              <h2>Task card</h2>
-              <p>Recommended practice, review reminders, or upcoming goals can go here.</p>
-            </section>
-
-            <section class="panel wide">
-              <span class="panel-label">Activity</span>
-              <h2>Recent work</h2>
-              <div class="simple-list">
-                <button type="button">Placeholder row</button>
-                <button type="button">Placeholder row</button>
-                <button type="button">Placeholder row</button>
+            <section class="panel wide pipeline-panel">
+              <span class="panel-label">Content Pipeline</span>
+              <h2>Question databases</h2>
+              <div class="pipeline-grid">
+                <div>
+                  <strong>Source Bank</strong>
+                  <span>Official and scraped material stored privately</span>
+                </div>
+                <div>
+                  <strong>Draft Remix Bank</strong>
+                  <span>Generated AP-style questions waiting for review</span>
+                </div>
+                <div>
+                  <strong>Approved Bank</strong>
+                  <span>Student-ready questions after admin approval</span>
+                </div>
               </div>
             </section>
           </div>
         </section>
 
         <section class="view" id="courses">
-          <div class="page-heading">
-            <p class="eyebrow">Course shell</p>
-            <h1>Courses</h1>
-            <p>Later this becomes the place where students choose AP subjects and units.</p>
+          <div class="page-heading course-heading">
+            <div>
+              <p class="eyebrow">AP catalog</p>
+              <h1>Courses</h1>
+              <p>Core AP course shells are grouped for quick scanning. AP World is the active beta course.</p>
+            </div>
+            <div class="course-count">
+              <strong id="courseCount">0</strong>
+              <span>course shells</span>
+            </div>
           </div>
-          <div class="card-grid">
-            <article class="panel empty-card"><span>Course card</span></article>
-            <article class="panel empty-card"><span>Course card</span></article>
-            <article class="panel empty-card"><span>Course card</span></article>
+
+          <div class="filter-row" aria-label="Course filters">
+            <button class="filter-pill active" type="button" data-course-filter="all">All</button>
+            <button class="filter-pill" type="button" data-course-filter="History & Social Science">History</button>
+            <button class="filter-pill" type="button" data-course-filter="Science">Science</button>
+            <button class="filter-pill" type="button" data-course-filter="Math & Computer Science">Math &amp; CS</button>
+            <button class="filter-pill" type="button" data-course-filter="English">English</button>
+          </div>
+
+          <div class="course-layout">
+            <section class="course-grid" id="courseGrid" aria-label="AP course catalog"></section>
+            <aside class="panel course-detail" id="courseDetail" aria-live="polite"></aside>
           </div>
         </section>
 
         <section class="view" id="practice">
-          <div class="page-heading">
-            <p class="eyebrow">AP World History</p>
-            <h1>Practice</h1>
-            <p>Answer a short set of original AP World-style questions while the official source pipeline stays in review.</p>
+          <div class="page-heading practice-heading">
+            <div>
+              <p class="eyebrow">Practice room</p>
+              <h1>Practice</h1>
+              <p>Practice adapts to the selected AP course. AP World has seed questions; other subjects are staged as polished placeholders.</p>
+            </div>
+            <label class="course-select-label">
+              Course
+              <select id="practiceCourseSelect" aria-label="Select AP practice course"></select>
+            </label>
+          </div>
+
+          <div class="mode-row" aria-label="Practice modes">
+            <button class="mode-button active" type="button" data-practice-mode="MCQ">MCQ Practice</button>
+            <button class="mode-button" type="button" data-practice-mode="FRQ">FRQ Drill</button>
+            <button class="mode-button" type="button" data-practice-mode="Weak Units">Weak Units</button>
+            <button class="mode-button" type="button" data-practice-mode="Timed Set">Timed Set</button>
           </div>
 
           <div class="practice-layout">
@@ -206,23 +278,15 @@
             </section>
 
             <aside class="panel source-panel">
-              <span class="panel-label">Content pipeline</span>
-              <h2>Review status</h2>
-              <div class="source-list">
-                <div>
-                  <strong>Official College Board CED exam</strong>
-                  <span>47 pages extracted locally</span>
-                </div>
-                <div>
-                  <strong>Official AP Central FRQs</strong>
-                  <span>2024, 2023, 2022 queued</span>
-                </div>
-                <div>
-                  <strong>High School Test Prep</strong>
-                  <span>Unit 1 scraped to local review cache</span>
-                </div>
+              <span class="panel-label" id="practiceCourseBadge">Selected Course</span>
+              <h2 id="practiceCourseTitle">AP World History: Modern</h2>
+              <div class="source-list" id="practiceSourceList"></div>
+              <div class="study-settings-card">
+                <strong>Session shape</strong>
+                <span id="practiceModeLabel">MCQ Practice</span>
+                <span>Unit-aware review</span>
+                <span>Missed-question loop</span>
               </div>
-              <p>Copied source questions stay out of the public site until we have approval to publish them.</p>
             </aside>
           </div>
         </section>
@@ -331,21 +395,37 @@
 
         <section class="view" id="settings">
           <div class="page-heading">
-            <p class="eyebrow">Configuration</p>
+            <p class="eyebrow">Workspace</p>
             <h1>Settings</h1>
-            <p>Account, billing, team, and app configuration can live here later.</p>
+            <p>Theme, product settings, and future account preferences live here.</p>
           </div>
-          <section class="panel form-panel">
-            <label>
-              Product name
-              <input type="text" placeholder="XamVera">
-            </label>
-            <label>
-              Main color
-              <input type="text" placeholder="#2157a6">
-            </label>
-            <button class="primary-button" type="button">Save Changes</button>
-          </section>
+
+          <div class="settings-grid">
+            <section class="panel form-panel">
+              <span class="panel-label">Appearance</span>
+              <h2>Theme</h2>
+              <div class="theme-toggle" role="group" aria-label="Theme">
+                <button class="active" type="button" data-theme-option="system">System</button>
+                <button type="button" data-theme-option="light">Light</button>
+                <button type="button" data-theme-option="dark">Dark</button>
+              </div>
+            </section>
+
+            <section class="panel form-panel">
+              <span class="panel-label">Brand</span>
+              <h2>Product shell</h2>
+              <label>
+                Product name
+                <input type="text" value="XamVera" aria-label="Product name">
+              </label>
+              <label>
+                Primary course
+                <input type="text" value="AP World History: Modern" aria-label="Primary course">
+              </label>
+              <button class="primary-button" type="button">Save Changes</button>
+            </section>
+
+          </div>
         </section>
       </main>
     </div>
