@@ -13,7 +13,7 @@
         document.documentElement.dataset.theme = savedTheme;
       }
     </script>
-    <link rel="stylesheet" href="styles.css?v=5">
+    <link rel="stylesheet" href="styles.css?v=6">
   </head>
   <body>
     <div class="app-shell">
@@ -66,15 +66,17 @@
         <section class="view active" id="home">
           <section class="hero-study">
             <div class="hero-copy">
-              <span class="hero-seal" aria-hidden="true">
-                <img src="assets/xanvera-mark-tight-2048.png?v=3" alt="">
-              </span>
-              <p class="eyebrow">Focused AP prep</p>
+              <p class="eyebrow">AP World beta</p>
               <h1>XamVera</h1>
-              <p>Choose a course, build a unit plan, practice exam-style questions, and track what still needs review.</p>
+              <p>Build exam-ready practice from reviewed AP-style questions, unit skills, and source-based sets.</p>
+              <div class="hero-stats" aria-label="XamVera AP study status">
+                <span><strong>9</strong> AP World units</span>
+                <span><strong>MCQ</strong> source-based practice</span>
+                <span><strong>Admin</strong> review pipeline</span>
+              </div>
               <div class="hero-actions">
-                <button class="primary-button" type="button" data-view-target="courses">Browse Courses</button>
-                <button class="secondary-button" type="button" data-view-target="dashboard">Open Dashboard</button>
+                <button class="primary-button" type="button" data-view-target="practice">Start AP World Practice</button>
+                <button class="secondary-button" type="button" data-view-target="courses">Browse Courses</button>
               </div>
             </div>
 
@@ -478,6 +480,6 @@
       </main>
     </div>
 
-    <script src="script.js?v=5"></script>
+    <script src="script.js?v=6"></script>
   </body>
 </html>

@@ -148,6 +148,7 @@ input,
 select,
 textarea {
   font: inherit;
+  max-width: 100%;
 }
 
 button {
@@ -368,9 +369,10 @@ img {
 
 .topbar-title {
   display: grid;
-  grid-template-columns: 44px minmax(0, max-content);
+  grid-template-columns: 44px minmax(0, 1fr);
   align-items: center;
   column-gap: 12px;
+  min-width: 0;
 }
 
 .topbar-title img {
@@ -399,7 +401,10 @@ img {
 
 .topbar-actions {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 8px;
+  min-width: 0;
 }
 
 .primary-button,
@@ -409,6 +414,8 @@ img {
   padding: 0 16px;
   font-weight: 900;
   box-shadow: 0 1px 0 color-mix(in srgb, var(--surface) 80%, transparent) inset;
+  white-space: normal;
+  text-align: center;
 }
 
 .primary-button {
@@ -484,12 +491,12 @@ img {
 }
 
 .hero-study {
-  min-height: min(690px, calc(100vh - 92px));
+  min-height: min(560px, calc(100vh - 92px));
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(360px, 0.75fr);
+  grid-template-columns: minmax(0, 0.92fr) minmax(340px, 0.82fr);
   align-items: center;
-  gap: clamp(24px, 5vw, 60px);
-  padding: clamp(28px, 5vw, 64px);
+  gap: clamp(24px, 4vw, 52px);
+  padding: clamp(30px, 4vw, 54px);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background:
@@ -517,32 +524,16 @@ img {
   background: linear-gradient(90deg, var(--gold), transparent 68%);
 }
 
-.hero-seal {
-  width: clamp(104px, 12vw, 152px);
-  height: clamp(104px, 12vw, 152px);
-  margin-bottom: 24px;
-  padding: 0;
-  box-shadow: none;
-}
-
-.hero-seal img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: var(--logo-filter);
-  transform: scale(1.24);
-  transform-origin: center;
-}
-
 .hero-copy {
-  max-width: 680px;
+  max-width: 640px;
+  min-width: 0;
 }
 
 .hero-copy h1 {
-  margin: 0 0 16px;
+  margin: 0 0 14px;
   font-family: "Times New Roman", Times, serif;
-  font-size: clamp(3.6rem, 10vw, 7rem);
-  line-height: 0.92;
+  font-size: clamp(3.4rem, 8vw, 6.2rem);
+  line-height: 0.94;
   font-weight: 700;
 }
 
@@ -551,11 +542,41 @@ img {
   font-size: clamp(1rem, 2vw, 1.18rem);
 }
 
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.hero-stats span {
+  min-height: 76px;
+  display: grid;
+  align-content: center;
+  gap: 3px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 78%, var(--surface-2));
+  color: var(--muted);
+  padding: 12px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  min-width: 0;
+}
+
+.hero-stats strong {
+  display: block;
+  color: var(--navy);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 26px;
+  margin-top: 24px;
 }
 
 .study-console {
@@ -588,6 +609,14 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  min-width: 0;
+}
+
+.console-header > *,
+.panel-heading-inline > *,
+.question-topline > *,
+.review-detail-header > * {
+  min-width: 0;
 }
 
 .console-header {
@@ -603,7 +632,7 @@ img {
 
 .console-grid {
   display: grid;
-  grid-template-columns: 1.2fr repeat(2, 0.8fr);
+  grid-template-columns: minmax(0, 1.15fr) repeat(2, minmax(0, 0.8fr));
   gap: 10px;
   margin: 16px 0;
 }
@@ -617,6 +646,8 @@ img {
   border-radius: var(--radius);
   background: var(--surface);
   padding: 12px;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .console-block.strong {
@@ -687,7 +718,7 @@ img {
 .dashboard-grid,
 .settings-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
   gap: 16px;
   margin-top: 16px;
 }
@@ -705,6 +736,8 @@ img {
   box-shadow: var(--shadow);
   padding: 18px;
   position: relative;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .panel h2,
@@ -732,7 +765,7 @@ img {
 
 .flow-steps {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
   margin-top: 24px;
 }
@@ -750,6 +783,8 @@ img {
   color: var(--ink);
   padding: 0 12px;
   font-weight: 900;
+  min-width: 0;
+  text-align: center;
 }
 
 .flow-steps span {
@@ -962,14 +997,14 @@ meter {
 
 .course-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 350px;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 350px);
   gap: 16px;
   align-items: start;
 }
 
 .course-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
   gap: 12px;
 }
 
@@ -983,6 +1018,8 @@ meter {
   background: var(--surface);
   box-shadow: var(--shadow);
   padding: 16px;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .course-card:hover,
@@ -992,10 +1029,11 @@ meter {
 }
 
 .course-card h2 {
-  min-height: 48px;
+  min-height: auto;
   margin: 0;
   color: var(--ink);
   font-size: 1.08rem;
+  line-height: 1.18;
 }
 
 .course-card p {
@@ -1097,6 +1135,8 @@ meter {
 .course-select-label select,
 .panel-heading-inline select,
 .form-panel input {
+  width: 100%;
+  min-width: 0;
   min-height: 42px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1277,6 +1317,7 @@ meter {
   gap: 16px;
   align-items: start;
   margin-bottom: 16px;
+  min-width: 0;
 }
 
 .generator-header h2 {
@@ -1289,11 +1330,12 @@ meter {
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 10px;
+  min-width: min(360px, 100%);
 }
 
 .generator-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(150px, 1fr));
   gap: 10px;
 }
 
@@ -1305,6 +1347,8 @@ meter {
   border-radius: var(--radius);
   background: color-mix(in srgb, var(--surface) 66%, var(--surface-2));
   padding: 12px;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .generator-control:hover {
@@ -1360,7 +1404,7 @@ meter {
 
 .review-workspace {
   display: grid;
-  grid-template-columns: 300px minmax(0, 1fr) 320px;
+  grid-template-columns: minmax(260px, 300px) minmax(0, 1fr) minmax(280px, 320px);
   gap: 16px;
   align-items: start;
 }
@@ -1391,6 +1435,8 @@ meter {
   padding: 12px;
   text-align: left;
   position: relative;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .queue-item:hover,
@@ -1435,6 +1481,7 @@ meter {
   font-size: clamp(1.4rem, 3vw, 2.2rem);
   line-height: 1.12;
   color: var(--ink);
+  overflow-wrap: anywhere;
 }
 
 .status-badge.needs_revision,
@@ -1453,7 +1500,7 @@ meter {
 
 .source-detail-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
   gap: 10px;
   margin-top: 10px;
 }
@@ -1499,6 +1546,8 @@ meter {
   border: 1px solid color-mix(in srgb, var(--line) 88%, var(--navy));
   border-radius: var(--radius);
   background: color-mix(in srgb, var(--surface) 62%, var(--surface-2));
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .review-choice.correct {
@@ -1527,6 +1576,7 @@ meter {
 
 .review-notes-label textarea {
   width: 100%;
+  min-width: 0;
   resize: vertical;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1566,14 +1616,21 @@ meter {
 
 .metadata-list div,
 .gate-list label {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(96px, 0.45fr) minmax(0, 1fr);
   gap: 12px;
+  align-items: start;
+  min-width: 0;
 }
 
 .gate-list label {
-  align-items: center;
   font-weight: 800;
+}
+
+.metadata-list span,
+.gate-list span {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .gate-list span {
@@ -1581,6 +1638,7 @@ meter {
 }
 
 .gate-list input {
+  justify-self: end;
   width: 18px;
   height: 18px;
 }
@@ -1646,11 +1704,11 @@ meter {
 
 @media (max-width: 1180px) {
   .course-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
   }
 
   .generator-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
   }
 }
 
@@ -1704,6 +1762,10 @@ meter {
     grid-template-columns: 1fr;
   }
 
+  .home-grid {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+
   .generator-header {
     display: grid;
   }
@@ -1748,6 +1810,10 @@ meter {
     font-size: clamp(3rem, 18vw, 4.5rem);
   }
 
+  .hero-stats {
+    grid-template-columns: 1fr;
+  }
+
   .study-console {
     padding: 14px;
   }
@@ -1755,8 +1821,14 @@ meter {
   .console-grid,
   .flow-steps,
   .course-grid,
+  .generator-grid,
   .review-metrics {
     grid-template-columns: 1fr;
+  }
+
+  .metadata-list div,
+  .gate-list label {
+    grid-template-columns: 1fr auto;
   }
 
   .course-heading,
