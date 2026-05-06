@@ -90,6 +90,7 @@ let practiceSet = seedPracticeSet;
 let currentQuestionIndex = 0;
 let selectedAnswerIndex = null;
 let reviewItems = [];
+let approvedQuestionBank = [];
 let selectedReviewIndex = 0;
 let activeReviewFilter = "all";
 
@@ -119,6 +120,7 @@ const seedReviewQueue = {
         "Large empires and stable trade routes helped merchants move goods, technologies, and credit instruments across Afro-Eurasia during this period.",
       review_notes:
         "Check whether the paper money reference is too specific for the intended region. Consider adding a clearer Mongol-era context if needed.",
+      revision_feedback: "",
       gates: {
         source_verified: true,
         answer_verified: true,
@@ -266,6 +268,7 @@ function renderReviewMetrics() {
   document.getElementById("needsReviewCount").textContent = counts.needs_review || 0;
   document.getElementById("needsRevisionCount").textContent = counts.needs_revision || 0;
   document.getElementById("approvedCount").textContent = counts.approved || 0;
+  document.getElementById("questionBankCount").textContent = approvedQuestionBank.length;
 }
 
 function renderReviewQueue() {
@@ -303,6 +306,8 @@ function renderReviewDetail() {
   document.getElementById("reviewStimulus").textContent = item.stimulus;
   document.getElementById("reviewExplanation").textContent = item.explanation;
   document.getElementById("reviewNotes").value = item.review_notes || "";
+  document.getElementById("revisionFeedback").value = item.revision_feedback || "";
+  setReviewMessage("");
 
   const status = document.getElementById("reviewStatus");
   status.textContent = formatStatus(item.status);
@@ -350,6 +355,8 @@ function renderReviewDetail() {
       renderReviewMetrics();
     });
   });
+
+  renderApprovedBank();
 }
 
 function renderReviewWorkspace() {
@@ -362,20 +369,131 @@ function saveReviewQueue() {
   localStorage.setItem("xanvera-review-queue", JSON.stringify(reviewItems));
 }
 
+function saveQuestionBank() {
+  localStorage.setItem("xanvera-approved-question-bank", JSON.stringify(approvedQuestionBank));
+}
+
+function setReviewMessage(message, type = "") {
+  const element = document.getElementById("reviewMessage");
+  if (!element) return;
+  element.hidden = !message;
+  element.textContent = message;
+  element.className = `review-message ${type}`;
+}
+
+function allGatesPassed(item) {
+  return Object.values(item.gates || {}).every(Boolean);
+}
+
+function toApprovedQuestion(item) {
+  return {
+    id: item.id,
+    course: item.course,
+    unit: item.unit,
+    period: item.period,
+    skill: item.skill,
+    difficulty: item.difficulty,
+    source_type: item.source_type,
+    similarity_risk: item.similarity_risk,
+    stimulus: item.stimulus,
+    prompt: item.prompt,
+    choices: item.choices,
+    answer_index: item.answer_index,
+    explanation: item.explanation,
+    status: "approved",
+    approved_at: new Date().toISOString()
+  };
+}
+
+function addToQuestionBank(item) {
+  const approvedQuestion = toApprovedQuestion(item);
+  const existingIndex = approvedQuestionBank.findIndex((question) => question.id === item.id);
+  if (existingIndex >= 0) {
+    approvedQuestionBank[existingIndex] = approvedQuestion;
+  } else {
+    approvedQuestionBank.push(approvedQuestion);
+  }
+  saveQuestionBank();
+}
+
+function removeFromQuestionBank(itemId) {
+  approvedQuestionBank = approvedQuestionBank.filter((question) => question.id !== itemId);
+  saveQuestionBank();
+}
+
+function renderApprovedBank() {
+  const element = document.getElementById("approvedBankList");
+  if (!element) return;
+
+  if (!approvedQuestionBank.length) {
+    element.innerHTML = '<div class="approved-bank-item"><span>No approved questions yet.</span></div>';
+    return;
+  }
+
+  element.innerHTML = approvedQuestionBank
+    .map(
+      (question) => `
+        <div class="approved-bank-item">
+          <strong>${question.skill}</strong>
+          <span>${question.unit}</span>
+        </div>
+      `
+    )
+    .join("");
+}
+
+function seedApprovedBankFromQueue() {
+  reviewItems
+    .filter((item) => item.status === "approved" && allGatesPassed(item))
+    .forEach(addToQuestionBank);
+}
+
 function updateReviewStatus(status) {
   const item = selectedReviewItem();
   if (!item) return;
+  let message = "";
+  let messageType = "success";
+
+  item.review_notes = document.getElementById("reviewNotes").value;
+  item.revision_feedback = document.getElementById("revisionFeedback").value.trim();
+
+  if (status === "approved" && !allGatesPassed(item)) {
+    setReviewMessage("Complete every review gate before approving this question.", "error");
+    return;
+  }
+
+  if (status === "needs_revision" && !item.revision_feedback) {
+    setReviewMessage("Write revision feedback before sending this question back for changes.", "error");
+    return;
+  }
 
   item.status = status;
-  item.review_notes = document.getElementById("reviewNotes").value;
+  if (status === "approved") {
+    addToQuestionBank(item);
+    message = "Approved and saved to the local approved question bank.";
+  } else {
+    removeFromQuestionBank(item.id);
+    message = status === "rejected" ? "Rejected and removed from the approved bank." : "Saved as needs revision with feedback.";
+    messageType = status === "rejected" ? "error" : "success";
+  }
+
   saveReviewQueue();
   renderReviewWorkspace();
+  setReviewMessage(message, messageType);
 }
 
 async function loadReviewQueue() {
+  const savedBank = localStorage.getItem("xanvera-approved-question-bank");
+  if (savedBank) {
+    approvedQuestionBank = JSON.parse(savedBank);
+  }
+
   const saved = localStorage.getItem("xanvera-review-queue");
   if (saved) {
     reviewItems = JSON.parse(saved);
+    if (!savedBank) {
+      seedApprovedBankFromQueue();
+    }
     renderReviewWorkspace();
     return;
   }
@@ -385,6 +503,7 @@ async function loadReviewQueue() {
     if (!response.ok) throw new Error("Review data unavailable");
     const queue = await response.json();
     reviewItems = queue.items;
+    seedApprovedBankFromQueue();
   } catch {
     reviewItems = seedReviewQueue.items;
   } finally {
@@ -428,6 +547,12 @@ document.getElementById("reviewNotes")?.addEventListener("input", (event) => {
   const item = selectedReviewItem();
   if (!item) return;
   item.review_notes = event.target.value;
+  saveReviewQueue();
+});
+document.getElementById("revisionFeedback")?.addEventListener("input", (event) => {
+  const item = selectedReviewItem();
+  if (!item) return;
+  item.revision_feedback = event.target.value;
   saveReviewQueue();
 });
 

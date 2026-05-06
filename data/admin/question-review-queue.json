@@ -22,6 +22,7 @@
       "answer_index": 0,
       "explanation": "Large empires and stable trade routes helped merchants move goods, technologies, and credit instruments across Afro-Eurasia during this period.",
       "review_notes": "Check whether the paper money reference is too specific for the intended region. Consider adding a clearer Mongol-era context if needed.",
+      "revision_feedback": "",
       "gates": {
         "source_verified": true,
         "answer_verified": true,
@@ -50,6 +51,7 @@
       "answer_index": 1,
       "explanation": "Chartered companies often combined private investment with state privileges, helping European states expand commercial and political influence overseas.",
       "review_notes": "Similarity risk is medium. Rewrite stimulus with a specific public-domain source or original scenario before approval.",
+      "revision_feedback": "Rewrite the stimulus so it is clearly original and attach a verified open/public-domain source before approval.",
       "gates": {
         "source_verified": false,
         "answer_verified": true,
@@ -78,6 +80,7 @@
       "answer_index": 0,
       "explanation": "Imperial infrastructure frequently served extraction, export, and administrative control rather than balanced industrial development for colonized societies.",
       "review_notes": "Approved as original seed question. Good candidate for first AP World practice set.",
+      "revision_feedback": "",
       "gates": {
         "source_verified": true,
         "answer_verified": true,

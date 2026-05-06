@@ -750,7 +750,7 @@ h3 {
 
 .review-metrics {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
   margin-bottom: 16px;
 }
@@ -917,6 +917,7 @@ h3 {
 .review-notes-label {
   display: grid;
   gap: 8px;
+  margin-top: 12px;
   color: var(--muted);
   font-weight: 800;
 }
@@ -937,6 +938,28 @@ h3 {
   justify-content: flex-end;
   gap: 10px;
   margin-top: 16px;
+}
+
+.review-message {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.review-message.error {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, var(--surface));
+  color: var(--ink);
+}
+
+.review-message.success {
+  border-color: var(--teal);
+  background: color-mix(in srgb, var(--teal) 14%, var(--surface));
+  color: var(--ink);
 }
 
 .secondary-button.danger {
@@ -989,6 +1012,30 @@ h3 {
   display: block;
   color: var(--ink);
   margin-bottom: 4px;
+}
+
+.approved-bank-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.approved-bank-item {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.approved-bank-item strong,
+.approved-bank-item span {
+  display: block;
+}
+
+.approved-bank-item span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.88rem;
 }
 
 .form-panel {

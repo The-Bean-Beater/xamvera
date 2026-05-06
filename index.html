@@ -249,6 +249,10 @@
               <span class="panel-label">Approved</span>
               <strong id="approvedCount">0</strong>
             </section>
+            <section class="panel metric-card">
+              <span class="panel-label">Question bank</span>
+              <strong id="questionBankCount">0</strong>
+            </section>
           </div>
 
           <div class="review-workspace">
@@ -295,6 +299,13 @@
                 <textarea id="reviewNotes" rows="4"></textarea>
               </label>
 
+              <label class="review-notes-label">
+                Revision feedback
+                <textarea id="revisionFeedback" rows="4" placeholder="If this needs revision, write exactly what must change before approval."></textarea>
+              </label>
+
+              <div class="review-message" id="reviewMessage" hidden></div>
+
               <div class="review-actions">
                 <button class="secondary-button" type="button" data-review-action="needs_revision">Needs Revision</button>
                 <button class="secondary-button danger" type="button" data-review-action="rejected">Reject</button>
@@ -313,6 +324,9 @@
                 <strong>Rule</strong>
                 Do not approve copied College Board or third-party questions. Use this page to verify originality and accuracy before publishing.
               </div>
+
+              <span class="panel-label">Approved bank</span>
+              <div class="approved-bank-list" id="approvedBankList"></div>
             </aside>
           </div>
         </section>
