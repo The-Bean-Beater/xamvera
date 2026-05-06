@@ -1,9 +1,11 @@
 const sidebar = document.getElementById("sidebar");
 const menuButton = document.getElementById("menuButton");
+const appShell = document.querySelector(".app-shell");
 const navItems = document.querySelectorAll(".nav-item");
 const views = document.querySelectorAll(".view");
 const themeButtons = document.querySelectorAll("[data-theme-option]");
 const themeStorageKey = "xamvera-theme";
+const sidebarStorageKey = "xamvera-sidebar-collapsed";
 
 const apCourses = [
   {
@@ -412,8 +414,389 @@ const seedReviewQueue = {
   ]
 };
 
+const generatorBlueprints = {
+  imageSets: [
+    {
+      set_id: "local-img-mansa-musa",
+      set_title: "Mansa Musa in a Fourteenth-Century Mediterranean Map",
+      unit: "Unit 2: Networks of Exchange",
+      period: "c. 1200-c. 1450",
+      difficulty: "Medium",
+      stimulus_format: "image_set",
+      stimulus:
+        "Image stimulus under review: a fourteenth-century Mediterranean map panel depicts the ruler of Mali seated in West Africa, holding a gold object and wearing a crown. The surrounding map labels and visual placement connect Mali to North Africa and Mediterranean geographic knowledge.",
+      stimulus_assets: [
+        {
+          kind: "image",
+          asset_status: "verified_public_domain_candidate_needs_local_asset",
+          title: "Mansa Musa detail from the Catalan Atlas",
+          source_url: "https://commons.wikimedia.org/wiki/File:Mansa_Musa.jpg",
+          rights_notes: "Wikimedia Commons lists this as a public-domain faithful reproduction. Verify before publishing.",
+          alt_text: "Map detail showing Mansa Musa seated with a gold object in West Africa."
+        }
+      ],
+      questions: [
+        {
+          skill: "Contextualization",
+          prompt: "The image is best understood in the context of which broader development?",
+          choices: [
+            "The expansion of trans-Saharan trade networks that linked West Africa to North Africa and the Mediterranean",
+            "The collapse of Islamic influence in West African states after 1200",
+            "The replacement of gold exports by plantation sugar production in Mali",
+            "The isolation of Mediterranean mapmakers from Afro-Eurasian commercial information"
+          ],
+          answer_index: 0,
+          explanation:
+            "Mali's wealth and reputation were shaped by trans-Saharan exchanges in gold, salt, scholarship, and religious ideas connecting West Africa to wider Afro-Eurasian networks."
+        },
+        {
+          skill: "Causation",
+          prompt: "Which development most directly contributed to Mali being represented in this way?",
+          choices: [
+            "Demand for West African gold and the growth of caravan routes across the Sahara",
+            "The spread of steam-powered transport through the interior of Africa",
+            "Portuguese control over all West African commerce before 1450",
+            "The decline of commercial cities such as Timbuktu and Gao"
+          ],
+          answer_index: 0,
+          explanation:
+            "The depiction reflects Mali's association with gold wealth, which circulated through caravan trade and helped make West African states known to observers beyond the region."
+        },
+        {
+          skill: "Sourcing",
+          prompt: "Which statement best describes a limitation of using the image as evidence about Mali?",
+          choices: [
+            "It reflects an outside mapmaker's representation and should be compared with evidence from West African and Arabic sources.",
+            "It proves that Mali's rulers personally drew most Mediterranean maps.",
+            "It shows that written geographic knowledge had disappeared in Europe.",
+            "It can only be used to study military technology, not trade or cultural exchange."
+          ],
+          answer_index: 0,
+          explanation:
+            "The image is useful evidence for Mali's reputation abroad, but it was produced outside Mali and should be interpreted alongside other sources."
+        }
+      ]
+    },
+    {
+      set_id: "local-img-ottoman-cannon",
+      set_title: "Ottoman Siege Artillery in the Early Modern Period",
+      unit: "Unit 3: Land-Based Empires",
+      period: "c. 1450-c. 1750",
+      difficulty: "Medium",
+      stimulus_format: "image_set",
+      stimulus:
+        "Image stimulus under review: an early modern scene shows Ottoman soldiers operating large cannon near fortified walls. The image emphasizes the scale of siege warfare and the logistical organization needed to move and fire heavy artillery.",
+      stimulus_assets: [
+        {
+          kind: "image",
+          asset_status: "public_domain_search_target_needs_verification",
+          title: "Ottoman cannon or siege-artillery image",
+          source_url: "https://commons.wikimedia.org/wiki/Category:Ottoman_cannons",
+          rights_notes: "Use a specific verified public-domain or freely licensed image before publishing.",
+          alt_text: "Ottoman artillery positioned near a fortified city wall."
+        }
+      ],
+      questions: [
+        {
+          skill: "Causation",
+          prompt: "Which development most directly enabled the military activity shown in the image?",
+          choices: [
+            "The adoption of gunpowder weapons by expanding land-based empires",
+            "The abandonment of centralized military forces by early modern states",
+            "The end of competition among empires in Afro-Eurasia",
+            "The replacement of taxation by voluntary military service"
+          ],
+          answer_index: 0,
+          explanation:
+            "Gunpowder artillery helped several land-based empires conquer fortified cities and expand territorial control."
+        },
+        {
+          skill: "Contextualization",
+          prompt: "The image would be most useful for studying which broader process?",
+          choices: [
+            "The consolidation of imperial authority through military technology and administrative capacity",
+            "The decline of state involvement in warfare after 1450",
+            "The spread of industrial factory production in the thirteenth century",
+            "The disappearance of fortifications from early modern cities"
+          ],
+          answer_index: 0,
+          explanation:
+            "Artillery required revenue, specialists, transport, and command systems, linking military change to the growth of powerful imperial states."
+        },
+        {
+          skill: "Comparison",
+          prompt: "Which comparison best connects the image to other empires in the same period?",
+          choices: [
+            "Ottoman, Safavid, and Mughal rulers all used gunpowder forces while adapting them to different regional conditions.",
+            "Only the Ottoman Empire used firearms, while all other empires rejected them.",
+            "Gunpowder weapons ended the need for armies in both Europe and Asia.",
+            "All early modern empires relied on identical systems of taxation and recruitment."
+          ],
+          answer_index: 0,
+          explanation:
+            "Gunpowder technologies spread widely, but rulers incorporated them into distinct imperial, fiscal, and military systems."
+        }
+      ]
+    }
+  ],
+  documentSets: [
+    {
+      set_id: "local-doc-kongo-afonso",
+      set_title: "A Kongo Ruler Responds to Portuguese Trade",
+      unit: "Unit 4: Transoceanic Interconnections",
+      period: "c. 1450-c. 1750",
+      difficulty: "Hard",
+      stimulus_format: "document_set",
+      stimulus:
+        "Document stimulus, classroom paraphrase for review: A ruler of Kongo writes to the king of Portugal in 1526 that merchants and royal officials have brought prohibited goods into his kingdom and weakened his authority over local elites. He argues that people from his realm, including nobles and relatives, are being seized and sold, causing disorder and depopulation. The ruler asks Portugal to stop sending goods that encourage illegal trade and instead send priests and teachers who can support Christian instruction. He presents himself as a Christian monarch and political ally, but he insists that foreign commerce must not undermine the security, population, and sovereignty of Kongo.",
+      document_source: {
+        author: "Nzinga Mbemba, also known as Afonso I of Kongo",
+        date: "1526",
+        source_url: "https://worldhistorycommons.org/excerpt-letter-nzinga-mbemba-portuguese-king-joao-iii",
+        rights_notes: "Stimulus is an original XamVera paraphrase. Verify source, wording, and classroom rights before publishing.",
+        verification_status: "source_identified_needs_human_verification"
+      },
+      questions: [
+        {
+          skill: "Sourcing",
+          prompt: "Which claim about the author's point of view is best supported by the document?",
+          choices: [
+            "He viewed Atlantic commerce as useful only if it remained under royal regulation and did not weaken Kongo's authority.",
+            "He rejected all contact with Europeans because he opposed Christianity.",
+            "He wrote as a merchant seeking permission to expand private slave trading.",
+            "He believed Portuguese officials had strengthened Kongo by ignoring royal authority."
+          ],
+          answer_index: 0,
+          explanation:
+            "The paraphrased letter presents the ruler as willing to maintain selected ties with Portugal while criticizing commerce that threatened his kingdom."
+        },
+        {
+          skill: "Causation",
+          prompt: "Which development most directly contributed to the problems described in the document?",
+          choices: [
+            "The growth of Atlantic trading networks and the forced movement of enslaved Africans",
+            "The collapse of all European demand for African labor",
+            "The spread of industrial textile factories in Central Africa",
+            "The end of Portuguese maritime activity after 1450"
+          ],
+          answer_index: 0,
+          explanation:
+            "The ruler's complaints reflect the expansion of Atlantic commerce, including slave trading, and its disruptive effects on African states and societies."
+        },
+        {
+          skill: "Contextualization",
+          prompt: "The document is most useful for contextualizing which broader pattern?",
+          choices: [
+            "African rulers negotiated, resisted, and sometimes tried to regulate European commercial influence.",
+            "European merchants immediately ended coercive labor systems in the Atlantic world.",
+            "Central African states were isolated from Christianity and diplomacy.",
+            "Portuguese influence in Africa depended entirely on industrial machinery."
+          ],
+          answer_index: 0,
+          explanation:
+            "The document shows that African rulers were active political actors who attempted to manage the terms and consequences of early Atlantic exchange."
+        }
+      ]
+    },
+    {
+      set_id: "local-doc-qing-macartney",
+      set_title: "The Qing Court Responds to a British Embassy",
+      unit: "Unit 4: Transoceanic Interconnections",
+      period: "c. 1450-c. 1750",
+      difficulty: "Hard",
+      stimulus_format: "document_set",
+      stimulus:
+        "Document stimulus, classroom paraphrase for review: In a 1793 response to a British diplomatic mission, the Qing emperor acknowledges that the British king has sent tribute and requested broader trade privileges. The emperor states that the empire already possesses abundant goods and has no need to import foreign manufactures. He rejects requests for a permanent British representative at court and for expanded trading rights outside existing regulations. The response presents Qing authority as universal and hierarchical, while treating foreign trade as something the state may restrict in order to preserve order.",
+      document_source: {
+        author: "Qianlong Emperor",
+        date: "1793",
+        source_url: "https://sourcebooks.web.fordham.edu/mod/1793qianlong.asp",
+        rights_notes: "Stimulus is an original XamVera paraphrase. Verify the source and note historiographical cautions about the letter's transmission before publishing.",
+        verification_status: "source_identified_needs_human_verification"
+      },
+      questions: [
+        {
+          skill: "Sourcing",
+          prompt: "Which statement best explains how the author's purpose shapes the document?",
+          choices: [
+            "The response defends Qing diplomatic hierarchy and justifies limiting British commercial demands.",
+            "The response asks Britain to colonize coastal China and manage Qing trade.",
+            "The response promotes free trade as the only legitimate basis of diplomacy.",
+            "The response rejects all state regulation of merchants."
+          ],
+          answer_index: 0,
+          explanation:
+            "The paraphrased response frames trade and diplomacy through Qing claims of authority and uses that framework to deny British requests."
+        },
+        {
+          skill: "Contextualization",
+          prompt: "The British requests described in the document are best understood in the context of which development?",
+          choices: [
+            "European efforts to expand commercial access to Asian markets during the early modern period",
+            "The immediate collapse of Qing rule after 1450",
+            "The replacement of maritime trade by trans-Saharan caravan exchange",
+            "The end of European chartered-company activity in Asia before 1600"
+          ],
+          answer_index: 0,
+          explanation:
+            "European states and companies sought greater access to Asian goods and markets, even when Asian states restricted foreign trade."
+        },
+        {
+          skill: "Continuity and Change",
+          prompt: "Which statement best explains both continuity and change related to the document?",
+          choices: [
+            "Asian states continued to regulate trade, while European pressure for expanded access increased in the eighteenth century.",
+            "Asian states abandoned all control over foreign merchants after 1450.",
+            "European states stopped seeking Asian goods once Atlantic trade began.",
+            "Qing officials replaced diplomacy with industrial mass production."
+          ],
+          answer_index: 0,
+          explanation:
+            "The document reflects continued state regulation of commerce as well as growing European pressure to alter the terms of trade."
+        }
+      ]
+    }
+  ],
+  shortScenarios: [
+    {
+      unit: "Unit 1: The Global Tapestry",
+      period: "c. 1200-c. 1450",
+      skill: "Comparison",
+      difficulty: "Medium",
+      stimulus:
+        "Two rulers in different regions sponsor religious scholars, appoint provincial officials, and use tax records to supervise large agrarian populations.",
+      prompt: "Which comparison is best supported by the scenario?",
+      choices: [
+        "States in different regions used religious legitimacy and administration to strengthen rule.",
+        "States in this period generally abandoned religion as a source of authority.",
+        "Agrarian states avoided taxation because trade made revenue unnecessary.",
+        "Large states became less centralized as bureaucratic offices expanded."
+      ],
+      answer_index: 0,
+      explanation:
+        "Many states combined claims of religious legitimacy with officials, taxation, and recordkeeping to maintain authority over large populations."
+    },
+    {
+      unit: "Unit 2: Networks of Exchange",
+      period: "c. 1200-c. 1450",
+      skill: "Causation",
+      difficulty: "Medium",
+      stimulus:
+        "Merchants traveling between inland cities and coastal ports use bills of exchange, caravanserai, and multilingual brokers to move goods across long distances.",
+      prompt: "Which development most directly contributed to the commercial activity described?",
+      choices: [
+        "The growth of interregional trade networks linking Afro-Eurasian societies",
+        "The disappearance of luxury trade across the Indian Ocean",
+        "The isolation of inland cities from maritime exchange",
+        "The replacement of merchant activity with state-owned factories"
+      ],
+      answer_index: 0,
+      explanation:
+        "Commercial practices, credit instruments, and support facilities helped merchants participate in expanding land and maritime networks."
+    },
+    {
+      unit: "Unit 5: Revolutions",
+      period: "c. 1750-c. 1900",
+      skill: "Causation",
+      difficulty: "Medium",
+      stimulus:
+        "A group of reformers argues that legitimate governments should protect individual rights and derive authority from the consent of citizens.",
+      prompt: "Which intellectual development most directly influenced the reformers' argument?",
+      choices: [
+        "Enlightenment ideas about natural rights and popular sovereignty",
+        "Mercantilist support for royal monopolies",
+        "The rejection of written constitutions by revolutionary leaders",
+        "The belief that political authority should never be debated"
+      ],
+      answer_index: 0,
+      explanation:
+        "Enlightenment thinkers advanced ideas about rights, consent, and sovereignty that influenced revolutionary and reform movements."
+    },
+    {
+      unit: "Unit 6: Consequences of Industrialization",
+      period: "c. 1750-c. 1900",
+      skill: "Continuity and Change",
+      difficulty: "Hard",
+      stimulus:
+        "A colonial administration expands railroads from inland mines to coastal ports while restricting local manufacturing that might compete with imported goods.",
+      prompt: "Which statement best explains both change and continuity in this scenario?",
+      choices: [
+        "Industrial-era infrastructure expanded, while imperial economies often continued to prioritize extraction.",
+        "Colonial governments generally promoted equal industrial development in all regions.",
+        "Railroads ended the relationship between imperialism and global trade.",
+        "Industrialization eliminated demand for raw materials from colonized regions."
+      ],
+      answer_index: 0,
+      explanation:
+        "Industrialization changed transportation and production, but imperial systems often continued to organize colonies around raw materials, export, and outside markets."
+    },
+    {
+      unit: "Unit 7: Global Conflict",
+      period: "c. 1900-present",
+      skill: "Causation",
+      difficulty: "Medium",
+      stimulus:
+        "A state mobilizes factories, censors newspapers, expands military conscription, and encourages citizens to buy war bonds.",
+      prompt: "Which development most directly explains the state actions described?",
+      choices: [
+        "The rise of total war requiring large-scale economic and social mobilization",
+        "The disappearance of state authority during twentieth-century conflicts",
+        "The end of propaganda as a tool of governments",
+        "The replacement of industrial warfare by local subsistence economies"
+      ],
+      answer_index: 0,
+      explanation:
+        "Twentieth-century total wars required states to mobilize industry, labor, finance, media, and civilians for military goals."
+    },
+    {
+      unit: "Unit 8: Cold War and Decolonization",
+      period: "c. 1900-present",
+      skill: "Contextualization",
+      difficulty: "Medium",
+      stimulus:
+        "A newly independent state seeks foreign aid from rival superpowers while also joining conferences with other recently decolonized nations.",
+      prompt: "The state's actions are best understood in the context of which development?",
+      choices: [
+        "Decolonization and Cold War competition for influence in the Global South",
+        "The complete withdrawal of superpowers from international politics",
+        "The end of diplomatic activity among newly independent states",
+        "The restoration of direct colonial rule after the Second World War"
+      ],
+      answer_index: 0,
+      explanation:
+        "Newly independent states often navigated Cold War pressures while pursuing development, sovereignty, and nonalignment."
+    }
+  ]
+};
+
 function getCourseById(courseId) {
   return apCourses.find((course) => course.id === courseId) || apCourses[0];
+}
+
+function isNarrowViewport() {
+  return window.matchMedia("(max-width: 980px)").matches;
+}
+
+function applySidebarPreference() {
+  if (!appShell) return;
+  const collapsed = localStorage.getItem(sidebarStorageKey) === "true";
+  const shouldCollapse = collapsed && !isNarrowViewport();
+  appShell.classList.toggle("sidebar-collapsed", shouldCollapse);
+  menuButton?.setAttribute("aria-label", shouldCollapse ? "Expand menu" : "Collapse menu");
+}
+
+function toggleSidebar() {
+  if (isNarrowViewport()) {
+    sidebar?.classList.toggle("open");
+    const isOpen = sidebar?.classList.contains("open");
+    menuButton?.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+    return;
+  }
+
+  const collapsed = !appShell?.classList.contains("sidebar-collapsed");
+  appShell?.classList.toggle("sidebar-collapsed", collapsed);
+  localStorage.setItem(sidebarStorageKey, String(collapsed));
+  menuButton?.setAttribute("aria-label", collapsed ? "Expand menu" : "Collapse menu");
 }
 
 function showView(viewId) {
@@ -428,6 +811,11 @@ function showView(viewId) {
   navItems.forEach((item) => {
     item.classList.toggle("active", item.dataset.view === viewId);
   });
+
+  if (isNarrowViewport()) {
+    sidebar?.classList.remove("open");
+    menuButton?.setAttribute("aria-label", "Open menu");
+  }
 
   const topbarContext = document.getElementById("topbarContext");
   const activeView = document.getElementById(viewId);
@@ -710,6 +1098,202 @@ function formatStatus(status) {
   return status.replaceAll("_", " ");
 }
 
+function copyValue(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
+function readCount(inputId) {
+  const input = document.getElementById(inputId);
+  if (!input) return 0;
+  const value = Number(input.value);
+  return Number.isFinite(value) ? Math.max(0, Math.floor(value)) : 0;
+}
+
+function nextLocalDraftId() {
+  const current = Number(localStorage.getItem("xamvera-local-draft-sequence") || "0") + 1;
+  localStorage.setItem("xamvera-local-draft-sequence", String(current));
+  return `local-apwh-${String(current).padStart(4, "0")}`;
+}
+
+function sourceTypeForStimulusFormat(format) {
+  if (format === "image_set") return "browser_generated_image_stimulus_public_domain_candidate";
+  if (format === "document_set") return "browser_generated_document_paraphrase_source_identified";
+  return "browser_generated_original_short_scenario";
+}
+
+function gatesForStimulusFormat(format) {
+  const gates = {
+    source_verified: false,
+    answer_verified: false,
+    explanation_verified: false,
+    copyright_checked: true
+  };
+
+  if (format === "image_set") {
+    gates.asset_rights_verified = false;
+    gates.stimulus_verified = false;
+  }
+
+  if (format === "document_set") {
+    gates.document_source_verified = false;
+    gates.paraphrase_checked = false;
+  }
+
+  return gates;
+}
+
+function generationReviewNotes(draft) {
+  const notes = [
+    "Generated in the XamVera browser review console from original AP World templates.",
+    "Private College Board source bank is not available in the browser and was not copied into this draft.",
+    "Keep in needs_review until a human verifies accuracy, originality, and source rights."
+  ];
+
+  if (draft.stimulus_assets?.length) {
+    notes.push(
+      "Image source candidates: " +
+        draft.stimulus_assets.map((asset) => `${asset.title}: ${asset.source_url}`).join(" | ")
+    );
+  }
+
+  if (draft.document_source) {
+    notes.push(
+      `Document source candidate: ${draft.document_source.author}, ${draft.document_source.date}: ${draft.document_source.source_url}`
+    );
+  }
+
+  return notes.join(" ");
+}
+
+function makeGeneratedSetDrafts(blueprint) {
+  const setRunId = `${blueprint.set_id}-${nextLocalDraftId()}`;
+  const linkedIds = blueprint.questions.map(() => nextLocalDraftId());
+
+  return blueprint.questions.map((question, index) => {
+    const draft = {
+      id: linkedIds[index],
+      status: "needs_review",
+      course: "AP World History: Modern",
+      unit: blueprint.unit,
+      period: blueprint.period,
+      skill: question.skill,
+      difficulty: blueprint.difficulty,
+      source_type: sourceTypeForStimulusFormat(blueprint.stimulus_format),
+      similarity_risk: "low",
+      stimulus_format: blueprint.stimulus_format,
+      stimulus: blueprint.stimulus,
+      prompt: question.prompt,
+      choices: copyValue(question.choices),
+      answer_index: question.answer_index,
+      explanation: question.explanation,
+      set_id: setRunId,
+      set_title: blueprint.set_title,
+      set_question_number: index + 1,
+      set_question_count: blueprint.questions.length,
+      linked_question_ids: linkedIds,
+      review_notes: "",
+      revision_feedback: "",
+      generation_profile: {
+        profile_source: "browser_review_console",
+        pipeline_kind: blueprint.stimulus_format,
+        private_source_text_used_in_output: false,
+        private_source_leak_flags: []
+      },
+      gates: gatesForStimulusFormat(blueprint.stimulus_format)
+    };
+
+    if (blueprint.stimulus_assets) draft.stimulus_assets = copyValue(blueprint.stimulus_assets);
+    if (blueprint.document_source) draft.document_source = copyValue(blueprint.document_source);
+    draft.review_notes = generationReviewNotes(draft);
+    return draft;
+  });
+}
+
+function makeGeneratedShortDraft(blueprint) {
+  const draft = {
+    id: nextLocalDraftId(),
+    status: "needs_review",
+    course: "AP World History: Modern",
+    unit: blueprint.unit,
+    period: blueprint.period,
+    skill: blueprint.skill,
+    difficulty: blueprint.difficulty,
+    source_type: sourceTypeForStimulusFormat("short_scenario"),
+    similarity_risk: "low",
+    stimulus_format: "short_scenario",
+    stimulus: blueprint.stimulus,
+    prompt: blueprint.prompt,
+    choices: copyValue(blueprint.choices),
+    answer_index: blueprint.answer_index,
+    explanation: blueprint.explanation,
+    review_notes: "",
+    revision_feedback: "",
+    generation_profile: {
+      profile_source: "browser_review_console",
+      pipeline_kind: "short_scenario",
+      private_source_text_used_in_output: false,
+      private_source_leak_flags: []
+    },
+    gates: gatesForStimulusFormat("short_scenario")
+  };
+  draft.review_notes = generationReviewNotes(draft);
+  return draft;
+}
+
+function generateBlueprintDrafts() {
+  const imageSetCount = readCount("imageSetCount");
+  const documentSetCount = readCount("documentSetCount");
+  const shortScenarioCount = readCount("shortScenarioCount");
+  const drafts = [];
+
+  for (let index = 0; index < imageSetCount; index += 1) {
+    const blueprint = generatorBlueprints.imageSets[index % generatorBlueprints.imageSets.length];
+    drafts.push(...makeGeneratedSetDrafts(blueprint));
+  }
+
+  for (let index = 0; index < documentSetCount; index += 1) {
+    const blueprint = generatorBlueprints.documentSets[index % generatorBlueprints.documentSets.length];
+    drafts.push(...makeGeneratedSetDrafts(blueprint));
+  }
+
+  for (let index = 0; index < shortScenarioCount; index += 1) {
+    const blueprint = generatorBlueprints.shortScenarios[index % generatorBlueprints.shortScenarios.length];
+    drafts.push(makeGeneratedShortDraft(blueprint));
+  }
+
+  return { drafts, imageSetCount, documentSetCount, shortScenarioCount };
+}
+
+function setGeneratorMessage(message, type = "") {
+  const element = document.getElementById("generatorMessage");
+  if (!element) return;
+  element.hidden = !message;
+  element.textContent = message;
+  element.className = `generator-message ${type}`;
+}
+
+function generateDraftsForReview() {
+  const { drafts, imageSetCount, documentSetCount, shortScenarioCount } = generateBlueprintDrafts();
+
+  if (!drafts.length) {
+    setGeneratorMessage("Pick at least one draft type to generate.", "error");
+    return;
+  }
+
+  reviewItems = [...drafts, ...reviewItems];
+  selectedReviewIndex = 0;
+  activeReviewFilter = "needs_review";
+  const filter = document.getElementById("reviewFilter");
+  if (filter) filter.value = activeReviewFilter;
+  saveReviewQueue();
+  renderReviewWorkspace();
+
+  setGeneratorMessage(
+    `Generated ${drafts.length} review item${drafts.length === 1 ? "" : "s"}: ${imageSetCount} image set${imageSetCount === 1 ? "" : "s"}, ${documentSetCount} document set${documentSetCount === 1 ? "" : "s"}, ${shortScenarioCount} short scenario${shortScenarioCount === 1 ? "" : "s"}.`,
+    "success"
+  );
+}
+
 function filteredReviewItems() {
   if (activeReviewFilter === "all") return reviewItems;
   return reviewItems.filter((item) => item.status === activeReviewFilter);
@@ -746,7 +1330,8 @@ function renderReviewQueue() {
         <button class="queue-item ${originalIndex === selectedReviewIndex ? "active" : ""}" type="button" data-review-index="${originalIndex}">
           <span>${formatStatus(item.status)}</span>
           <strong>${item.skill}</strong>
-          <span>${item.unit}</span>
+          <span>${item.set_title || item.unit}</span>
+          ${item.set_question_count ? `<span>Set question ${item.set_question_number} of ${item.set_question_count}</span>` : ""}
         </button>
       `;
     })
@@ -760,6 +1345,70 @@ function renderReviewQueue() {
   });
 }
 
+function renderReviewSourceDetails(item) {
+  const section = document.getElementById("reviewSourceSection");
+  const details = document.getElementById("reviewSourceDetails");
+  if (!section || !details) return;
+
+  const cards = [];
+
+  if (item.set_id) {
+    cards.push(`
+      <article class="source-detail-card">
+        <strong>Linked stimulus set</strong>
+        <span>${item.set_title || item.set_id}</span>
+        <small>Question ${item.set_question_number} of ${item.set_question_count}</small>
+        <small>${(item.linked_question_ids || []).join(", ")}</small>
+      </article>
+    `);
+  }
+
+  if (item.document_source) {
+    cards.push(`
+      <article class="source-detail-card">
+        <strong>Document source</strong>
+        <span>${item.document_source.author}, ${item.document_source.date}</span>
+        <a href="${item.document_source.source_url}" target="_blank" rel="noopener">Open source</a>
+        <small>${formatStatus(item.document_source.verification_status || "needs_verification")}</small>
+        <small>${item.document_source.rights_notes || ""}</small>
+      </article>
+    `);
+  }
+
+  (item.stimulus_assets || []).forEach((asset) => {
+    cards.push(`
+      <article class="source-detail-card">
+        <strong>${asset.kind === "image" ? "Image source" : "Stimulus asset"}</strong>
+        <span>${asset.title}</span>
+        <a href="${asset.source_url}" target="_blank" rel="noopener">Open source</a>
+        <small>${formatStatus(asset.asset_status || "needs_verification")}</small>
+        <small>${asset.rights_notes || ""}</small>
+        <small>${asset.alt_text || ""}</small>
+      </article>
+    `);
+  });
+
+  if (item.generation_profile) {
+    cards.push(`
+      <article class="source-detail-card">
+        <strong>Generation profile</strong>
+        <span>${formatStatus(item.generation_profile.pipeline_kind || item.stimulus_format || "unknown")}</span>
+        <small>Profile source: ${item.generation_profile.profile_source || "not recorded"}</small>
+        <small>Private source text used: ${item.generation_profile.private_source_text_used_in_output ? "yes" : "no"}</small>
+      </article>
+    `);
+  }
+
+  if (!cards.length) {
+    section.hidden = true;
+    details.innerHTML = "";
+    return;
+  }
+
+  section.hidden = false;
+  details.innerHTML = cards.join("");
+}
+
 function renderReviewDetail() {
   const item = selectedReviewItem();
   if (!item) return;
@@ -770,6 +1419,7 @@ function renderReviewDetail() {
   document.getElementById("reviewExplanation").textContent = item.explanation;
   document.getElementById("reviewNotes").value = item.review_notes || "";
   document.getElementById("revisionFeedback").value = item.revision_feedback || "";
+  renderReviewSourceDetails(item);
   setReviewMessage("");
 
   const status = document.getElementById("reviewStatus");
@@ -791,10 +1441,25 @@ function renderReviewDetail() {
     ["Course", item.course],
     ["Unit", item.unit],
     ["Period", item.period],
+    ["Format", formatStatus(item.stimulus_format || "short_scenario")],
     ["Difficulty", item.difficulty],
     ["Source", item.source_type],
     ["Similarity", item.similarity_risk]
   ];
+
+  if (item.set_id) {
+    metadata.push(["Set", item.set_title || item.set_id]);
+    metadata.push(["Linked", `${item.set_question_number} of ${item.set_question_count}`]);
+  }
+
+  if (item.document_source) {
+    metadata.push(["Document", `${item.document_source.author}, ${item.document_source.date}`]);
+    metadata.push(["Verification", formatStatus(item.document_source.verification_status)]);
+  }
+
+  if (item.stimulus_assets?.length) {
+    metadata.push(["Asset", formatStatus(item.stimulus_assets[0].asset_status)]);
+  }
 
   document.getElementById("reviewMetadata").innerHTML = metadata
     .map(([label, value]) => `<div><strong>${label}</strong><span>${value}</span></div>`)
@@ -858,6 +1523,14 @@ function toApprovedQuestion(item) {
     difficulty: item.difficulty,
     source_type: item.source_type,
     similarity_risk: item.similarity_risk,
+    stimulus_format: item.stimulus_format,
+    set_id: item.set_id,
+    set_title: item.set_title,
+    set_question_number: item.set_question_number,
+    set_question_count: item.set_question_count,
+    linked_question_ids: item.linked_question_ids,
+    stimulus_assets: item.stimulus_assets,
+    document_source: item.document_source,
     stimulus: item.stimulus,
     prompt: item.prompt,
     choices: item.choices,
@@ -964,9 +1637,13 @@ async function loadReviewQueue() {
     const saved = localStorage.getItem("xanvera-review-queue");
     if (saved) {
       const mergedItems = new Map(fetchedItems.map((item) => [item.id, item]));
-      JSON.parse(saved).forEach((item) => {
-        mergedItems.set(item.id, item);
-      });
+      try {
+        JSON.parse(saved).forEach((item) => {
+          mergedItems.set(item.id, item);
+        });
+      } catch {
+        localStorage.removeItem("xanvera-review-queue");
+      }
       reviewItems = Array.from(mergedItems.values());
     } else {
       reviewItems = fetchedItems;
@@ -980,9 +1657,18 @@ async function loadReviewQueue() {
   }
 }
 
-menuButton?.addEventListener("click", () => {
-  sidebar?.classList.toggle("open");
-});
+async function reloadDeployedReviewQueue() {
+  localStorage.removeItem("xanvera-review-queue");
+  reviewItems = [];
+  selectedReviewIndex = 0;
+  activeReviewFilter = "all";
+  const filter = document.getElementById("reviewFilter");
+  if (filter) filter.value = activeReviewFilter;
+  await loadReviewQueue();
+  setGeneratorMessage("Reloaded the deployed review queue and cleared local draft overrides.", "success");
+}
+
+menuButton?.addEventListener("click", toggleSidebar);
 
 navItems.forEach((item) => {
   item.addEventListener("click", () => showView(item.dataset.view));
@@ -1060,6 +1746,8 @@ themeButtons.forEach((button) => {
 
 document.getElementById("nextQuestion")?.addEventListener("click", nextQuestion);
 document.getElementById("resetPractice")?.addEventListener("click", resetPractice);
+document.getElementById("generateDraftsButton")?.addEventListener("click", generateDraftsForReview);
+document.getElementById("reloadReviewQueueButton")?.addEventListener("click", reloadDeployedReviewQueue);
 document.getElementById("reviewFilter")?.addEventListener("change", (event) => {
   activeReviewFilter = event.target.value;
   const items = filteredReviewItems();
@@ -1085,7 +1773,9 @@ document.getElementById("revisionFeedback")?.addEventListener("input", (event) =
 });
 
 window.addEventListener("hashchange", showInitialViewFromHash);
+window.addEventListener("resize", applySidebarPreference);
 
+applySidebarPreference();
 applyTheme(localStorage.getItem(themeStorageKey) || "system");
 renderCourseCatalog();
 renderPracticeCourseSelect();

@@ -92,71 +92,119 @@
       "id": "gen-apwh-001",
       "status": "needs_review",
       "course": "AP World History: Modern",
-      "unit": "Unit 1: The Global Tapestry",
+      "unit": "Unit 2: Networks of Exchange",
       "period": "c. 1200-c. 1450",
-      "skill": "Comparison",
+      "skill": "Contextualization",
       "difficulty": "Medium",
-      "source_type": "generated_from_private_style_profile",
+      "source_type": "generated_image_stimulus_public_domain_candidate",
       "similarity_risk": "low",
-      "stimulus": "Two states expand bureaucratic offices, sponsor religious learning, and use tax records to manage large agricultural populations.",
-      "prompt": "Which comparison is best supported by the scenario?",
+      "stimulus_format": "image_set",
+      "stimulus": "Image stimulus under review: a fourteenth-century Mediterranean map panel depicts the ruler of Mali seated in West Africa, holding a gold object and wearing a crown. The surrounding map labels and visual placement connect Mali to North Africa and Mediterranean geographic knowledge.",
+      "prompt": "The image is best understood in the context of which broader development?",
       "choices": [
-        "States in different regions could use administrative systems to strengthen political authority.",
-        "States in this period generally abandoned religion as a source of legitimacy.",
-        "Agricultural societies usually avoided written records and taxation.",
-        "Large states became less centralized as trade networks expanded."
+        "The expansion of trans-Saharan trade networks that linked West Africa to North Africa and the Mediterranean",
+        "The collapse of Islamic influence in West African states after 1200",
+        "The replacement of gold exports by plantation sugar production in Mali",
+        "The isolation of Mediterranean mapmakers from Afro-Eurasian commercial information"
       ],
       "answer_index": 0,
-      "explanation": "Many states used bureaucracy, recordkeeping, religion, and taxation to consolidate authority over large populations.",
-      "review_notes": "Original XamVera draft generated from AP World course concepts. Source bank profile used 363 private candidates for structure only; no copied source text included.",
+      "explanation": "Mali's wealth and reputation were shaped by trans-Saharan exchanges in gold, salt, scholarship, and religious ideas connecting West Africa to wider Afro-Eurasian networks.",
+      "set_id": "img-apwh-mansa-musa-catalan-atlas",
+      "set_title": "Mansa Musa in a Fourteenth-Century Mediterranean Map",
+      "set_question_number": 1,
+      "set_question_count": 3,
+      "linked_question_ids": [
+        "gen-apwh-001",
+        "gen-apwh-002",
+        "gen-apwh-003"
+      ],
+      "review_notes": "Original XamVera draft generated from AP World course concepts. Private source bank profile used 363 candidates for structure only. No copied College Board prompts, answer choices, explanations, images, or source text included. Image asset review needed: Mansa Musa detail from the Catalan Atlas (verified_public_domain_candidate_needs_local_asset): https://commons.wikimedia.org/wiki/File:Mansa_Musa.jpg",
       "revision_feedback": "",
       "generation_profile": {
         "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
         "target_choice_count": 4,
         "source_candidate_count": 363,
-        "private_source_text_used_in_output": false
+        "private_source_text_used_in_output": false,
+        "pipeline_kind": "image_set",
+        "private_source_leak_flags": []
       },
       "gates": {
         "source_verified": false,
         "answer_verified": false,
         "explanation_verified": false,
-        "copyright_checked": true
-      }
+        "copyright_checked": true,
+        "asset_rights_verified": false,
+        "stimulus_verified": false
+      },
+      "stimulus_assets": [
+        {
+          "kind": "image",
+          "asset_status": "verified_public_domain_candidate_needs_local_asset",
+          "title": "Mansa Musa detail from the Catalan Atlas",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Mansa_Musa.jpg",
+          "rights_notes": "Wikimedia Commons lists this as a public-domain faithful reproduction. Verify before publishing.",
+          "alt_text": "Map detail showing Mansa Musa seated with a gold object in West Africa."
+        }
+      ]
     },
     {
       "id": "gen-apwh-002",
       "status": "needs_review",
       "course": "AP World History: Modern",
-      "unit": "Unit 1: The Global Tapestry",
+      "unit": "Unit 2: Networks of Exchange",
       "period": "c. 1200-c. 1450",
-      "skill": "Contextualization",
+      "skill": "Causation",
       "difficulty": "Medium",
-      "source_type": "generated_from_private_style_profile",
+      "source_type": "generated_image_stimulus_public_domain_candidate",
       "similarity_risk": "low",
-      "stimulus": "A ruler claims authority by presenting himself as a defender of religious tradition while appointing officials to oversee provincial tax collection.",
-      "prompt": "The ruler's actions best illustrate which broader process in the period c. 1200-c. 1450?",
+      "stimulus_format": "image_set",
+      "stimulus": "Image stimulus under review: a fourteenth-century Mediterranean map panel depicts the ruler of Mali seated in West Africa, holding a gold object and wearing a crown. The surrounding map labels and visual placement connect Mali to North Africa and Mediterranean geographic knowledge.",
+      "prompt": "Which development most directly contributed to Mali being represented in this way?",
       "choices": [
-        "The use of religious legitimacy and administration to maintain state power",
-        "The complete separation of religion from political authority",
-        "The decline of taxation in large agrarian empires",
-        "The replacement of imperial government by independent city-states"
+        "Demand for West African gold and the growth of caravan routes across the Sahara",
+        "The spread of steam-powered transport through the interior of Africa",
+        "Portuguese control over all West African commerce before 1450",
+        "The decline of commercial cities such as Timbuktu and Gao"
       ],
       "answer_index": 0,
-      "explanation": "States often combined claims of religious legitimacy with practical administrative systems such as provincial officials and taxation.",
-      "review_notes": "Original XamVera draft generated from AP World course concepts. Source bank profile used 363 private candidates for structure only; no copied source text included.",
+      "explanation": "The depiction reflects Mali's association with gold wealth, which circulated through caravan trade and helped make West African states known to observers beyond the region.",
+      "set_id": "img-apwh-mansa-musa-catalan-atlas",
+      "set_title": "Mansa Musa in a Fourteenth-Century Mediterranean Map",
+      "set_question_number": 2,
+      "set_question_count": 3,
+      "linked_question_ids": [
+        "gen-apwh-001",
+        "gen-apwh-002",
+        "gen-apwh-003"
+      ],
+      "review_notes": "Original XamVera draft generated from AP World course concepts. Private source bank profile used 363 candidates for structure only. No copied College Board prompts, answer choices, explanations, images, or source text included. Image asset review needed: Mansa Musa detail from the Catalan Atlas (verified_public_domain_candidate_needs_local_asset): https://commons.wikimedia.org/wiki/File:Mansa_Musa.jpg",
       "revision_feedback": "",
       "generation_profile": {
         "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
         "target_choice_count": 4,
         "source_candidate_count": 363,
-        "private_source_text_used_in_output": false
+        "private_source_text_used_in_output": false,
+        "pipeline_kind": "image_set",
+        "private_source_leak_flags": []
       },
       "gates": {
         "source_verified": false,
         "answer_verified": false,
         "explanation_verified": false,
-        "copyright_checked": true
-      }
+        "copyright_checked": true,
+        "asset_rights_verified": false,
+        "stimulus_verified": false
+      },
+      "stimulus_assets": [
+        {
+          "kind": "image",
+          "asset_status": "verified_public_domain_candidate_needs_local_asset",
+          "title": "Mansa Musa detail from the Catalan Atlas",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Mansa_Musa.jpg",
+          "rights_notes": "Wikimedia Commons lists this as a public-domain faithful reproduction. Verify before publishing.",
+          "alt_text": "Map detail showing Mansa Musa seated with a gold object in West Africa."
+        }
+      ]
     },
     {
       "id": "gen-apwh-003",
@@ -164,10 +212,621 @@
       "course": "AP World History: Modern",
       "unit": "Unit 2: Networks of Exchange",
       "period": "c. 1200-c. 1450",
+      "skill": "Sourcing",
+      "difficulty": "Medium",
+      "source_type": "generated_image_stimulus_public_domain_candidate",
+      "similarity_risk": "low",
+      "stimulus_format": "image_set",
+      "stimulus": "Image stimulus under review: a fourteenth-century Mediterranean map panel depicts the ruler of Mali seated in West Africa, holding a gold object and wearing a crown. The surrounding map labels and visual placement connect Mali to North Africa and Mediterranean geographic knowledge.",
+      "prompt": "Which statement best describes a limitation of using the image as evidence about Mali?",
+      "choices": [
+        "It reflects an outside mapmaker's representation and should be compared with evidence from West African and Arabic sources.",
+        "It proves that Mali's rulers personally drew most Mediterranean maps.",
+        "It shows that written geographic knowledge had disappeared in Europe.",
+        "It can only be used to study military technology, not trade or cultural exchange."
+      ],
+      "answer_index": 0,
+      "explanation": "The image is useful evidence for Mali's reputation abroad, but it was produced outside Mali and should be interpreted alongside other sources.",
+      "set_id": "img-apwh-mansa-musa-catalan-atlas",
+      "set_title": "Mansa Musa in a Fourteenth-Century Mediterranean Map",
+      "set_question_number": 3,
+      "set_question_count": 3,
+      "linked_question_ids": [
+        "gen-apwh-001",
+        "gen-apwh-002",
+        "gen-apwh-003"
+      ],
+      "review_notes": "Original XamVera draft generated from AP World course concepts. Private source bank profile used 363 candidates for structure only. No copied College Board prompts, answer choices, explanations, images, or source text included. Image asset review needed: Mansa Musa detail from the Catalan Atlas (verified_public_domain_candidate_needs_local_asset): https://commons.wikimedia.org/wiki/File:Mansa_Musa.jpg",
+      "revision_feedback": "",
+      "generation_profile": {
+        "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
+        "target_choice_count": 4,
+        "source_candidate_count": 363,
+        "private_source_text_used_in_output": false,
+        "pipeline_kind": "image_set",
+        "private_source_leak_flags": []
+      },
+      "gates": {
+        "source_verified": false,
+        "answer_verified": false,
+        "explanation_verified": false,
+        "copyright_checked": true,
+        "asset_rights_verified": false,
+        "stimulus_verified": false
+      },
+      "stimulus_assets": [
+        {
+          "kind": "image",
+          "asset_status": "verified_public_domain_candidate_needs_local_asset",
+          "title": "Mansa Musa detail from the Catalan Atlas",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Mansa_Musa.jpg",
+          "rights_notes": "Wikimedia Commons lists this as a public-domain faithful reproduction. Verify before publishing.",
+          "alt_text": "Map detail showing Mansa Musa seated with a gold object in West Africa."
+        }
+      ]
+    },
+    {
+      "id": "gen-apwh-004",
+      "status": "needs_review",
+      "course": "AP World History: Modern",
+      "unit": "Unit 3: Land-Based Empires",
+      "period": "c. 1450-c. 1750",
       "skill": "Causation",
       "difficulty": "Medium",
-      "source_type": "generated_from_private_style_profile",
+      "source_type": "generated_image_stimulus_public_domain_candidate",
       "similarity_risk": "low",
+      "stimulus_format": "image_set",
+      "stimulus": "Image stimulus under review: an early modern scene shows Ottoman soldiers operating large cannon near fortified walls. The image emphasizes the scale of siege warfare and the logistical organization needed to move and fire heavy artillery.",
+      "prompt": "Which development most directly enabled the military activity shown in the image?",
+      "choices": [
+        "The adoption of gunpowder weapons by expanding land-based empires",
+        "The abandonment of centralized military forces by early modern states",
+        "The end of competition among empires in Afro-Eurasia",
+        "The replacement of taxation by voluntary military service"
+      ],
+      "answer_index": 0,
+      "explanation": "Gunpowder artillery helped several land-based empires conquer fortified cities and expand their territorial control.",
+      "set_id": "img-apwh-ottoman-cannon-siege",
+      "set_title": "Ottoman Siege Artillery in the Early Modern Period",
+      "set_question_number": 1,
+      "set_question_count": 3,
+      "linked_question_ids": [
+        "gen-apwh-004",
+        "gen-apwh-005",
+        "gen-apwh-006"
+      ],
+      "review_notes": "Original XamVera draft generated from AP World course concepts. Private source bank profile used 363 candidates for structure only. No copied College Board prompts, answer choices, explanations, images, or source text included. Image asset review needed: Ottoman cannon or siege-artillery image (public_domain_search_target_needs_verification): https://commons.wikimedia.org/wiki/Category:Ottoman_cannons",
+      "revision_feedback": "",
+      "generation_profile": {
+        "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
+        "target_choice_count": 4,
+        "source_candidate_count": 363,
+        "private_source_text_used_in_output": false,
+        "pipeline_kind": "image_set",
+        "private_source_leak_flags": []
+      },
+      "gates": {
+        "source_verified": false,
+        "answer_verified": false,
+        "explanation_verified": false,
+        "copyright_checked": true,
+        "asset_rights_verified": false,
+        "stimulus_verified": false
+      },
+      "stimulus_assets": [
+        {
+          "kind": "image",
+          "asset_status": "public_domain_search_target_needs_verification",
+          "title": "Ottoman cannon or siege-artillery image",
+          "source_url": "https://commons.wikimedia.org/wiki/Category:Ottoman_cannons",
+          "rights_notes": "Use a specific verified public-domain or freely licensed image before publishing.",
+          "alt_text": "Ottoman artillery positioned near a fortified city wall."
+        }
+      ]
+    },
+    {
+      "id": "gen-apwh-005",
+      "status": "needs_review",
+      "course": "AP World History: Modern",
+      "unit": "Unit 3: Land-Based Empires",
+      "period": "c. 1450-c. 1750",
+      "skill": "Contextualization",
+      "difficulty": "Medium",
+      "source_type": "generated_image_stimulus_public_domain_candidate",
+      "similarity_risk": "low",
+      "stimulus_format": "image_set",
+      "stimulus": "Image stimulus under review: an early modern scene shows Ottoman soldiers operating large cannon near fortified walls. The image emphasizes the scale of siege warfare and the logistical organization needed to move and fire heavy artillery.",
+      "prompt": "The image would be most useful for studying which broader process?",
+      "choices": [
+        "The consolidation of imperial authority through military technology and administrative capacity",
+        "The decline of state involvement in warfare after 1450",
+        "The spread of industrial factory production in the thirteenth century",
+        "The disappearance of fortifications from early modern cities"
+      ],
+      "answer_index": 0,
+      "explanation": "Artillery required revenue, specialists, transport, and command systems, linking military change to the growth of powerful imperial states.",
+      "set_id": "img-apwh-ottoman-cannon-siege",
+      "set_title": "Ottoman Siege Artillery in the Early Modern Period",
+      "set_question_number": 2,
+      "set_question_count": 3,
+      "linked_question_ids": [
+        "gen-apwh-004",
+        "gen-apwh-005",
+        "gen-apwh-006"
+      ],
+      "review_notes": "Original XamVera draft generated from AP World course concepts. Private source bank profile used 363 candidates for structure only. No copied College Board prompts, answer choices, explanations, images, or source text included. Image asset review needed: Ottoman cannon or siege-artillery image (public_domain_search_target_needs_verification): https://commons.wikimedia.org/wiki/Category:Ottoman_cannons",
+      "revision_feedback": "",
+      "generation_profile": {
+        "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
+        "target_choice_count": 4,
+        "source_candidate_count": 363,
+        "private_source_text_used_in_output": false,
+        "pipeline_kind": "image_set",
+        "private_source_leak_flags": []
+      },
+      "gates": {
+        "source_verified": false,
+        "answer_verified": false,
+        "explanation_verified": false,
+        "copyright_checked": true,
+        "asset_rights_verified": false,
+        "stimulus_verified": false
+      },
+      "stimulus_assets": [
+        {
+          "kind": "image",
+          "asset_status": "public_domain_search_target_needs_verification",
+          "title": "Ottoman cannon or siege-artillery image",
+          "source_url": "https://commons.wikimedia.org/wiki/Category:Ottoman_cannons",
+          "rights_notes": "Use a specific verified public-domain or freely licensed image before publishing.",
+          "alt_text": "Ottoman artillery positioned near a fortified city wall."
+        }
+      ]
+    },
+    {
+      "id": "gen-apwh-006",
+      "status": "needs_review",
+      "course": "AP World History: Modern",
+      "unit": "Unit 3: Land-Based Empires",
+      "period": "c. 1450-c. 1750",
+      "skill": "Comparison",
+      "difficulty": "Medium",
+      "source_type": "generated_image_stimulus_public_domain_candidate",
+      "similarity_risk": "low",
+      "stimulus_format": "image_set",
+      "stimulus": "Image stimulus under review: an early modern scene shows Ottoman soldiers operating large cannon near fortified walls. The image emphasizes the scale of siege warfare and the logistical organization needed to move and fire heavy artillery.",
+      "prompt": "Which comparison best connects the image to other empires in the same period?",
+      "choices": [
+        "Ottoman, Safavid, and Mughal rulers all used gunpowder forces while adapting them to different regional conditions.",
+        "Only the Ottoman Empire used firearms, while all other empires rejected them.",
+        "Gunpowder weapons ended the need for armies in both Europe and Asia.",
+        "All early modern empires relied on identical systems of taxation and recruitment."
+      ],
+      "answer_index": 0,
+      "explanation": "Gunpowder technologies spread widely, but rulers incorporated them into distinct imperial, fiscal, and military systems.",
+      "set_id": "img-apwh-ottoman-cannon-siege",
+      "set_title": "Ottoman Siege Artillery in the Early Modern Period",
+      "set_question_number": 3,
+      "set_question_count": 3,
+      "linked_question_ids": [
+        "gen-apwh-004",
+        "gen-apwh-005",
+        "gen-apwh-006"
+      ],
+      "review_notes": "Original XamVera draft generated from AP World course concepts. Private source bank profile used 363 candidates for structure only. No copied College Board prompts, answer choices, explanations, images, or source text included. Image asset review needed: Ottoman cannon or siege-artillery image (public_domain_search_target_needs_verification): https://commons.wikimedia.org/wiki/Category:Ottoman_cannons",
+      "revision_feedback": "",
+      "generation_profile": {
+        "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
+        "target_choice_count": 4,
+        "source_candidate_count": 363,
+        "private_source_text_used_in_output": false,
+        "pipeline_kind": "image_set",
+        "private_source_leak_flags": []
+      },
+      "gates": {
+        "source_verified": false,
+        "answer_verified": false,
+        "explanation_verified": false,
+        "copyright_checked": true,
+        "asset_rights_verified": false,
+        "stimulus_verified": false
+      },
+      "stimulus_assets": [
+        {
+          "kind": "image",
+          "asset_status": "public_domain_search_target_needs_verification",
+          "title": "Ottoman cannon or siege-artillery image",
+          "source_url": "https://commons.wikimedia.org/wiki/Category:Ottoman_cannons",
+          "rights_notes": "Use a specific verified public-domain or freely licensed image before publishing.",
+          "alt_text": "Ottoman artillery positioned near a fortified city wall."
+        }
+      ]
+    },
+    {
+      "id": "gen-apwh-007",
+      "status": "needs_review",
+      "course": "AP World History: Modern",
+      "unit": "Unit 4: Transoceanic Interconnections",
+      "period": "c. 1450-c. 1750",
+      "skill": "Sourcing",
+      "difficulty": "Hard",
+      "source_type": "generated_document_paraphrase_source_identified",
+      "similarity_risk": "low",
+      "stimulus_format": "document_set",
+      "stimulus": "Document stimulus, classroom paraphrase for review: A ruler of Kongo writes to the king of Portugal in 1526 that merchants and royal officials have brought prohibited goods into his kingdom and weakened his authority over local elites. He argues that people from his realm, including nobles and relatives, are being seized and sold, causing disorder and depopulation. The ruler asks Portugal to stop sending goods that encourage illegal trade and instead send priests and teachers who can support Christian instruction. He presents himself as a Christian monarch and political ally, but he insists that foreign commerce must not undermine the security, population, and sovereignty of Kongo.",
+      "prompt": "Which claim about the author's point of view is best supported by the document?",
+      "choices": [
+        "He viewed Atlantic commerce as useful only if it remained under royal regulation and did not weaken Kongo's authority.",
+        "He rejected all contact with Europeans because he opposed Christianity.",
+        "He wrote as a merchant seeking permission to expand private slave trading.",
+        "He believed Portuguese officials had strengthened Kongo by ignoring royal authority."
+      ],
+      "answer_index": 0,
+      "explanation": "The paraphrased letter presents the ruler as willing to maintain selected ties with Portugal while criticizing commerce that threatened his kingdom's sovereignty and population.",
+      "set_id": "doc-apwh-kongo-afonso-letter",
+      "set_title": "A Kongo Ruler Responds to Portuguese Trade",
+      "set_question_number": 1,
+      "set_question_count": 3,
+      "linked_question_ids": [
+        "gen-apwh-007",
+        "gen-apwh-008",
+        "gen-apwh-009"
+      ],
+      "review_notes": "Original XamVera draft generated from AP World course concepts. Private source bank profile used 363 candidates for structure only. No copied College Board prompts, answer choices, explanations, images, or source text included. Document source review needed: Nzinga Mbemba, also known as Afonso I of Kongo, 1526, https://worldhistorycommons.org/excerpt-letter-nzinga-mbemba-portuguese-king-joao-iii. Stimulus is an original XamVera paraphrase. Verify source, wording, and classroom rights before publishing.",
+      "revision_feedback": "",
+      "generation_profile": {
+        "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
+        "target_choice_count": 4,
+        "source_candidate_count": 363,
+        "private_source_text_used_in_output": false,
+        "pipeline_kind": "document_set",
+        "private_source_leak_flags": []
+      },
+      "gates": {
+        "source_verified": false,
+        "answer_verified": false,
+        "explanation_verified": false,
+        "copyright_checked": true,
+        "document_source_verified": false,
+        "paraphrase_checked": false
+      },
+      "document_source": {
+        "author": "Nzinga Mbemba, also known as Afonso I of Kongo",
+        "date": "1526",
+        "source_url": "https://worldhistorycommons.org/excerpt-letter-nzinga-mbemba-portuguese-king-joao-iii",
+        "rights_notes": "Stimulus is an original XamVera paraphrase. Verify source, wording, and classroom rights before publishing.",
+        "verification_status": "source_identified_needs_human_verification"
+      }
+    },
+    {
+      "id": "gen-apwh-008",
+      "status": "needs_review",
+      "course": "AP World History: Modern",
+      "unit": "Unit 4: Transoceanic Interconnections",
+      "period": "c. 1450-c. 1750",
+      "skill": "Causation",
+      "difficulty": "Hard",
+      "source_type": "generated_document_paraphrase_source_identified",
+      "similarity_risk": "low",
+      "stimulus_format": "document_set",
+      "stimulus": "Document stimulus, classroom paraphrase for review: A ruler of Kongo writes to the king of Portugal in 1526 that merchants and royal officials have brought prohibited goods into his kingdom and weakened his authority over local elites. He argues that people from his realm, including nobles and relatives, are being seized and sold, causing disorder and depopulation. The ruler asks Portugal to stop sending goods that encourage illegal trade and instead send priests and teachers who can support Christian instruction. He presents himself as a Christian monarch and political ally, but he insists that foreign commerce must not undermine the security, population, and sovereignty of Kongo.",
+      "prompt": "Which development most directly contributed to the problems described in the document?",
+      "choices": [
+        "The growth of Atlantic trading networks and the forced movement of enslaved Africans",
+        "The collapse of all European demand for African labor",
+        "The spread of industrial textile factories in Central Africa",
+        "The end of Portuguese maritime activity after 1450"
+      ],
+      "answer_index": 0,
+      "explanation": "The ruler's complaints reflect the expansion of Atlantic commerce, including slave trading, and its disruptive effects on African states and societies.",
+      "set_id": "doc-apwh-kongo-afonso-letter",
+      "set_title": "A Kongo Ruler Responds to Portuguese Trade",
+      "set_question_number": 2,
+      "set_question_count": 3,
+      "linked_question_ids": [
+        "gen-apwh-007",
+        "gen-apwh-008",
+        "gen-apwh-009"
+      ],
+      "review_notes": "Original XamVera draft generated from AP World course concepts. Private source bank profile used 363 candidates for structure only. No copied College Board prompts, answer choices, explanations, images, or source text included. Document source review needed: Nzinga Mbemba, also known as Afonso I of Kongo, 1526, https://worldhistorycommons.org/excerpt-letter-nzinga-mbemba-portuguese-king-joao-iii. Stimulus is an original XamVera paraphrase. Verify source, wording, and classroom rights before publishing.",
+      "revision_feedback": "",
+      "generation_profile": {
+        "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
+        "target_choice_count": 4,
+        "source_candidate_count": 363,
+        "private_source_text_used_in_output": false,
+        "pipeline_kind": "document_set",
+        "private_source_leak_flags": []
+      },
+      "gates": {
+        "source_verified": false,
+        "answer_verified": false,
+        "explanation_verified": false,
+        "copyright_checked": true,
+        "document_source_verified": false,
+        "paraphrase_checked": false
+      },
+      "document_source": {
+        "author": "Nzinga Mbemba, also known as Afonso I of Kongo",
+        "date": "1526",
+        "source_url": "https://worldhistorycommons.org/excerpt-letter-nzinga-mbemba-portuguese-king-joao-iii",
+        "rights_notes": "Stimulus is an original XamVera paraphrase. Verify source, wording, and classroom rights before publishing.",
+        "verification_status": "source_identified_needs_human_verification"
+      }
+    },
+    {
+      "id": "gen-apwh-009",
+      "status": "needs_review",
+      "course": "AP World History: Modern",
+      "unit": "Unit 4: Transoceanic Interconnections",
+      "period": "c. 1450-c. 1750",
+      "skill": "Contextualization",
+      "difficulty": "Hard",
+      "source_type": "generated_document_paraphrase_source_identified",
+      "similarity_risk": "low",
+      "stimulus_format": "document_set",
+      "stimulus": "Document stimulus, classroom paraphrase for review: A ruler of Kongo writes to the king of Portugal in 1526 that merchants and royal officials have brought prohibited goods into his kingdom and weakened his authority over local elites. He argues that people from his realm, including nobles and relatives, are being seized and sold, causing disorder and depopulation. The ruler asks Portugal to stop sending goods that encourage illegal trade and instead send priests and teachers who can support Christian instruction. He presents himself as a Christian monarch and political ally, but he insists that foreign commerce must not undermine the security, population, and sovereignty of Kongo.",
+      "prompt": "The document is most useful for contextualizing which broader pattern?",
+      "choices": [
+        "African rulers negotiated, resisted, and sometimes tried to regulate European commercial influence.",
+        "European merchants immediately ended coercive labor systems in the Atlantic world.",
+        "Central African states were isolated from Christianity and diplomacy.",
+        "Portuguese influence in Africa depended entirely on industrial machinery."
+      ],
+      "answer_index": 0,
+      "explanation": "The document shows that African rulers were active political actors who attempted to manage the terms and consequences of early Atlantic exchange.",
+      "set_id": "doc-apwh-kongo-afonso-letter",
+      "set_title": "A Kongo Ruler Responds to Portuguese Trade",
+      "set_question_number": 3,
+      "set_question_count": 3,
+      "linked_question_ids": [
+        "gen-apwh-007",
+        "gen-apwh-008",
+        "gen-apwh-009"
+      ],
+      "review_notes": "Original XamVera draft generated from AP World course concepts. Private source bank profile used 363 candidates for structure only. No copied College Board prompts, answer choices, explanations, images, or source text included. Document source review needed: Nzinga Mbemba, also known as Afonso I of Kongo, 1526, https://worldhistorycommons.org/excerpt-letter-nzinga-mbemba-portuguese-king-joao-iii. Stimulus is an original XamVera paraphrase. Verify source, wording, and classroom rights before publishing.",
+      "revision_feedback": "",
+      "generation_profile": {
+        "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
+        "target_choice_count": 4,
+        "source_candidate_count": 363,
+        "private_source_text_used_in_output": false,
+        "pipeline_kind": "document_set",
+        "private_source_leak_flags": []
+      },
+      "gates": {
+        "source_verified": false,
+        "answer_verified": false,
+        "explanation_verified": false,
+        "copyright_checked": true,
+        "document_source_verified": false,
+        "paraphrase_checked": false
+      },
+      "document_source": {
+        "author": "Nzinga Mbemba, also known as Afonso I of Kongo",
+        "date": "1526",
+        "source_url": "https://worldhistorycommons.org/excerpt-letter-nzinga-mbemba-portuguese-king-joao-iii",
+        "rights_notes": "Stimulus is an original XamVera paraphrase. Verify source, wording, and classroom rights before publishing.",
+        "verification_status": "source_identified_needs_human_verification"
+      }
+    },
+    {
+      "id": "gen-apwh-010",
+      "status": "needs_review",
+      "course": "AP World History: Modern",
+      "unit": "Unit 4: Transoceanic Interconnections",
+      "period": "c. 1450-c. 1750",
+      "skill": "Sourcing",
+      "difficulty": "Hard",
+      "source_type": "generated_document_paraphrase_source_identified",
+      "similarity_risk": "low",
+      "stimulus_format": "document_set",
+      "stimulus": "Document stimulus, classroom paraphrase for review: In a 1793 response to a British diplomatic mission, the Qing emperor acknowledges that the British king has sent tribute and requested broader trade privileges. The emperor states that the empire already possesses abundant goods and has no need to import foreign manufactures. He rejects requests for a permanent British representative at court and for expanded trading rights outside existing regulations. The response presents Qing authority as universal and hierarchical, while treating foreign trade as something the state may restrict in order to preserve order.",
+      "prompt": "Which statement best explains how the author's purpose shapes the document?",
+      "choices": [
+        "The response defends Qing diplomatic hierarchy and justifies limiting British commercial demands.",
+        "The response asks Britain to colonize coastal China and manage Qing trade.",
+        "The response promotes free trade as the only legitimate basis of diplomacy.",
+        "The response rejects all state regulation of merchants."
+      ],
+      "answer_index": 0,
+      "explanation": "The paraphrased response frames trade and diplomacy through Qing claims of authority and uses that framework to deny British requests.",
+      "set_id": "doc-apwh-qing-macartney",
+      "set_title": "The Qing Court Responds to a British Embassy",
+      "set_question_number": 1,
+      "set_question_count": 3,
+      "linked_question_ids": [
+        "gen-apwh-010",
+        "gen-apwh-011",
+        "gen-apwh-012"
+      ],
+      "review_notes": "Original XamVera draft generated from AP World course concepts. Private source bank profile used 363 candidates for structure only. No copied College Board prompts, answer choices, explanations, images, or source text included. Document source review needed: Qianlong Emperor, 1793, https://sourcebooks.web.fordham.edu/mod/1793qianlong.asp. Stimulus is an original XamVera paraphrase. Verify the source and note historiographical cautions about the letter's transmission before publishing.",
+      "revision_feedback": "",
+      "generation_profile": {
+        "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
+        "target_choice_count": 4,
+        "source_candidate_count": 363,
+        "private_source_text_used_in_output": false,
+        "pipeline_kind": "document_set",
+        "private_source_leak_flags": []
+      },
+      "gates": {
+        "source_verified": false,
+        "answer_verified": false,
+        "explanation_verified": false,
+        "copyright_checked": true,
+        "document_source_verified": false,
+        "paraphrase_checked": false
+      },
+      "document_source": {
+        "author": "Qianlong Emperor",
+        "date": "1793",
+        "source_url": "https://sourcebooks.web.fordham.edu/mod/1793qianlong.asp",
+        "rights_notes": "Stimulus is an original XamVera paraphrase. Verify the source and note historiographical cautions about the letter's transmission before publishing.",
+        "verification_status": "source_identified_needs_human_verification"
+      }
+    },
+    {
+      "id": "gen-apwh-011",
+      "status": "needs_review",
+      "course": "AP World History: Modern",
+      "unit": "Unit 4: Transoceanic Interconnections",
+      "period": "c. 1450-c. 1750",
+      "skill": "Contextualization",
+      "difficulty": "Hard",
+      "source_type": "generated_document_paraphrase_source_identified",
+      "similarity_risk": "low",
+      "stimulus_format": "document_set",
+      "stimulus": "Document stimulus, classroom paraphrase for review: In a 1793 response to a British diplomatic mission, the Qing emperor acknowledges that the British king has sent tribute and requested broader trade privileges. The emperor states that the empire already possesses abundant goods and has no need to import foreign manufactures. He rejects requests for a permanent British representative at court and for expanded trading rights outside existing regulations. The response presents Qing authority as universal and hierarchical, while treating foreign trade as something the state may restrict in order to preserve order.",
+      "prompt": "The British requests described in the document are best understood in the context of which development?",
+      "choices": [
+        "European efforts to expand commercial access to Asian markets during the early modern period",
+        "The immediate collapse of Qing rule after 1450",
+        "The replacement of maritime trade by trans-Saharan caravan exchange",
+        "The end of European chartered-company activity in Asia before 1600"
+      ],
+      "answer_index": 0,
+      "explanation": "European states and companies sought greater access to Asian goods and markets, even when Asian states restricted foreign trade.",
+      "set_id": "doc-apwh-qing-macartney",
+      "set_title": "The Qing Court Responds to a British Embassy",
+      "set_question_number": 2,
+      "set_question_count": 3,
+      "linked_question_ids": [
+        "gen-apwh-010",
+        "gen-apwh-011",
+        "gen-apwh-012"
+      ],
+      "review_notes": "Original XamVera draft generated from AP World course concepts. Private source bank profile used 363 candidates for structure only. No copied College Board prompts, answer choices, explanations, images, or source text included. Document source review needed: Qianlong Emperor, 1793, https://sourcebooks.web.fordham.edu/mod/1793qianlong.asp. Stimulus is an original XamVera paraphrase. Verify the source and note historiographical cautions about the letter's transmission before publishing.",
+      "revision_feedback": "",
+      "generation_profile": {
+        "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
+        "target_choice_count": 4,
+        "source_candidate_count": 363,
+        "private_source_text_used_in_output": false,
+        "pipeline_kind": "document_set",
+        "private_source_leak_flags": []
+      },
+      "gates": {
+        "source_verified": false,
+        "answer_verified": false,
+        "explanation_verified": false,
+        "copyright_checked": true,
+        "document_source_verified": false,
+        "paraphrase_checked": false
+      },
+      "document_source": {
+        "author": "Qianlong Emperor",
+        "date": "1793",
+        "source_url": "https://sourcebooks.web.fordham.edu/mod/1793qianlong.asp",
+        "rights_notes": "Stimulus is an original XamVera paraphrase. Verify the source and note historiographical cautions about the letter's transmission before publishing.",
+        "verification_status": "source_identified_needs_human_verification"
+      }
+    },
+    {
+      "id": "gen-apwh-012",
+      "status": "needs_review",
+      "course": "AP World History: Modern",
+      "unit": "Unit 4: Transoceanic Interconnections",
+      "period": "c. 1450-c. 1750",
+      "skill": "Continuity and Change",
+      "difficulty": "Hard",
+      "source_type": "generated_document_paraphrase_source_identified",
+      "similarity_risk": "low",
+      "stimulus_format": "document_set",
+      "stimulus": "Document stimulus, classroom paraphrase for review: In a 1793 response to a British diplomatic mission, the Qing emperor acknowledges that the British king has sent tribute and requested broader trade privileges. The emperor states that the empire already possesses abundant goods and has no need to import foreign manufactures. He rejects requests for a permanent British representative at court and for expanded trading rights outside existing regulations. The response presents Qing authority as universal and hierarchical, while treating foreign trade as something the state may restrict in order to preserve order.",
+      "prompt": "Which statement best explains both continuity and change related to the document?",
+      "choices": [
+        "Asian states continued to regulate trade, while European pressure for expanded access increased in the eighteenth century.",
+        "Asian states abandoned all control over foreign merchants after 1450.",
+        "European states stopped seeking Asian goods once Atlantic trade began.",
+        "Qing officials replaced diplomacy with industrial mass production."
+      ],
+      "answer_index": 0,
+      "explanation": "The document reflects continued state regulation of commerce as well as growing European pressure to alter the terms of trade.",
+      "set_id": "doc-apwh-qing-macartney",
+      "set_title": "The Qing Court Responds to a British Embassy",
+      "set_question_number": 3,
+      "set_question_count": 3,
+      "linked_question_ids": [
+        "gen-apwh-010",
+        "gen-apwh-011",
+        "gen-apwh-012"
+      ],
+      "review_notes": "Original XamVera draft generated from AP World course concepts. Private source bank profile used 363 candidates for structure only. No copied College Board prompts, answer choices, explanations, images, or source text included. Document source review needed: Qianlong Emperor, 1793, https://sourcebooks.web.fordham.edu/mod/1793qianlong.asp. Stimulus is an original XamVera paraphrase. Verify the source and note historiographical cautions about the letter's transmission before publishing.",
+      "revision_feedback": "",
+      "generation_profile": {
+        "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
+        "target_choice_count": 4,
+        "source_candidate_count": 363,
+        "private_source_text_used_in_output": false,
+        "pipeline_kind": "document_set",
+        "private_source_leak_flags": []
+      },
+      "gates": {
+        "source_verified": false,
+        "answer_verified": false,
+        "explanation_verified": false,
+        "copyright_checked": true,
+        "document_source_verified": false,
+        "paraphrase_checked": false
+      },
+      "document_source": {
+        "author": "Qianlong Emperor",
+        "date": "1793",
+        "source_url": "https://sourcebooks.web.fordham.edu/mod/1793qianlong.asp",
+        "rights_notes": "Stimulus is an original XamVera paraphrase. Verify the source and note historiographical cautions about the letter's transmission before publishing.",
+        "verification_status": "source_identified_needs_human_verification"
+      }
+    },
+    {
+      "id": "gen-apwh-013",
+      "status": "needs_review",
+      "course": "AP World History: Modern",
+      "unit": "Unit 1: The Global Tapestry",
+      "period": "c. 1200-c. 1450",
+      "skill": "Comparison",
+      "difficulty": "Medium",
+      "source_type": "generated_original_short_scenario",
+      "similarity_risk": "low",
+      "stimulus_format": "short_scenario",
+      "stimulus": "Two rulers in different regions sponsor religious scholars, appoint provincial officials, and use tax records to supervise large agrarian populations.",
+      "prompt": "Which comparison is best supported by the scenario?",
+      "choices": [
+        "States in different regions used religious legitimacy and administration to strengthen rule.",
+        "States in this period generally abandoned religion as a source of authority.",
+        "Agrarian states avoided taxation because trade made revenue unnecessary.",
+        "Large states became less centralized as bureaucratic offices expanded."
+      ],
+      "answer_index": 0,
+      "explanation": "Many states combined claims of religious legitimacy with officials, taxation, and recordkeeping to maintain authority over large populations.",
+      "review_notes": "Original XamVera draft generated from AP World course concepts. Private source bank profile used 363 candidates for structure only. No copied College Board prompts, answer choices, explanations, images, or source text included.",
+      "revision_feedback": "",
+      "generation_profile": {
+        "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
+        "target_choice_count": 4,
+        "source_candidate_count": 363,
+        "private_source_text_used_in_output": false,
+        "pipeline_kind": "short_scenario",
+        "private_source_leak_flags": []
+      },
+      "gates": {
+        "source_verified": false,
+        "answer_verified": false,
+        "explanation_verified": false,
+        "copyright_checked": true
+      }
+    },
+    {
+      "id": "gen-apwh-014",
+      "status": "needs_review",
+      "course": "AP World History: Modern",
+      "unit": "Unit 2: Networks of Exchange",
+      "period": "c. 1200-c. 1450",
+      "skill": "Causation",
+      "difficulty": "Medium",
+      "source_type": "generated_original_short_scenario",
+      "similarity_risk": "low",
+      "stimulus_format": "short_scenario",
       "stimulus": "Merchants traveling between inland cities and coastal ports use bills of exchange, caravanserai, and multilingual brokers to move goods across long distances.",
       "prompt": "Which development most directly contributed to the commercial activity described?",
       "choices": [
@@ -178,13 +837,15 @@
       ],
       "answer_index": 0,
       "explanation": "Commercial practices, credit instruments, and support facilities helped merchants participate in expanding land and maritime networks.",
-      "review_notes": "Original XamVera draft generated from AP World course concepts. Source bank profile used 363 private candidates for structure only; no copied source text included.",
+      "review_notes": "Original XamVera draft generated from AP World course concepts. Private source bank profile used 363 candidates for structure only. No copied College Board prompts, answer choices, explanations, images, or source text included.",
       "revision_feedback": "",
       "generation_profile": {
         "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
         "target_choice_count": 4,
         "source_candidate_count": 363,
-        "private_source_text_used_in_output": false
+        "private_source_text_used_in_output": false,
+        "pipeline_kind": "short_scenario",
+        "private_source_leak_flags": []
       },
       "gates": {
         "source_verified": false,
@@ -194,190 +855,16 @@
       }
     },
     {
-      "id": "gen-apwh-004",
-      "status": "needs_review",
-      "course": "AP World History: Modern",
-      "unit": "Unit 2: Networks of Exchange",
-      "period": "c. 1200-c. 1450",
-      "skill": "Continuity and Change",
-      "difficulty": "Hard",
-      "source_type": "generated_from_private_style_profile",
-      "similarity_risk": "low",
-      "stimulus": "A port city contains religious communities from several regions, warehouses for imported goods, and officials who collect duties on arriving ships.",
-      "prompt": "Which statement best explains both continuity and change in the situation described?",
-      "choices": [
-        "Long-distance trade continued to move goods, while port cities became increasingly diverse commercial centers.",
-        "Maritime trade ended because states could no longer tax merchants.",
-        "Religious communities disappeared from commercial cities as trade expanded.",
-        "All exchange shifted from sea routes to isolated local markets."
-      ],
-      "answer_index": 0,
-      "explanation": "Trade routes had older foundations, but expanding maritime exchange increased the scale, diversity, and importance of port cities.",
-      "review_notes": "Original XamVera draft generated from AP World course concepts. Source bank profile used 363 private candidates for structure only; no copied source text included.",
-      "revision_feedback": "",
-      "generation_profile": {
-        "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
-        "target_choice_count": 4,
-        "source_candidate_count": 363,
-        "private_source_text_used_in_output": false
-      },
-      "gates": {
-        "source_verified": false,
-        "answer_verified": false,
-        "explanation_verified": false,
-        "copyright_checked": true
-      }
-    },
-    {
-      "id": "gen-apwh-005",
-      "status": "needs_review",
-      "course": "AP World History: Modern",
-      "unit": "Unit 3: Land-Based Empires",
-      "period": "c. 1450-c. 1750",
-      "skill": "Causation",
-      "difficulty": "Medium",
-      "source_type": "generated_from_private_style_profile",
-      "similarity_risk": "low",
-      "stimulus": "A ruler uses artillery to conquer fortified cities, then rewards military elites with land revenues in exchange for service.",
-      "prompt": "Which factor most directly helped states expand in the manner described?",
-      "choices": [
-        "The use of gunpowder weapons and military-administrative systems",
-        "The rejection of centralized armies by imperial rulers",
-        "The decline of taxation as a source of state revenue",
-        "The end of competition among land-based empires"
-      ],
-      "answer_index": 0,
-      "explanation": "Gunpowder weapons and systems that tied military service to revenue helped several land-based empires expand and maintain power.",
-      "review_notes": "Original XamVera draft generated from AP World course concepts. Source bank profile used 363 private candidates for structure only; no copied source text included.",
-      "revision_feedback": "",
-      "generation_profile": {
-        "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
-        "target_choice_count": 4,
-        "source_candidate_count": 363,
-        "private_source_text_used_in_output": false
-      },
-      "gates": {
-        "source_verified": false,
-        "answer_verified": false,
-        "explanation_verified": false,
-        "copyright_checked": true
-      }
-    },
-    {
-      "id": "gen-apwh-006",
-      "status": "needs_review",
-      "course": "AP World History: Modern",
-      "unit": "Unit 3: Land-Based Empires",
-      "period": "c. 1450-c. 1750",
-      "skill": "Comparison",
-      "difficulty": "Hard",
-      "source_type": "generated_from_private_style_profile",
-      "similarity_risk": "low",
-      "stimulus": "Two empires recruit soldiers from minority populations, convert some recruits into loyal state servants, and use them to guard central authority.",
-      "prompt": "Which comparison best explains the purpose of these recruitment systems?",
-      "choices": [
-        "Both systems attempted to create military groups whose status depended on service to the ruler.",
-        "Both systems eliminated the need for taxation and provincial administration.",
-        "Both systems were designed to reduce the power of central rulers.",
-        "Both systems relied entirely on voluntary merchant militias."
-      ],
-      "answer_index": 0,
-      "explanation": "Rulers sometimes used recruited or converted military elites to build loyal forces tied directly to the central state.",
-      "review_notes": "Original XamVera draft generated from AP World course concepts. Source bank profile used 363 private candidates for structure only; no copied source text included.",
-      "revision_feedback": "",
-      "generation_profile": {
-        "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
-        "target_choice_count": 4,
-        "source_candidate_count": 363,
-        "private_source_text_used_in_output": false
-      },
-      "gates": {
-        "source_verified": false,
-        "answer_verified": false,
-        "explanation_verified": false,
-        "copyright_checked": true
-      }
-    },
-    {
-      "id": "gen-apwh-007",
-      "status": "needs_review",
-      "course": "AP World History: Modern",
-      "unit": "Unit 4: Transoceanic Interconnections",
-      "period": "c. 1450-c. 1750",
-      "skill": "Causation",
-      "difficulty": "Medium",
-      "source_type": "generated_from_private_style_profile",
-      "similarity_risk": "low",
-      "stimulus": "A coastal kingdom gains new wealth by taxing imported firearms and exporting enslaved captives to merchants arriving from across the ocean.",
-      "prompt": "Which process most directly shaped the kingdom's changing role in global exchange?",
-      "choices": [
-        "The expansion of Atlantic trade and coerced labor systems",
-        "The end of maritime commerce between Africa and Europe",
-        "The spread of industrial factory production in Africa",
-        "The disappearance of state involvement in trade"
-      ],
-      "answer_index": 0,
-      "explanation": "Atlantic commerce linked African states, European merchants, firearms, and the forced movement of enslaved people.",
-      "review_notes": "Original XamVera draft generated from AP World course concepts. Source bank profile used 363 private candidates for structure only; no copied source text included.",
-      "revision_feedback": "",
-      "generation_profile": {
-        "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
-        "target_choice_count": 4,
-        "source_candidate_count": 363,
-        "private_source_text_used_in_output": false
-      },
-      "gates": {
-        "source_verified": false,
-        "answer_verified": false,
-        "explanation_verified": false,
-        "copyright_checked": true
-      }
-    },
-    {
-      "id": "gen-apwh-008",
-      "status": "needs_review",
-      "course": "AP World History: Modern",
-      "unit": "Unit 4: Transoceanic Interconnections",
-      "period": "c. 1450-c. 1750",
-      "skill": "Contextualization",
-      "difficulty": "Medium",
-      "source_type": "generated_from_private_style_profile",
-      "similarity_risk": "low",
-      "stimulus": "A silver coin minted from American metal circulates through markets in Europe and Asia, where merchants use it to purchase luxury goods.",
-      "prompt": "The circulation of the coin is best understood in the context of which broader development?",
-      "choices": [
-        "The creation of global trade networks linking the Americas, Europe, and Asia",
-        "The collapse of all Asian demand for silver",
-        "The decline of mining in European colonial territories",
-        "The isolation of American economies from overseas markets"
-      ],
-      "answer_index": 0,
-      "explanation": "American silver helped connect regional markets into wider transoceanic systems of exchange.",
-      "review_notes": "Original XamVera draft generated from AP World course concepts. Source bank profile used 363 private candidates for structure only; no copied source text included.",
-      "revision_feedback": "",
-      "generation_profile": {
-        "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
-        "target_choice_count": 4,
-        "source_candidate_count": 363,
-        "private_source_text_used_in_output": false
-      },
-      "gates": {
-        "source_verified": false,
-        "answer_verified": false,
-        "explanation_verified": false,
-        "copyright_checked": true
-      }
-    },
-    {
-      "id": "gen-apwh-009",
+      "id": "gen-apwh-015",
       "status": "needs_review",
       "course": "AP World History: Modern",
       "unit": "Unit 5: Revolutions",
       "period": "c. 1750-c. 1900",
       "skill": "Causation",
       "difficulty": "Medium",
-      "source_type": "generated_from_private_style_profile",
+      "source_type": "generated_original_short_scenario",
       "similarity_risk": "low",
+      "stimulus_format": "short_scenario",
       "stimulus": "A group of reformers argues that legitimate governments should protect individual rights and derive authority from the consent of citizens.",
       "prompt": "Which intellectual development most directly influenced the reformers' argument?",
       "choices": [
@@ -388,13 +875,15 @@
       ],
       "answer_index": 0,
       "explanation": "Enlightenment thinkers advanced ideas about rights, consent, and sovereignty that influenced revolutionary and reform movements.",
-      "review_notes": "Original XamVera draft generated from AP World course concepts. Source bank profile used 363 private candidates for structure only; no copied source text included.",
+      "review_notes": "Original XamVera draft generated from AP World course concepts. Private source bank profile used 363 candidates for structure only. No copied College Board prompts, answer choices, explanations, images, or source text included.",
       "revision_feedback": "",
       "generation_profile": {
         "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
         "target_choice_count": 4,
         "source_candidate_count": 363,
-        "private_source_text_used_in_output": false
+        "private_source_text_used_in_output": false,
+        "pipeline_kind": "short_scenario",
+        "private_source_leak_flags": []
       },
       "gates": {
         "source_verified": false,
@@ -404,67 +893,35 @@
       }
     },
     {
-      "id": "gen-apwh-010",
-      "status": "needs_review",
-      "course": "AP World History: Modern",
-      "unit": "Unit 5: Revolutions",
-      "period": "c. 1750-c. 1900",
-      "skill": "Continuity and Change",
-      "difficulty": "Hard",
-      "source_type": "generated_from_private_style_profile",
-      "similarity_risk": "low",
-      "stimulus": "After independence, a new government abolishes noble legal privileges but restricts voting rights to property-owning men.",
-      "prompt": "Which statement best explains both change and continuity in this example?",
-      "choices": [
-        "Legal hierarchy changed, but political participation often remained limited.",
-        "Revolutionary governments immediately created universal suffrage in every society.",
-        "Independence movements usually strengthened noble privileges.",
-        "Property ownership stopped influencing political rights after revolution."
-      ],
-      "answer_index": 0,
-      "explanation": "Revolutions could weaken older legal hierarchies while preserving exclusions based on class, gender, race, or property.",
-      "review_notes": "Original XamVera draft generated from AP World course concepts. Source bank profile used 363 private candidates for structure only; no copied source text included.",
-      "revision_feedback": "",
-      "generation_profile": {
-        "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
-        "target_choice_count": 4,
-        "source_candidate_count": 363,
-        "private_source_text_used_in_output": false
-      },
-      "gates": {
-        "source_verified": false,
-        "answer_verified": false,
-        "explanation_verified": false,
-        "copyright_checked": true
-      }
-    },
-    {
-      "id": "gen-apwh-011",
+      "id": "gen-apwh-016",
       "status": "needs_review",
       "course": "AP World History: Modern",
       "unit": "Unit 6: Consequences of Industrialization",
       "period": "c. 1750-c. 1900",
-      "skill": "Comparison",
-      "difficulty": "Medium",
-      "source_type": "generated_from_private_style_profile",
+      "skill": "Continuity and Change",
+      "difficulty": "Hard",
+      "source_type": "generated_original_short_scenario",
       "similarity_risk": "low",
-      "stimulus": "Factories in one region import cotton, rubber, and metals from distant colonies while selling manufactured goods in overseas markets.",
-      "prompt": "Which comparison best describes the relationship between industrial and colonized regions?",
+      "stimulus_format": "short_scenario",
+      "stimulus": "A colonial administration expands railroads from inland mines to coastal ports while restricting local manufacturing that might compete with imported goods.",
+      "prompt": "Which statement best explains both change and continuity in this scenario?",
       "choices": [
-        "Industrial regions often relied on colonized regions for raw materials and markets.",
-        "Colonized regions generally controlled industrial production in Europe.",
-        "Industrialization ended demand for overseas resources.",
-        "Colonial economies were usually isolated from global manufacturing networks."
+        "Industrial-era infrastructure expanded, while imperial economies often continued to prioritize extraction.",
+        "Colonial governments generally promoted equal industrial development in all regions.",
+        "Railroads ended the relationship between imperialism and global trade.",
+        "Industrialization eliminated demand for raw materials from colonized regions."
       ],
       "answer_index": 0,
-      "explanation": "Industrial economies depended heavily on global supplies of raw materials and on markets shaped by imperial power.",
-      "review_notes": "Original XamVera draft generated from AP World course concepts. Source bank profile used 363 private candidates for structure only; no copied source text included.",
+      "explanation": "Industrialization changed transportation and production, but imperial economic systems often continued to organize colonies around raw materials, export, and outside markets.",
+      "review_notes": "Original XamVera draft generated from AP World course concepts. Private source bank profile used 363 candidates for structure only. No copied College Board prompts, answer choices, explanations, images, or source text included.",
       "revision_feedback": "",
       "generation_profile": {
         "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
         "target_choice_count": 4,
         "source_candidate_count": 363,
-        "private_source_text_used_in_output": false
+        "private_source_text_used_in_output": false,
+        "pipeline_kind": "short_scenario",
+        "private_source_leak_flags": []
       },
       "gates": {
         "source_verified": false,
@@ -474,15 +931,16 @@
       }
     },
     {
-      "id": "gen-apwh-012",
+      "id": "gen-apwh-017",
       "status": "needs_review",
       "course": "AP World History: Modern",
       "unit": "Unit 7: Global Conflict",
       "period": "c. 1900-present",
       "skill": "Causation",
       "difficulty": "Medium",
-      "source_type": "generated_from_private_style_profile",
+      "source_type": "generated_original_short_scenario",
       "similarity_risk": "low",
+      "stimulus_format": "short_scenario",
       "stimulus": "A state mobilizes factories, censors newspapers, expands military conscription, and encourages citizens to buy war bonds.",
       "prompt": "Which development most directly explains the state actions described?",
       "choices": [
@@ -493,13 +951,53 @@
       ],
       "answer_index": 0,
       "explanation": "Twentieth-century total wars required states to mobilize industry, labor, finance, media, and civilians for military goals.",
-      "review_notes": "Original XamVera draft generated from AP World course concepts. Source bank profile used 363 private candidates for structure only; no copied source text included.",
+      "review_notes": "Original XamVera draft generated from AP World course concepts. Private source bank profile used 363 candidates for structure only. No copied College Board prompts, answer choices, explanations, images, or source text included.",
       "revision_feedback": "",
       "generation_profile": {
         "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
         "target_choice_count": 4,
         "source_candidate_count": 363,
-        "private_source_text_used_in_output": false
+        "private_source_text_used_in_output": false,
+        "pipeline_kind": "short_scenario",
+        "private_source_leak_flags": []
+      },
+      "gates": {
+        "source_verified": false,
+        "answer_verified": false,
+        "explanation_verified": false,
+        "copyright_checked": true
+      }
+    },
+    {
+      "id": "gen-apwh-018",
+      "status": "needs_review",
+      "course": "AP World History: Modern",
+      "unit": "Unit 8: Cold War and Decolonization",
+      "period": "c. 1900-present",
+      "skill": "Contextualization",
+      "difficulty": "Medium",
+      "source_type": "generated_original_short_scenario",
+      "similarity_risk": "low",
+      "stimulus_format": "short_scenario",
+      "stimulus": "A newly independent state seeks foreign aid from rival superpowers while also joining conferences with other recently decolonized nations.",
+      "prompt": "The state's actions are best understood in the context of which development?",
+      "choices": [
+        "Decolonization and Cold War competition for influence in the Global South",
+        "The complete withdrawal of superpowers from international politics",
+        "The end of diplomatic activity among newly independent states",
+        "The restoration of direct colonial rule after the Second World War"
+      ],
+      "answer_index": 0,
+      "explanation": "Newly independent states often navigated Cold War pressures while pursuing development, sovereignty, and nonalignment.",
+      "review_notes": "Original XamVera draft generated from AP World course concepts. Private source bank profile used 363 candidates for structure only. No copied College Board prompts, answer choices, explanations, images, or source text included.",
+      "revision_feedback": "",
+      "generation_profile": {
+        "profile_source": "content-cache/college-board/ap-world-history-local/deduped-question-candidates.json",
+        "target_choice_count": 4,
+        "source_candidate_count": 363,
+        "private_source_text_used_in_output": false,
+        "pipeline_kind": "short_scenario",
+        "private_source_leak_flags": []
       },
       "gates": {
         "source_verified": false,

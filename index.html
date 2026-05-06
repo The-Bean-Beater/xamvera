@@ -13,7 +13,7 @@
         document.documentElement.dataset.theme = savedTheme;
       }
     </script>
-    <link rel="stylesheet" href="styles.css?v=3">
+    <link rel="stylesheet" href="styles.css?v=4">
   </head>
   <body>
     <div class="app-shell">
@@ -29,11 +29,11 @@
         </a>
 
         <nav class="nav-list" aria-label="Main navigation">
-          <button class="nav-item active" type="button" data-view="home">Home</button>
-          <button class="nav-item" type="button" data-view="dashboard">Dashboard</button>
-          <button class="nav-item" type="button" data-view="courses">Courses</button>
-          <button class="nav-item" type="button" data-view="practice">Practice</button>
-          <button class="nav-item" type="button" data-view="settings">Settings</button>
+          <button class="nav-item active" type="button" data-view="home" data-short="H" title="Home"><span>Home</span></button>
+          <button class="nav-item" type="button" data-view="dashboard" data-short="D" title="Dashboard"><span>Dashboard</span></button>
+          <button class="nav-item" type="button" data-view="courses" data-short="C" title="Courses"><span>Courses</span></button>
+          <button class="nav-item" type="button" data-view="practice" data-short="P" title="Practice"><span>Practice</span></button>
+          <button class="nav-item" type="button" data-view="settings" data-short="S" title="Settings"><span>Settings</span></button>
         </nav>
 
         <div class="sidebar-note">
@@ -317,6 +317,49 @@
             </section>
           </div>
 
+          <section class="panel review-generator-panel">
+            <div class="generator-header">
+              <div>
+                <span class="panel-label">Draft generator</span>
+                <h2>Generate questions for review</h2>
+              </div>
+              <div class="generator-actions">
+                <button class="secondary-button" type="button" id="reloadReviewQueueButton">Reload Deployed Queue</button>
+                <button class="primary-button" type="button" id="generateDraftsButton">Generate Drafts</button>
+              </div>
+            </div>
+
+            <div class="generator-grid">
+              <label class="generator-control">
+                <span>Image stimulus sets</span>
+                <small>3 linked questions per set</small>
+                <input type="number" id="imageSetCount" min="0" max="8" value="1">
+              </label>
+              <label class="generator-control">
+                <span>Document stimulus sets</span>
+                <small>3 linked questions per set</small>
+                <input type="number" id="documentSetCount" min="0" max="8" value="1">
+              </label>
+              <label class="generator-control">
+                <span>Short scenarios</span>
+                <small>1 question each</small>
+                <input type="number" id="shortScenarioCount" min="0" max="20" value="4">
+              </label>
+              <label class="generator-control disabled">
+                <span>No-stimulus</span>
+                <small>Planned</small>
+                <input type="number" min="0" value="0" disabled>
+              </label>
+              <label class="generator-control disabled">
+                <span>Data / map / chart</span>
+                <small>Planned</small>
+                <input type="number" min="0" value="0" disabled>
+              </label>
+            </div>
+
+            <div class="generator-message" id="generatorMessage" hidden></div>
+          </section>
+
           <div class="review-workspace">
             <aside class="panel review-queue-panel">
               <div class="panel-heading-inline">
@@ -344,6 +387,11 @@
               <div class="review-section">
                 <span class="panel-label">Stimulus</span>
                 <p id="reviewStimulus"></p>
+              </div>
+
+              <div class="review-section" id="reviewSourceSection" hidden>
+                <span class="panel-label">Source and set details</span>
+                <div class="source-detail-grid" id="reviewSourceDetails"></div>
               </div>
 
               <div class="review-section">
@@ -430,6 +478,6 @@
       </main>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=4"></script>
   </body>
 </html>

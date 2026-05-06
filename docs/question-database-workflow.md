@@ -60,6 +60,8 @@ Contents:
 - original Xanvera questions
 - AI-generated drafts
 - source-inspired drafts
+- linked stimulus-set drafts with shared `set_id`
+- image/document asset metadata that requires verification before approval
 - revision attempts
 - reviewer feedback
 - similarity/copyright risk
@@ -109,7 +111,7 @@ Suggested table names:
 
 1. Source material is imported into database 1.
 2. AI or a writer creates a new draft in database 2.
-3. Admin reviews the draft.
+3. Admin reviews the draft. For linked stimulus sets, each question is reviewed individually while preserving the shared set metadata.
 4. If approved, it moves into database 3.
 5. If rejected, the decision is stored in database 3.
 6. If revision is needed, feedback is stored and the draft returns to database 2.
