@@ -89,6 +89,45 @@ const seedPracticeSet = {
 let practiceSet = seedPracticeSet;
 let currentQuestionIndex = 0;
 let selectedAnswerIndex = null;
+let reviewItems = [];
+let selectedReviewIndex = 0;
+let activeReviewFilter = "all";
+
+const seedReviewQueue = {
+  items: [
+    {
+      id: "draft-apwh-001",
+      status: "needs_review",
+      course: "AP World History: Modern",
+      unit: "Unit 2: Networks of Exchange",
+      period: "c. 1200-c. 1450",
+      skill: "Causation",
+      difficulty: "Medium",
+      source_type: "original",
+      similarity_risk: "low",
+      stimulus:
+        "A merchant family uses caravan routes to move textiles, spices, and paper money across several regions connected by imperial postal stations and protected trading cities.",
+      prompt: "Which development most directly helped make the commercial activity described possible?",
+      choices: [
+        "The expansion of secure overland trade networks under large empires",
+        "The collapse of all long-distance exchange between Afro-Eurasian regions",
+        "The replacement of merchant activity by subsistence agriculture",
+        "The emergence of Atlantic plantation economies"
+      ],
+      answer_index: 0,
+      explanation:
+        "Large empires and stable trade routes helped merchants move goods, technologies, and credit instruments across Afro-Eurasia during this period.",
+      review_notes:
+        "Check whether the paper money reference is too specific for the intended region. Consider adding a clearer Mongol-era context if needed.",
+      gates: {
+        source_verified: true,
+        answer_verified: true,
+        explanation_verified: false,
+        copyright_checked: true
+      }
+    }
+  ]
+};
 
 function showView(viewId) {
   views.forEach((view) => {
@@ -202,6 +241,157 @@ async function loadPracticeSet() {
   }
 }
 
+function formatStatus(status) {
+  return status.replaceAll("_", " ");
+}
+
+function filteredReviewItems() {
+  if (activeReviewFilter === "all") return reviewItems;
+  return reviewItems.filter((item) => item.status === activeReviewFilter);
+}
+
+function selectedReviewItem() {
+  return reviewItems[selectedReviewIndex] || reviewItems[0];
+}
+
+function renderReviewMetrics() {
+  const counts = reviewItems.reduce(
+    (totals, item) => {
+      totals[item.status] = (totals[item.status] || 0) + 1;
+      return totals;
+    },
+    {}
+  );
+
+  document.getElementById("needsReviewCount").textContent = counts.needs_review || 0;
+  document.getElementById("needsRevisionCount").textContent = counts.needs_revision || 0;
+  document.getElementById("approvedCount").textContent = counts.approved || 0;
+}
+
+function renderReviewQueue() {
+  const queue = document.getElementById("reviewQueue");
+  if (!queue) return;
+
+  const items = filteredReviewItems();
+  queue.innerHTML = items
+    .map((item) => {
+      const originalIndex = reviewItems.findIndex((candidate) => candidate.id === item.id);
+      return `
+        <button class="queue-item ${originalIndex === selectedReviewIndex ? "active" : ""}" type="button" data-review-index="${originalIndex}">
+          <span>${formatStatus(item.status)}</span>
+          <strong>${item.skill}</strong>
+          <span>${item.unit}</span>
+        </button>
+      `;
+    })
+    .join("");
+
+  queue.querySelectorAll("[data-review-index]").forEach((button) => {
+    button.addEventListener("click", () => {
+      selectedReviewIndex = Number(button.dataset.reviewIndex);
+      renderReviewWorkspace();
+    });
+  });
+}
+
+function renderReviewDetail() {
+  const item = selectedReviewItem();
+  if (!item) return;
+
+  document.getElementById("reviewItemId").textContent = item.id;
+  document.getElementById("reviewPrompt").textContent = item.prompt;
+  document.getElementById("reviewStimulus").textContent = item.stimulus;
+  document.getElementById("reviewExplanation").textContent = item.explanation;
+  document.getElementById("reviewNotes").value = item.review_notes || "";
+
+  const status = document.getElementById("reviewStatus");
+  status.textContent = formatStatus(item.status);
+  status.className = `status-badge ${item.status}`;
+
+  document.getElementById("reviewChoices").innerHTML = item.choices
+    .map(
+      (choice, index) => `
+        <div class="review-choice ${index === item.answer_index ? "correct" : ""}">
+          <mark>${String.fromCharCode(65 + index)}</mark>
+          <span>${choice}</span>
+        </div>
+      `
+    )
+    .join("");
+
+  const metadata = [
+    ["Course", item.course],
+    ["Unit", item.unit],
+    ["Period", item.period],
+    ["Difficulty", item.difficulty],
+    ["Source", item.source_type],
+    ["Similarity", item.similarity_risk]
+  ];
+
+  document.getElementById("reviewMetadata").innerHTML = metadata
+    .map(([label, value]) => `<div><strong>${label}</strong><span>${value}</span></div>`)
+    .join("");
+
+  document.getElementById("reviewGates").innerHTML = Object.entries(item.gates)
+    .map(
+      ([gate, checked]) => `
+        <label>
+          <span>${formatStatus(gate)}</span>
+          <input type="checkbox" data-gate="${gate}" ${checked ? "checked" : ""}>
+        </label>
+      `
+    )
+    .join("");
+
+  document.querySelectorAll("[data-gate]").forEach((input) => {
+    input.addEventListener("change", () => {
+      item.gates[input.dataset.gate] = input.checked;
+      saveReviewQueue();
+      renderReviewMetrics();
+    });
+  });
+}
+
+function renderReviewWorkspace() {
+  renderReviewMetrics();
+  renderReviewQueue();
+  renderReviewDetail();
+}
+
+function saveReviewQueue() {
+  localStorage.setItem("xanvera-review-queue", JSON.stringify(reviewItems));
+}
+
+function updateReviewStatus(status) {
+  const item = selectedReviewItem();
+  if (!item) return;
+
+  item.status = status;
+  item.review_notes = document.getElementById("reviewNotes").value;
+  saveReviewQueue();
+  renderReviewWorkspace();
+}
+
+async function loadReviewQueue() {
+  const saved = localStorage.getItem("xanvera-review-queue");
+  if (saved) {
+    reviewItems = JSON.parse(saved);
+    renderReviewWorkspace();
+    return;
+  }
+
+  try {
+    const response = await fetch("data/admin/question-review-queue.json");
+    if (!response.ok) throw new Error("Review data unavailable");
+    const queue = await response.json();
+    reviewItems = queue.items;
+  } catch {
+    reviewItems = seedReviewQueue.items;
+  } finally {
+    renderReviewWorkspace();
+  }
+}
+
 menuButton.addEventListener("click", () => {
   sidebar.classList.toggle("open");
 });
@@ -223,6 +413,24 @@ themeButtons.forEach((button) => {
 
 document.getElementById("nextQuestion")?.addEventListener("click", nextQuestion);
 document.getElementById("resetPractice")?.addEventListener("click", resetPractice);
+document.getElementById("reviewFilter")?.addEventListener("change", (event) => {
+  activeReviewFilter = event.target.value;
+  const items = filteredReviewItems();
+  if (items.length) {
+    selectedReviewIndex = reviewItems.findIndex((item) => item.id === items[0].id);
+  }
+  renderReviewWorkspace();
+});
+document.querySelectorAll("[data-review-action]").forEach((button) => {
+  button.addEventListener("click", () => updateReviewStatus(button.dataset.reviewAction));
+});
+document.getElementById("reviewNotes")?.addEventListener("input", (event) => {
+  const item = selectedReviewItem();
+  if (!item) return;
+  item.review_notes = event.target.value;
+  saveReviewQueue();
+});
 
 applyTheme(localStorage.getItem(themeStorageKey) || "system");
 loadPracticeSet();
+loadReviewQueue();

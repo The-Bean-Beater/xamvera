@@ -1,0 +1,89 @@
+{
+  "queue_name": "AP World History Review Queue",
+  "items": [
+    {
+      "id": "draft-apwh-001",
+      "status": "needs_review",
+      "course": "AP World History: Modern",
+      "unit": "Unit 2: Networks of Exchange",
+      "period": "c. 1200-c. 1450",
+      "skill": "Causation",
+      "difficulty": "Medium",
+      "source_type": "original",
+      "similarity_risk": "low",
+      "stimulus": "A merchant family uses caravan routes to move textiles, spices, and paper money across several regions connected by imperial postal stations and protected trading cities.",
+      "prompt": "Which development most directly helped make the commercial activity described possible?",
+      "choices": [
+        "The expansion of secure overland trade networks under large empires",
+        "The collapse of all long-distance exchange between Afro-Eurasian regions",
+        "The replacement of merchant activity by subsistence agriculture",
+        "The emergence of Atlantic plantation economies"
+      ],
+      "answer_index": 0,
+      "explanation": "Large empires and stable trade routes helped merchants move goods, technologies, and credit instruments across Afro-Eurasia during this period.",
+      "review_notes": "Check whether the paper money reference is too specific for the intended region. Consider adding a clearer Mongol-era context if needed.",
+      "gates": {
+        "source_verified": true,
+        "answer_verified": true,
+        "explanation_verified": false,
+        "copyright_checked": true
+      }
+    },
+    {
+      "id": "draft-apwh-002",
+      "status": "needs_revision",
+      "course": "AP World History: Modern",
+      "unit": "Unit 4: Transoceanic Interconnections",
+      "period": "c. 1450-c. 1750",
+      "skill": "Comparison",
+      "difficulty": "Hard",
+      "source_type": "source_inspired",
+      "similarity_risk": "medium",
+      "stimulus": "A European state grants a company monopoly privileges, military authority, and permission to govern trading posts overseas.",
+      "prompt": "Which comparison best describes the role of such companies in early modern maritime empires?",
+      "choices": [
+        "They operated only as religious institutions with no relationship to commerce.",
+        "They blended private profit with state-backed imperial expansion.",
+        "They eliminated state involvement in overseas expansion.",
+        "They prevented European states from participating in Indian Ocean trade."
+      ],
+      "answer_index": 1,
+      "explanation": "Chartered companies often combined private investment with state privileges, helping European states expand commercial and political influence overseas.",
+      "review_notes": "Similarity risk is medium. Rewrite stimulus with a specific public-domain source or original scenario before approval.",
+      "gates": {
+        "source_verified": false,
+        "answer_verified": true,
+        "explanation_verified": true,
+        "copyright_checked": false
+      }
+    },
+    {
+      "id": "draft-apwh-003",
+      "status": "approved",
+      "course": "AP World History: Modern",
+      "unit": "Unit 6: Consequences of Industrialization",
+      "period": "c. 1750-c. 1900",
+      "skill": "Continuity and Change",
+      "difficulty": "Medium",
+      "source_type": "original",
+      "similarity_risk": "low",
+      "stimulus": "A colonial government expands railroads from inland mining areas to coastal ports while limiting local manufacturing competition.",
+      "prompt": "Which conclusion about imperial economic policy is best supported by this scenario?",
+      "choices": [
+        "Imperial powers often organized colonial infrastructure around extraction and export.",
+        "Colonial states generally prioritized equal industrial development across all regions.",
+        "Railroads made imperial economies independent from global trade.",
+        "Industrialization ended the need for raw materials from colonized regions."
+      ],
+      "answer_index": 0,
+      "explanation": "Imperial infrastructure frequently served extraction, export, and administrative control rather than balanced industrial development for colonized societies.",
+      "review_notes": "Approved as original seed question. Good candidate for first AP World practice set.",
+      "gates": {
+        "source_verified": true,
+        "answer_verified": true,
+        "explanation_verified": true,
+        "copyright_checked": true
+      }
+    }
+  ]
+}

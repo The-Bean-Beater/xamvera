@@ -231,17 +231,90 @@
 
         <section class="view" id="review">
           <div class="page-heading">
-            <p class="eyebrow">Quality control</p>
-            <h1>Review</h1>
-            <p>This area can become the human approval queue for questions, explanations, and sources.</p>
+            <p class="eyebrow">Admin</p>
+            <h1>Question Review</h1>
+            <p>Approve only questions that are accurate, original, sourced, and ready for students.</p>
           </div>
-          <section class="panel">
-            <div class="simple-list">
-              <button type="button">Review item</button>
-              <button type="button">Review item</button>
-              <button type="button">Review item</button>
-            </div>
-          </section>
+
+          <div class="review-metrics">
+            <section class="panel metric-card">
+              <span class="panel-label">Needs review</span>
+              <strong id="needsReviewCount">0</strong>
+            </section>
+            <section class="panel metric-card">
+              <span class="panel-label">Needs revision</span>
+              <strong id="needsRevisionCount">0</strong>
+            </section>
+            <section class="panel metric-card">
+              <span class="panel-label">Approved</span>
+              <strong id="approvedCount">0</strong>
+            </section>
+          </div>
+
+          <div class="review-workspace">
+            <aside class="panel review-queue-panel">
+              <div class="panel-heading-inline">
+                <span class="panel-label">Queue</span>
+                <select id="reviewFilter" aria-label="Filter review queue">
+                  <option value="all">All</option>
+                  <option value="needs_review">Needs review</option>
+                  <option value="needs_revision">Needs revision</option>
+                  <option value="approved">Approved</option>
+                  <option value="rejected">Rejected</option>
+                </select>
+              </div>
+              <div class="review-queue" id="reviewQueue"></div>
+            </aside>
+
+            <section class="panel review-detail-panel">
+              <div class="review-detail-header">
+                <div>
+                  <span class="panel-label" id="reviewItemId">Draft</span>
+                  <h2 id="reviewPrompt">Select a question</h2>
+                </div>
+                <span class="status-badge" id="reviewStatus">Needs review</span>
+              </div>
+
+              <div class="review-section">
+                <span class="panel-label">Stimulus</span>
+                <p id="reviewStimulus"></p>
+              </div>
+
+              <div class="review-section">
+                <span class="panel-label">Answer choices</span>
+                <div class="review-choices" id="reviewChoices"></div>
+              </div>
+
+              <div class="review-section">
+                <span class="panel-label">Explanation</span>
+                <p id="reviewExplanation"></p>
+              </div>
+
+              <label class="review-notes-label">
+                Reviewer notes
+                <textarea id="reviewNotes" rows="4"></textarea>
+              </label>
+
+              <div class="review-actions">
+                <button class="secondary-button" type="button" data-review-action="needs_revision">Needs Revision</button>
+                <button class="secondary-button danger" type="button" data-review-action="rejected">Reject</button>
+                <button class="primary-button" type="button" data-review-action="approved">Approve</button>
+              </div>
+            </section>
+
+            <aside class="panel review-check-panel">
+              <span class="panel-label">Metadata</span>
+              <div class="metadata-list" id="reviewMetadata"></div>
+
+              <span class="panel-label">Review gates</span>
+              <div class="gate-list" id="reviewGates"></div>
+
+              <div class="review-warning">
+                <strong>Rule</strong>
+                Do not approve copied College Board or third-party questions. Use this page to verify originality and accuracy before publishing.
+              </div>
+            </aside>
+          </div>
         </section>
 
         <section class="view" id="settings">
