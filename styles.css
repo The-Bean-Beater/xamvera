@@ -1,24 +1,31 @@
 :root {
   color-scheme: light dark;
-  --bg: #eef1f4;
-  --surface: #fbfaf6;
-  --surface-2: #f1f4f5;
-  --surface-3: #e5ebee;
-  --ink: #172033;
-  --muted: #657184;
-  --line: #d4dde4;
-  --navy: #12345a;
-  --navy-2: #1d4b78;
-  --teal: #176d70;
-  --gold: #b57a2b;
-  --oxblood: #7c3140;
-  --danger: #a64635;
+  --bg: #ebe4d8;
+  --surface: #fffaf1;
+  --surface-2: #f3ecdf;
+  --surface-3: #e6dccb;
+  --ink: #222636;
+  --muted: #706979;
+  --line: #d8cbb8;
+  --navy: #1a3557;
+  --navy-2: #294e76;
+  --teal: #276f6d;
+  --gold: #b9863a;
+  --oxblood: #7c3147;
+  --danger: #a84836;
   --primary: var(--navy);
-  --primary-ink: #ffffff;
+  --primary-ink: #fff8ec;
   --logo-filter: none;
-  --logo-tile: #ffffff;
-  --logo-tile-border: #d8e0ea;
-  --shadow: 0 18px 42px rgba(24, 32, 51, 0.11);
+  --logo-tile: #fff8ec;
+  --logo-tile-border: #d8cbb8;
+  --sidebar-bg-start: #233d60;
+  --sidebar-bg-end: #17293f;
+  --sidebar-ink: #fff8ec;
+  --sidebar-muted: #d7c8b6;
+  --sidebar-border: #4d6280;
+  --sidebar-tile: #304c72;
+  --sidebar-logo-filter: brightness(0) invert(1);
+  --shadow: 0 18px 42px rgba(50, 45, 38, 0.12);
   --sidebar-width: 268px;
   --sidebar-collapsed-width: 82px;
   --radius: 8px;
@@ -27,72 +34,93 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #070c13;
-    --surface: #0f1722;
-    --surface-2: #141f2d;
-    --surface-3: #0a1320;
-    --ink: #f2f6fb;
-    --muted: #9aa8ba;
-    --line: #263449;
-    --navy: #8bbcff;
-    --navy-2: #b5d2ff;
-    --teal: #5ed0c2;
-    --gold: #e0ad61;
-    --oxblood: #e49aab;
-    --danger: #ff947f;
-    --primary: #dbeafe;
-    --primary-ink: #081426;
+    --bg: #292a2e;
+    --surface: #34353a;
+    --surface-2: #3d3f45;
+    --surface-3: #484a51;
+    --ink: #f0e9df;
+    --muted: #beb5aa;
+    --line: #5a5d65;
+    --navy: #a7bbd2;
+    --navy-2: #cad6e4;
+    --teal: #8aaea9;
+    --gold: #c9a36a;
+    --oxblood: #c78b9b;
+    --danger: #df8a79;
+    --primary: #d2ba82;
+    --primary-ink: #2b2c31;
     --logo-filter: brightness(0) invert(1);
-    --logo-tile: #071f3d;
-    --logo-tile-border: #1e426b;
-    --shadow: 0 22px 54px rgba(0, 0, 0, 0.32);
+    --logo-tile: #3a3b41;
+    --logo-tile-border: #5a5d65;
+    --sidebar-bg-start: #383941;
+    --sidebar-bg-end: #2d2f35;
+    --sidebar-ink: #f0e9df;
+    --sidebar-muted: #bcb3a8;
+    --sidebar-border: #5e616a;
+    --sidebar-tile: #44464d;
+    --sidebar-logo-filter: brightness(0) invert(1);
+    --shadow: 0 22px 54px rgba(31, 32, 35, 0.34);
   }
 }
 
 [data-theme="light"] {
   color-scheme: light;
-  --bg: #eef1f4;
-  --surface: #fbfaf6;
-  --surface-2: #f1f4f5;
-  --surface-3: #e5ebee;
-  --ink: #172033;
-  --muted: #657184;
-  --line: #d4dde4;
-  --navy: #12345a;
-  --navy-2: #1d4b78;
-  --teal: #176d70;
-  --gold: #b57a2b;
-  --oxblood: #7c3140;
-  --danger: #a64635;
+  --bg: #ebe4d8;
+  --surface: #fffaf1;
+  --surface-2: #f3ecdf;
+  --surface-3: #e6dccb;
+  --ink: #222636;
+  --muted: #706979;
+  --line: #d8cbb8;
+  --navy: #1a3557;
+  --navy-2: #294e76;
+  --teal: #276f6d;
+  --gold: #b9863a;
+  --oxblood: #7c3147;
+  --danger: #a84836;
   --primary: var(--navy);
-  --primary-ink: #ffffff;
+  --primary-ink: #fff8ec;
   --logo-filter: none;
-  --logo-tile: #ffffff;
-  --logo-tile-border: #d8e0ea;
-  --shadow: 0 18px 42px rgba(24, 32, 51, 0.11);
+  --logo-tile: #fff8ec;
+  --logo-tile-border: #d8cbb8;
+  --sidebar-bg-start: #233d60;
+  --sidebar-bg-end: #17293f;
+  --sidebar-ink: #fff8ec;
+  --sidebar-muted: #d7c8b6;
+  --sidebar-border: #4d6280;
+  --sidebar-tile: #304c72;
+  --sidebar-logo-filter: brightness(0) invert(1);
+  --shadow: 0 18px 42px rgba(50, 45, 38, 0.12);
 }
 
 [data-theme="dark"] {
   color-scheme: dark;
-  --bg: #070c13;
-  --surface: #0f1722;
-  --surface-2: #141f2d;
-  --surface-3: #0a1320;
-  --ink: #f2f6fb;
-  --muted: #9aa8ba;
-  --line: #263449;
-  --navy: #8bbcff;
-  --navy-2: #b5d2ff;
-  --teal: #5ed0c2;
-  --gold: #e0ad61;
-  --oxblood: #e49aab;
-  --danger: #ff947f;
-  --primary: #dbeafe;
-  --primary-ink: #081426;
+  --bg: #292a2e;
+  --surface: #34353a;
+  --surface-2: #3d3f45;
+  --surface-3: #484a51;
+  --ink: #f0e9df;
+  --muted: #beb5aa;
+  --line: #5a5d65;
+  --navy: #a7bbd2;
+  --navy-2: #cad6e4;
+  --teal: #8aaea9;
+  --gold: #c9a36a;
+  --oxblood: #c78b9b;
+  --danger: #df8a79;
+  --primary: #d2ba82;
+  --primary-ink: #2b2c31;
   --logo-filter: brightness(0) invert(1);
-  --logo-tile: #071f3d;
-  --logo-tile-border: #1e426b;
-  --shadow: 0 22px 54px rgba(0, 0, 0, 0.32);
+  --logo-tile: #3a3b41;
+  --logo-tile-border: #5a5d65;
+  --sidebar-bg-start: #383941;
+  --sidebar-bg-end: #2d2f35;
+  --sidebar-ink: #f0e9df;
+  --sidebar-muted: #bcb3a8;
+  --sidebar-border: #5e616a;
+  --sidebar-tile: #44464d;
+  --sidebar-logo-filter: brightness(0) invert(1);
+  --shadow: 0 22px 54px rgba(31, 32, 35, 0.34);
 }
 
 * {
@@ -107,8 +135,9 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    linear-gradient(90deg, color-mix(in srgb, var(--line) 44%, transparent) 1px, transparent 1px) 0 0 / 80px 80px,
-    linear-gradient(180deg, color-mix(in srgb, var(--surface) 74%, transparent), transparent 430px),
+    radial-gradient(circle at 20% -10%, color-mix(in srgb, var(--gold) 18%, transparent), transparent 320px),
+    radial-gradient(circle at 92% 12%, color-mix(in srgb, var(--oxblood) 10%, transparent), transparent 360px),
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 62%, var(--bg)), var(--bg) 520px),
     var(--bg);
   color: var(--ink);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -148,12 +177,12 @@ img {
   flex-direction: column;
   gap: 24px;
   padding: 20px 14px;
-  border-right: 1px solid color-mix(in srgb, var(--navy) 24%, var(--line));
+  border-right: 1px solid var(--sidebar-border);
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--navy) 96%, #101624), color-mix(in srgb, var(--navy) 82%, #111827)),
-    var(--navy);
-  color: #f8fafc;
-  box-shadow: 12px 0 34px rgba(18, 52, 90, 0.12);
+    linear-gradient(180deg, var(--sidebar-bg-start), var(--sidebar-bg-end)),
+    var(--sidebar-bg-end);
+  color: var(--sidebar-ink);
+  box-shadow: 12px 0 34px color-mix(in srgb, var(--sidebar-bg-end) 18%, transparent);
   z-index: 20;
   overflow: hidden;
 }
@@ -180,15 +209,15 @@ img {
   width: 54px;
   height: 54px;
   flex: 0 0 54px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid color-mix(in srgb, var(--sidebar-ink) 18%, transparent);
+  background: color-mix(in srgb, var(--sidebar-tile) 82%, transparent);
 }
 
 .brand-mark img {
   width: 54px;
   height: 54px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
+  filter: var(--sidebar-logo-filter);
   transform: scale(1.18);
   transform-origin: center;
 }
@@ -204,7 +233,7 @@ img {
 
 .brand small {
   margin-top: 2px;
-  color: rgba(248, 250, 252, 0.68);
+  color: var(--sidebar-muted);
   font-size: 0.82rem;
 }
 
@@ -219,7 +248,7 @@ img {
   border: 1px solid transparent;
   border-radius: var(--radius);
   background: transparent;
-  color: rgba(248, 250, 252, 0.72);
+  color: var(--sidebar-muted);
   padding: 0 12px;
   text-align: left;
   font-weight: 800;
@@ -229,9 +258,9 @@ img {
 
 .nav-item:hover,
 .nav-item.active {
-  border-color: rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.09);
-  color: #ffffff;
+  border-color: color-mix(in srgb, var(--sidebar-ink) 16%, transparent);
+  background: color-mix(in srgb, var(--sidebar-tile) 76%, transparent);
+  color: var(--sidebar-ink);
 }
 
 .nav-item.active::before {
@@ -246,10 +275,10 @@ img {
 .sidebar-note {
   margin-top: auto;
   padding: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid color-mix(in srgb, var(--sidebar-ink) 16%, transparent);
   border-radius: var(--radius);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.04));
+    linear-gradient(135deg, color-mix(in srgb, var(--sidebar-tile) 86%, transparent), transparent);
 }
 
 .sidebar-note strong {
@@ -267,7 +296,7 @@ img {
 }
 
 .sidebar-note p {
-  color: rgba(248, 250, 252, 0.68);
+  color: var(--sidebar-muted);
 }
 
 .sidebar-note span,
@@ -334,7 +363,7 @@ img {
   border: 1px solid color-mix(in srgb, var(--line) 72%, transparent);
   border-radius: var(--radius);
   background: color-mix(in srgb, var(--surface) 88%, transparent);
-  box-shadow: 0 10px 28px rgba(24, 32, 51, 0.06);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--ink) 8%, transparent);
 }
 
 .topbar-title {
@@ -379,7 +408,7 @@ img {
   border-radius: var(--radius);
   padding: 0 16px;
   font-weight: 900;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.55) inset;
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--surface) 80%, transparent) inset;
 }
 
 .primary-button {
@@ -464,8 +493,8 @@ img {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background:
-    linear-gradient(90deg, color-mix(in srgb, var(--navy) 8%, transparent) 1px, transparent 1px) 0 0 / 52px 52px,
-    linear-gradient(180deg, color-mix(in srgb, var(--gold) 10%, transparent), transparent 45%),
+    linear-gradient(135deg, color-mix(in srgb, var(--gold) 14%, transparent), transparent 42%),
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, var(--surface-2)), var(--surface)),
     var(--surface);
   box-shadow: var(--shadow);
   position: relative;
@@ -476,8 +505,16 @@ img {
   content: "";
   position: absolute;
   inset: 0 auto 0 0;
-  width: 7px;
-  background: linear-gradient(180deg, var(--oxblood), var(--gold), var(--teal));
+  width: 9px;
+  background: linear-gradient(180deg, var(--oxblood), var(--gold));
+}
+
+.hero-study::after {
+  content: "";
+  position: absolute;
+  inset: 18px 18px auto;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent 68%);
 }
 
 .hero-seal {
@@ -503,7 +540,7 @@ img {
 
 .hero-copy h1 {
   margin: 0 0 16px;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: clamp(3.6rem, 10vw, 7rem);
   line-height: 0.92;
   font-weight: 700;
@@ -525,7 +562,7 @@ img {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--surface) 88%, white), var(--surface-2));
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 86%, var(--surface-2)), var(--surface-2));
   box-shadow: var(--shadow);
   padding: 18px;
   position: relative;
@@ -664,7 +701,7 @@ img {
   border: 1px solid color-mix(in srgb, var(--line) 88%, var(--navy));
   border-radius: var(--radius);
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--surface) 94%, white), var(--surface));
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, var(--surface-2)), var(--surface));
   box-shadow: var(--shadow);
   padding: 18px;
   position: relative;
@@ -673,7 +710,7 @@ img {
 .panel h2,
 .panel h3 {
   color: var(--navy);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Times New Roman", Times, serif;
   font-weight: 700;
 }
 
@@ -746,7 +783,7 @@ p {
 
 h1 {
   margin-bottom: 10px;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: clamp(2.2rem, 5vw, 4rem);
   line-height: 1;
 }
@@ -1349,7 +1386,7 @@ meter {
   border: 1px solid color-mix(in srgb, var(--line) 86%, var(--navy));
   border-radius: var(--radius);
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, white), var(--surface));
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 88%, var(--surface-2)), var(--surface));
   color: var(--ink);
   padding: 12px;
   text-align: left;
