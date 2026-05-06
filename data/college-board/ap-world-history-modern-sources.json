@@ -1,0 +1,151 @@
+{
+  "course": {
+    "id": "ap-world-history-modern",
+    "name": "AP World History: Modern",
+    "source_owner": "College Board"
+  },
+  "notes": [
+    "This manifest tracks official or primary College Board sources first.",
+    "Do not ingest third-party reposts into production without a rights review.",
+    "AP Central currently exposes the three most recent years of released free-response materials publicly. Older comprehensive/secure practice questions are available through AP Classroom for authorized educators."
+  ],
+  "priority_order": [
+    2024,
+    2023,
+    2022,
+    2021,
+    2020
+  ],
+  "sources": [
+    {
+      "id": "apwhm-2024-frq-set-1",
+      "year": 2024,
+      "type": "free_response_questions",
+      "set": 1,
+      "public_status": "official_public",
+      "url": "https://apcentral.collegeboard.org/media/pdf/ap24-frq-world-history-set-1.pdf",
+      "priority": 1,
+      "rights_note": "College Board copyrighted material. Store source attribution and review usage before publishing extracted content."
+    },
+    {
+      "id": "apwhm-2024-frq-set-2",
+      "year": 2024,
+      "type": "free_response_questions",
+      "set": 2,
+      "public_status": "official_public",
+      "url": "https://apcentral.collegeboard.org/media/pdf/ap24-frq-world-history-set-2.pdf",
+      "priority": 2,
+      "rights_note": "College Board copyrighted material. Store source attribution and review usage before publishing extracted content."
+    },
+    {
+      "id": "apwhm-2024-scoring-guidelines-set-1",
+      "year": 2024,
+      "type": "scoring_guidelines",
+      "set": 1,
+      "public_status": "official_public",
+      "url": "https://apcentral.collegeboard.org/media/pdf/ap24-sg-world-history-modern-set-1.pdf",
+      "priority": 3,
+      "rights_note": "College Board copyrighted material. Use for reviewer/rubric alignment first."
+    },
+    {
+      "id": "apwhm-2024-scoring-guidelines-set-2",
+      "year": 2024,
+      "type": "scoring_guidelines",
+      "set": 2,
+      "public_status": "official_public",
+      "url": "https://apcentral.collegeboard.org/media/pdf/ap24-sg-world-history-modern-set-2.pdf",
+      "priority": 4,
+      "rights_note": "College Board copyrighted material. Use for reviewer/rubric alignment first."
+    },
+    {
+      "id": "apwhm-2023-frq-set-1",
+      "year": 2023,
+      "type": "free_response_questions",
+      "set": 1,
+      "public_status": "official_public",
+      "url": "https://apcentral.collegeboard.org/media/pdf/ap23-frq-world-history-modern-set-1.pdf",
+      "priority": 5,
+      "rights_note": "College Board copyrighted material. Store source attribution and review usage before publishing extracted content."
+    },
+    {
+      "id": "apwhm-2023-frq-set-2",
+      "year": 2023,
+      "type": "free_response_questions",
+      "set": 2,
+      "public_status": "official_public",
+      "url": "https://apcentral.collegeboard.org/media/pdf/ap23-frq-world-history-modern-set-2.pdf",
+      "priority": 6,
+      "rights_note": "College Board copyrighted material. Store source attribution and review usage before publishing extracted content."
+    },
+    {
+      "id": "apwhm-2023-scoring-guidelines-set-1",
+      "year": 2023,
+      "type": "scoring_guidelines",
+      "set": 1,
+      "public_status": "official_public",
+      "url": "https://apcentral.collegeboard.org/media/pdf/ap23-sg-world-history-modern-set-1.pdf",
+      "priority": 7,
+      "rights_note": "College Board copyrighted material. Use for reviewer/rubric alignment first."
+    },
+    {
+      "id": "apwhm-2023-scoring-guidelines-set-2",
+      "year": 2023,
+      "type": "scoring_guidelines",
+      "set": 2,
+      "public_status": "official_public",
+      "url": "https://apcentral.collegeboard.org/media/pdf/ap23-sg-world-history-modern-set-2.pdf",
+      "priority": 8,
+      "rights_note": "College Board copyrighted material. Use for reviewer/rubric alignment first."
+    },
+    {
+      "id": "apwhm-2022-frq",
+      "year": 2022,
+      "type": "free_response_questions",
+      "set": null,
+      "public_status": "official_public",
+      "url": "https://apcentral.collegeboard.org/media/pdf/ap22-frq-world-history-modern.pdf",
+      "priority": 9,
+      "rights_note": "College Board copyrighted material. Store source attribution and review usage before publishing extracted content."
+    },
+    {
+      "id": "apwhm-2022-scoring-guidelines",
+      "year": 2022,
+      "type": "scoring_guidelines",
+      "set": null,
+      "public_status": "official_public",
+      "url": "https://apcentral.collegeboard.org/media/pdf/ap22-sg-world-history-modern.pdf",
+      "priority": 10,
+      "rights_note": "College Board copyrighted material. Use for reviewer/rubric alignment first."
+    },
+    {
+      "id": "apwhm-2021-dbq-scoring-and-samples",
+      "year": 2021,
+      "type": "sample_responses_and_scoring_commentary",
+      "set": null,
+      "public_status": "official_public_partial",
+      "url": "https://apcentral.collegeboard.org/media/pdf/ap21-apc-world-history-dbq.pdf",
+      "priority": 11,
+      "rights_note": "Official College Board PDF, but this is sample responses/scoring commentary rather than the complete released test packet."
+    },
+    {
+      "id": "apwhm-2021-frq",
+      "year": 2021,
+      "type": "free_response_questions",
+      "set": null,
+      "public_status": "not_found_official_public",
+      "url": null,
+      "priority": 12,
+      "rights_note": "Search found third-party reposts, but no official public AP Central URL was confirmed. Do not ingest third-party reposts without rights review."
+    },
+    {
+      "id": "apwhm-2020-public-exam",
+      "year": 2020,
+      "type": "exam_or_practice_exam",
+      "set": null,
+      "public_status": "not_found_official_public",
+      "url": null,
+      "priority": 13,
+      "rights_note": "Search found third-party reposts of practice-exam materials, not an official public AP Central source. Treat 2020 materials as restricted unless obtained through an authorized College Board channel."
+    }
+  ]
+}
