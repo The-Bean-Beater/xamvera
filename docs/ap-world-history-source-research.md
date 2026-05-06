@@ -10,6 +10,13 @@ For Xanvera, the safe first database should use official AP Central links and st
 
 ## Priority Sources
 
+### 2017 Course and Exam Description Practice Exam
+
+- Official College Board URL found in public references: `https://secure-media.collegeboard.org/digitalServices/pdf/ap/ap-world-history-ced-practice-exam.pdf`
+- Local file supplied for development: `ap-world-history-ced-practice-exam.pdf`
+- This is a 47-page College Board practice exam from the Course and Exam Description. It includes multiple-choice content, which makes it useful for early ingestion tests.
+- Because it is still copyrighted, extracted content should stay in the ignored `content-cache/` folder until we decide the publishing model.
+
 ### 2024
 
 - Free-response questions, Set 1: `https://apcentral.collegeboard.org/media/pdf/ap24-frq-world-history-set-1.pdf`
@@ -70,6 +77,26 @@ Later, after Next.js/Supabase exists, we can turn extracted records into databas
 - rubrics
 - answer_guidelines
 - review_status
+
+## Third-Party Practice Sites
+
+High School Test Prep has AP World practice pages at `https://highschooltestprep.com/ap/world-history/`. The site says College Board is not affiliated with or endorsing it.
+
+I added a separate third-party manifest and scraper for local review only:
+
+- `data/third-party/highschooltestprep-ap-world-history.json`
+- `scripts/scrape_highschooltestprep.py`
+
+Do not publish copied third-party questions/images without permission or a rights review.
+
+Initial local scrape test:
+
+- `hstp-apwh-unit-1`
+- 29 raw question blocks detected
+- 16 image references detected
+- Output path: `content-cache/third-party/highschooltestprep-ap-world-history/`
+
+The scraper may need `--allow-insecure-ssl` on this machine because the local Python certificate store rejected the site's certificate chain.
 
 ## Machine Learning Later
 

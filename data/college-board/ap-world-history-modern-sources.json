@@ -118,13 +118,24 @@
       "rights_note": "College Board copyrighted material. Use for reviewer/rubric alignment first."
     },
     {
+      "id": "apwhm-2017-ced-practice-exam",
+      "year": 2017,
+      "type": "course_and_exam_description_practice_exam",
+      "set": null,
+      "public_status": "official_public",
+      "url": "https://secure-media.collegeboard.org/digitalServices/pdf/ap/ap-world-history-ced-practice-exam.pdf",
+      "local_filename_hint": "ap-world-history-ced-practice-exam.pdf",
+      "priority": 11,
+      "rights_note": "College Board copyrighted practice exam from the Course and Exam Description. Contains full practice sections including multiple-choice questions. Use with source attribution and rights review before publishing exact copied questions."
+    },
+    {
       "id": "apwhm-2021-dbq-scoring-and-samples",
       "year": 2021,
       "type": "sample_responses_and_scoring_commentary",
       "set": null,
       "public_status": "official_public_partial",
       "url": "https://apcentral.collegeboard.org/media/pdf/ap21-apc-world-history-dbq.pdf",
-      "priority": 11,
+      "priority": 12,
       "rights_note": "Official College Board PDF, but this is sample responses/scoring commentary rather than the complete released test packet."
     },
     {
@@ -134,7 +145,7 @@
       "set": null,
       "public_status": "not_found_official_public",
       "url": null,
-      "priority": 12,
+      "priority": 13,
       "rights_note": "Search found third-party reposts, but no official public AP Central URL was confirmed. Do not ingest third-party reposts without rights review."
     },
     {
@@ -144,7 +155,7 @@
       "set": null,
       "public_status": "not_found_official_public",
       "url": null,
-      "priority": 13,
+      "priority": 14,
       "rights_note": "Search found third-party reposts of practice-exam materials, not an official public AP Central source. Treat 2020 materials as restricted unless obtained through an authorized College Board channel."
     }
   ]

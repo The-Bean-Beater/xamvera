@@ -1,5 +1,6 @@
 import argparse
 import json
+import shutil
 import sys
 import urllib.request
 from pathlib import Path
@@ -23,6 +24,16 @@ def official_downloadable_sources(manifest: dict) -> list[dict]:
         if source.get("url") and source.get("public_status", "").startswith("official_public"):
             sources.append(source)
     return sorted(sources, key=lambda item: item["priority"])
+
+
+def parse_local_pdfs(values: list[str] | None) -> dict[str, Path]:
+    local_pdfs = {}
+    for value in values or []:
+      if "=" not in value:
+          raise ValueError("--local-pdf must use SOURCE_ID=/path/to/file.pdf")
+      source_id, pdf_path = value.split("=", 1)
+      local_pdfs[source_id] = Path(pdf_path).expanduser()
+    return local_pdfs
 
 
 def download_pdf(url: str, destination: Path) -> None:
@@ -90,9 +101,14 @@ def extract_pdf(source: dict, pdf_path: Path, output_dir: Path, render_pages: bo
 def ingest(args: argparse.Namespace) -> int:
     manifest = load_manifest(args.manifest)
     sources = official_downloadable_sources(manifest)
+    local_pdfs = parse_local_pdfs(args.local_pdf)
 
     if args.year:
         sources = [source for source in sources if source["year"] in args.year]
+
+    if args.source_id:
+        wanted = set(args.source_id)
+        sources = [source for source in sources if source["id"] in wanted]
 
     if args.list:
         for source in sources:
@@ -112,7 +128,15 @@ def ingest(args: argparse.Namespace) -> int:
         source_dir = output_dir / source["id"]
         pdf_path = source_dir / "source.pdf"
 
-        if args.download:
+        if source["id"] in local_pdfs:
+            local_path = local_pdfs[source["id"]]
+            if not local_path.exists():
+                print(f"Missing local PDF {local_path}", file=sys.stderr)
+                continue
+            source_dir.mkdir(parents=True, exist_ok=True)
+            print(f"Copying local PDF for {source['id']}...")
+            shutil.copyfile(local_path, pdf_path)
+        elif args.download:
             print(f"Downloading {source['id']}...")
             download_pdf(source["url"], pdf_path)
         elif not pdf_path.exists():
@@ -136,6 +160,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--year", type=int, action="append", help="Limit to one or more years.")
     parser.add_argument("--download", action="store_true", help="Download official public PDFs before extracting.")
+    parser.add_argument("--local-pdf", action="append", help="Use a local PDF for a source, formatted SOURCE_ID=/path/to/file.pdf.")
+    parser.add_argument("--source-id", action="append", help="Limit to one or more source ids.")
     parser.add_argument("--render-pages", action="store_true", help="Render every PDF page as a PNG.")
     parser.add_argument("--list", action="store_true", help="List downloadable official sources and exit.")
     return parser.parse_args()
