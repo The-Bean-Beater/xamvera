@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Study Platform Starter</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#" aria-label="Home">
+          <span class="brand-mark" aria-hidden="true">S</span>
+          <span>
+            <strong>Study Platform</strong>
+            <small>Working name</small>
+          </span>
+        </a>
+
+        <nav class="nav-list" aria-label="Main navigation">
+          <button class="nav-item active" type="button" data-view="dashboard">Dashboard</button>
+          <button class="nav-item" type="button" data-view="courses">Courses</button>
+          <button class="nav-item" type="button" data-view="practice">Practice</button>
+          <button class="nav-item" type="button" data-view="review">Review</button>
+          <button class="nav-item" type="button" data-view="settings">Settings</button>
+        </nav>
+
+        <div class="sidebar-note">
+          <span>Template slot</span>
+          <p>Use this space later for an upgrade prompt, study streak, admin tools, or announcements.</p>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <button class="menu-button" id="menuButton" type="button" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div class="search-box">
+            <span aria-hidden="true"></span>
+            <input type="search" placeholder="Search">
+          </div>
+          <button class="primary-button" type="button">Primary Action</button>
+        </header>
+
+        <section class="view active" id="dashboard">
+          <div class="page-heading">
+            <p class="eyebrow">Starter layout</p>
+            <h1>Dashboard</h1>
+            <p>This is the main home screen. We can turn these blocks into real student progress, tasks, recommendations, or admin summaries later.</p>
+          </div>
+
+          <div class="layout-grid">
+            <section class="panel large">
+              <div class="panel-label">Main feature area</div>
+              <h2>Hero workspace</h2>
+              <p>Use this larger panel for the most important daily action.</p>
+              <div class="placeholder-box"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-label">Small module</div>
+              <h2>Card slot</h2>
+              <p>Progress, streak, or quick stats can go here.</p>
+            </section>
+
+            <section class="panel">
+              <div class="panel-label">Small module</div>
+              <h2>Card slot</h2>
+              <p>Recommended practice, alerts, or tasks can go here.</p>
+            </section>
+
+            <section class="panel wide">
+              <div class="panel-label">Table/list area</div>
+              <h2>Content list</h2>
+              <div class="simple-list">
+                <button type="button">Placeholder row</button>
+                <button type="button">Placeholder row</button>
+                <button type="button">Placeholder row</button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="courses">
+          <div class="page-heading">
+            <p class="eyebrow">Course shell</p>
+            <h1>Courses</h1>
+            <p>Later this becomes the place where students choose AP subjects and units.</p>
+          </div>
+          <div class="card-grid">
+            <article class="panel empty-card"><span>Course card</span></article>
+            <article class="panel empty-card"><span>Course card</span></article>
+            <article class="panel empty-card"><span>Course card</span></article>
+          </div>
+        </section>
+
+        <section class="view" id="practice">
+          <div class="page-heading">
+            <p class="eyebrow">Practice shell</p>
+            <h1>Practice</h1>
+            <p>This is where the question screen, answer choices, timer, and explanations will go.</p>
+          </div>
+          <section class="panel practice-shell">
+            <div class="question-placeholder">
+              <span>Question area</span>
+            </div>
+            <div class="answer-stack">
+              <button type="button">Answer choice</button>
+              <button type="button">Answer choice</button>
+              <button type="button">Answer choice</button>
+              <button type="button">Answer choice</button>
+            </div>
+          </section>
+        </section>
+
+        <section class="view" id="review">
+          <div class="page-heading">
+            <p class="eyebrow">Quality control</p>
+            <h1>Review</h1>
+            <p>This area can become the human approval queue for questions, explanations, and sources.</p>
+          </div>
+          <section class="panel">
+            <div class="simple-list">
+              <button type="button">Review item</button>
+              <button type="button">Review item</button>
+              <button type="button">Review item</button>
+            </div>
+          </section>
+        </section>
+
+        <section class="view" id="settings">
+          <div class="page-heading">
+            <p class="eyebrow">Configuration</p>
+            <h1>Settings</h1>
+            <p>Account, billing, team, and app configuration can live here later.</p>
+          </div>
+          <section class="panel form-panel">
+            <label>
+              Product name
+              <input type="text" placeholder="Study Platform">
+            </label>
+            <label>
+              Main color
+              <input type="text" placeholder="#2157a6">
+            </label>
+            <button class="primary-button" type="button">Save Changes</button>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
