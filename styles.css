@@ -165,8 +165,8 @@ img {
 }
 
 .brand-mark img {
-  width: 90px;
-  height: 90px;
+  width: 900px;
+  height: 900px;
   object-fit: contain;
   filter: var(--logo-filter);
   transform: scale(1.26);
