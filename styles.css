@@ -169,7 +169,7 @@ img {
   height: 62px;
   object-fit: contain;
   filter: var(--logo-filter);
-  transform: scale(1.04);
+  transform: scale(1.26);
   transform-origin: center;
 }
 
@@ -270,7 +270,7 @@ img {
   object-fit: contain;
   filter: var(--logo-filter);
   grid-row: span 2;
-  transform: scale(1.06);
+  transform: scale(1.32);
   transform-origin: center;
 }
 
@@ -378,7 +378,7 @@ img {
   width: clamp(104px, 12vw, 152px);
   height: clamp(104px, 12vw, 152px);
   margin-bottom: 24px;
-  padding: 6px;
+  padding: 0;
   box-shadow: var(--shadow);
 }
 
@@ -387,7 +387,7 @@ img {
   height: 100%;
   object-fit: contain;
   filter: var(--logo-filter);
-  transform: scale(1.08);
+  transform: scale(1.42);
   transform-origin: center;
 }
 
