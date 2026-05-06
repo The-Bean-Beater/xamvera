@@ -1,4 +1,4 @@
-# AP Study Platform Plan
+# Veritas AP Plan
 
 ## Recommended Direction
 
