@@ -1,20 +1,20 @@
 :root {
   color-scheme: light dark;
-  --bg: #f5f3ee;
+  --bg: #f4f1ea;
   --surface: #fffdf8;
-  --surface-2: #eef5f4;
-  --surface-3: #e7edf2;
+  --surface-2: #edf3f0;
+  --surface-3: #e7eef0;
   --ink: #17191f;
   --muted: #68707d;
-  --line: #ded8ca;
-  --blue: #2157a6;
-  --blue-dark: #173f7e;
-  --teal: #147c72;
-  --accent: #b86e08;
-  --hero-overlay: rgba(245, 243, 238, 0.7);
+  --line: #d8d0c1;
+  --blue: #08264a;
+  --blue-dark: #041832;
+  --teal: #1b766e;
+  --accent: #a96316;
+  --hero-overlay: rgba(244, 241, 234, 0.76);
   --button-ink: #fff;
   --logo-filter: none;
-  --shadow: 0 18px 45px rgba(23, 25, 31, 0.08);
+  --shadow: 0 16px 38px rgba(23, 25, 31, 0.08);
   --radius: 8px;
 }
 
@@ -40,21 +40,21 @@
 
 [data-theme="light"] {
   color-scheme: light;
-  --bg: #f5f3ee;
+  --bg: #f4f1ea;
   --surface: #fffdf8;
-  --surface-2: #eef5f4;
-  --surface-3: #e7edf2;
+  --surface-2: #edf3f0;
+  --surface-3: #e7eef0;
   --ink: #17191f;
   --muted: #68707d;
-  --line: #ded8ca;
-  --blue: #2157a6;
-  --blue-dark: #173f7e;
-  --teal: #147c72;
-  --accent: #b86e08;
-  --hero-overlay: rgba(245, 243, 238, 0.7);
+  --line: #d8d0c1;
+  --blue: #08264a;
+  --blue-dark: #041832;
+  --teal: #1b766e;
+  --accent: #a96316;
+  --hero-overlay: rgba(244, 241, 234, 0.76);
   --button-ink: #fff;
   --logo-filter: none;
-  --shadow: 0 18px 45px rgba(23, 25, 31, 0.08);
+  --shadow: 0 16px 38px rgba(23, 25, 31, 0.08);
 }
 
 [data-theme="dark"] {
@@ -83,7 +83,10 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--bg);
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--line) 42%, transparent) 1px, transparent 1px) 0 0 / 42px 42px,
+    linear-gradient(180deg, color-mix(in srgb, var(--line) 25%, transparent) 1px, transparent 1px) 0 0 / 42px 42px,
+    var(--bg);
   color: var(--ink);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -109,7 +112,7 @@ button {
   height: 100vh;
   padding: 22px;
   border-right: 1px solid var(--line);
-  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -126,8 +129,8 @@ button {
 }
 
 .brand-mark {
-  width: 50px;
-  height: 50px;
+  width: 58px;
+  height: 58px;
   display: grid;
   place-items: center;
   border-radius: var(--radius);
@@ -137,8 +140,8 @@ button {
 }
 
 .brand-mark img {
-  width: 42px;
-  height: 42px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
   filter: var(--logo-filter);
 }
@@ -170,8 +173,8 @@ button {
 
 .nav-item:hover,
 .nav-item.active {
-  background: var(--ink);
-  color: var(--bg);
+  background: var(--blue);
+  color: white;
 }
 
 .sidebar-note {
@@ -312,7 +315,7 @@ button {
 
 .landing-hero {
   position: relative;
-  min-height: min(680px, calc(100vh - 96px));
+  min-height: min(720px, calc(100vh - 96px));
   display: grid;
   align-items: end;
   overflow: hidden;
@@ -328,8 +331,8 @@ button {
   place-items: center;
   padding: 32px;
   background:
-    linear-gradient(135deg, color-mix(in srgb, var(--blue) 26%, transparent), transparent 42%),
-    linear-gradient(315deg, color-mix(in srgb, var(--teal) 24%, transparent), transparent 38%),
+    linear-gradient(135deg, color-mix(in srgb, var(--blue) 18%, transparent), transparent 42%),
+    linear-gradient(315deg, color-mix(in srgb, var(--teal) 18%, transparent), transparent 38%),
     var(--surface-3);
 }
 
@@ -345,9 +348,10 @@ button {
   min-height: 430px;
   border: 1px solid color-mix(in srgb, var(--line) 72%, transparent);
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  background: color-mix(in srgb, var(--surface) 68%, transparent);
   box-shadow: var(--shadow);
-  transform: rotate(-3deg) translate(11%, -1%);
+  opacity: 0.72;
+  transform: rotate(-2deg) translate(12%, -1%);
   overflow: hidden;
 }
 
@@ -391,7 +395,10 @@ button {
 }
 
 .mock-main {
-  padding: 34px;
+  padding: 32px;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--line) 40%, transparent) 1px, transparent 1px) 0 0 / 34px 34px,
+    var(--surface);
 }
 
 .mock-line {
@@ -435,48 +442,27 @@ button {
 .hero-content {
   position: relative;
   z-index: 1;
-  width: min(760px, 100%);
+  width: min(820px, 100%);
   padding: clamp(28px, 6vw, 70px);
 }
 
-.hero-brand-lockup {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  padding: 10px 14px 10px 10px;
-  margin-bottom: 28px;
+.hero-seal {
+  width: clamp(92px, 13vw, 150px);
+  height: clamp(92px, 13vw, 150px);
+  object-fit: contain;
+  display: block;
+  margin-bottom: 24px;
+  filter: var(--logo-filter);
+  padding: 10px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
   box-shadow: var(--shadow);
-}
-
-.hero-brand-lockup img {
-  width: 68px;
-  height: 68px;
-  object-fit: contain;
-  filter: var(--logo-filter);
-}
-
-.hero-brand-lockup strong,
-.hero-brand-lockup span {
-  display: block;
-}
-
-.hero-brand-lockup strong {
-  font-size: 1.35rem;
-  line-height: 1;
-}
-
-.hero-brand-lockup span {
-  margin-top: 4px;
-  color: var(--muted);
-  font-weight: 700;
 }
 
 .hero-content h1 {
   margin-bottom: 16px;
-  font-size: clamp(3rem, 10vw, 7rem);
+  font-size: clamp(3.4rem, 10vw, 7.4rem);
   line-height: 0.9;
 }
 
@@ -490,6 +476,26 @@ button {
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 26px;
+}
+
+.study-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 26px;
+}
+
+.study-strip span {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 76%, transparent);
+  color: var(--ink);
+  padding: 0 12px;
+  font-size: 0.86rem;
+  font-weight: 800;
 }
 
 .landing-section {
@@ -558,6 +564,11 @@ h3 {
   background: var(--surface);
   box-shadow: var(--shadow);
   padding: 18px;
+}
+
+.panel h2,
+.panel h3 {
+  color: var(--blue);
 }
 
 .panel.large {
@@ -648,7 +659,9 @@ h3 {
   padding: 16px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--surface-2);
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--line) 38%, transparent) 1px, transparent 1px) 0 0 / 28px 28px,
+    var(--surface-2);
   color: var(--ink);
   line-height: 1.55;
 }
