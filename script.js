@@ -951,25 +951,31 @@ async function loadReviewQueue() {
     approvedQuestionBank = JSON.parse(savedBank);
   }
 
-  const saved = localStorage.getItem("xanvera-review-queue");
-  if (saved) {
-    reviewItems = JSON.parse(saved);
-    if (!savedBank) {
-      seedApprovedBankFromQueue();
-    }
-    renderReviewWorkspace();
-    return;
-  }
+  let fetchedItems = seedReviewQueue.items;
 
   try {
     const response = await fetch("data/admin/question-review-queue.json");
     if (!response.ok) throw new Error("Review data unavailable");
     const queue = await response.json();
-    reviewItems = queue.items;
-    seedApprovedBankFromQueue();
+    fetchedItems = queue.items;
   } catch {
-    reviewItems = seedReviewQueue.items;
+    fetchedItems = seedReviewQueue.items;
   } finally {
+    const saved = localStorage.getItem("xanvera-review-queue");
+    if (saved) {
+      const mergedItems = new Map(fetchedItems.map((item) => [item.id, item]));
+      JSON.parse(saved).forEach((item) => {
+        mergedItems.set(item.id, item);
+      });
+      reviewItems = Array.from(mergedItems.values());
+    } else {
+      reviewItems = fetchedItems;
+    }
+
+    if (!savedBank) {
+      seedApprovedBankFromQueue();
+    }
+    saveReviewQueue();
     renderReviewWorkspace();
   }
 }
