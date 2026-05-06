@@ -1,4 +1,4 @@
-# xamvera AI Next Steps
+# Xamvera AI Next Steps
 
 ## Current Phase
 
@@ -95,6 +95,6 @@ AI-assisted items should always go through human review before students see them
 
 ## What We Should Do Next
 
-Next, build the real landing page and student dashboard design for xamvera AI.
+Next, build the real landing page and student dashboard design for Xamvera AI.
 
 After that, convert the project to Next.js so it can support real app features.

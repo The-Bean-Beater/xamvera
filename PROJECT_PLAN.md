@@ -1,4 +1,4 @@
-# xamvera AI Plan
+# Xamvera AI Plan
 
 ## Recommended Direction
 
