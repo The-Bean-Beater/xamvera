@@ -1,4 +1,4 @@
-# Veritas AP Plan
+# xamvera AI Plan
 
 ## Recommended Direction
 

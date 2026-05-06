@@ -3,22 +3,30 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Veritas AP</title>
+    <meta name="description" content="xamvera AI is an AP study platform for trusted practice, review, and progress tracking.">
+    <title>xamvera AI</title>
+    <script>
+      const savedTheme = localStorage.getItem("xamvera-theme");
+      if (savedTheme === "light" || savedTheme === "dark") {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+    </script>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <div class="app-shell">
       <aside class="sidebar" id="sidebar">
-        <a class="brand" href="#" aria-label="Home">
-          <span class="brand-mark" aria-hidden="true">S</span>
+        <a class="brand" href="#" aria-label="xamvera AI home" data-view-link="home">
+          <span class="brand-mark" aria-hidden="true">x</span>
           <span>
-            <strong>Veritas AP</strong>
+            <strong>xamvera AI</strong>
             <small>AP study platform</small>
           </span>
         </a>
 
         <nav class="nav-list" aria-label="Main navigation">
-          <button class="nav-item active" type="button" data-view="dashboard">Dashboard</button>
+          <button class="nav-item active" type="button" data-view="home">Home</button>
+          <button class="nav-item" type="button" data-view="dashboard">Dashboard</button>
           <button class="nav-item" type="button" data-view="courses">Courses</button>
           <button class="nav-item" type="button" data-view="practice">Practice</button>
           <button class="nav-item" type="button" data-view="review">Review</button>
@@ -26,8 +34,8 @@
         </nav>
 
         <div class="sidebar-note">
-          <span>Template slot</span>
-          <p>Use this space later for an upgrade prompt, study streak, admin tools, or announcements.</p>
+          <span>Build priority</span>
+          <p>Start with trusted practice and human-reviewed content. Add AI only after the review workflow is solid.</p>
         </div>
       </aside>
 
@@ -38,43 +46,110 @@
             <span></span>
             <span></span>
           </button>
-          <div class="search-box">
-            <span aria-hidden="true"></span>
-            <input type="search" placeholder="Search">
+
+          <div class="topbar-title">
+            <strong>xamvera AI</strong>
+            <span>Study smarter for AP exams</span>
           </div>
-          <button class="primary-button" type="button">Primary Action</button>
+
+          <div class="theme-toggle" role="group" aria-label="Theme">
+            <button class="active" type="button" data-theme-option="system">System</button>
+            <button type="button" data-theme-option="light">Light</button>
+            <button type="button" data-theme-option="dark">Dark</button>
+          </div>
         </header>
 
-        <section class="view active" id="dashboard">
+        <section class="view active" id="home">
+          <section class="landing-hero">
+            <div class="hero-background" aria-hidden="true">
+              <div class="hero-window">
+                <div class="window-bar">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="window-grid">
+                  <div class="mock-sidebar"></div>
+                  <div class="mock-main">
+                    <div class="mock-line wide"></div>
+                    <div class="mock-line"></div>
+                    <div class="mock-cards">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <div class="mock-question"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-content">
+              <p class="eyebrow">AP prep, built for accuracy</p>
+              <h1>xamvera AI</h1>
+              <p>Practice, review, and progress tools for AP students, designed around trusted questions and human quality control before AI automation.</p>
+              <div class="hero-actions">
+                <button class="primary-button" type="button" data-view-target="dashboard">Open App Shell</button>
+                <button class="secondary-button" type="button" data-view-target="practice">Preview Practice</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="landing-section">
+            <div class="section-heading">
+              <p class="eyebrow">First version</p>
+              <h2>Build the simple thing that proves the idea</h2>
+            </div>
+            <div class="feature-grid">
+              <article class="panel">
+                <span class="panel-label">Students</span>
+                <h3>Practice by course</h3>
+                <p>Start with a small set of trusted AP-style questions, explanations, and progress tracking.</p>
+              </article>
+              <article class="panel">
+                <span class="panel-label">Reviewers</span>
+                <h3>Approve every question</h3>
+                <p>Keep quality high with source notes, answer validation, skill tags, and reviewer notes.</p>
+              </article>
+              <article class="panel">
+                <span class="panel-label">Future AI</span>
+                <h3>Assist, then verify</h3>
+                <p>Use AI to draft and classify later, but keep publishing gated behind human approval.</p>
+              </article>
+            </div>
+          </section>
+        </section>
+
+        <section class="view" id="dashboard">
           <div class="page-heading">
-            <p class="eyebrow">Starter layout</p>
+            <p class="eyebrow">App shell</p>
             <h1>Dashboard</h1>
-            <p>This is the main home screen. We can turn these blocks into real student progress, tasks, recommendations, or admin summaries later.</p>
+            <p>This will become the logged-in student home screen.</p>
           </div>
 
           <div class="layout-grid">
             <section class="panel large">
-              <div class="panel-label">Main feature area</div>
-              <h2>Hero workspace</h2>
-              <p>Use this larger panel for the most important daily action.</p>
+              <span class="panel-label">Daily focus</span>
+              <h2>Study workspace</h2>
+              <p>Use this area for the next recommended assignment, weak-skill review, or current AP course.</p>
               <div class="placeholder-box"></div>
             </section>
 
             <section class="panel">
-              <div class="panel-label">Small module</div>
-              <h2>Card slot</h2>
-              <p>Progress, streak, or quick stats can go here.</p>
+              <span class="panel-label">Progress</span>
+              <h2>Stats card</h2>
+              <p>Accuracy, streaks, minutes studied, or exam readiness can go here.</p>
             </section>
 
             <section class="panel">
-              <div class="panel-label">Small module</div>
-              <h2>Card slot</h2>
-              <p>Recommended practice, alerts, or tasks can go here.</p>
+              <span class="panel-label">Next action</span>
+              <h2>Task card</h2>
+              <p>Recommended practice, review reminders, or upcoming goals can go here.</p>
             </section>
 
             <section class="panel wide">
-              <div class="panel-label">Table/list area</div>
-              <h2>Content list</h2>
+              <span class="panel-label">Activity</span>
+              <h2>Recent work</h2>
               <div class="simple-list">
                 <button type="button">Placeholder row</button>
                 <button type="button">Placeholder row</button>
@@ -140,7 +215,7 @@
           <section class="panel form-panel">
             <label>
               Product name
-              <input type="text" placeholder="Veritas AP">
+              <input type="text" placeholder="xamvera AI">
             </label>
             <label>
               Main color

@@ -1,4 +1,4 @@
-# Veritas AP Next Steps
+# xamvera AI Next Steps
 
 ## Current Phase
 
@@ -95,6 +95,6 @@ AI-assisted items should always go through human review before students see them
 
 ## What We Should Do Next
 
-Next, build the real landing page and student dashboard design for Veritas AP.
+Next, build the real landing page and student dashboard design for xamvera AI.
 
 After that, convert the project to Next.js so it can support real app features.
