@@ -186,21 +186,47 @@
 
         <section class="view" id="practice">
           <div class="page-heading">
-            <p class="eyebrow">Practice shell</p>
+            <p class="eyebrow">AP World History</p>
             <h1>Practice</h1>
-            <p>This is where the question screen, answer choices, timer, and explanations will go.</p>
+            <p>Answer a short set of original AP World-style questions while the official source pipeline stays in review.</p>
           </div>
-          <section class="panel practice-shell">
-            <div class="question-placeholder">
-              <span>Question area</span>
-            </div>
-            <div class="answer-stack">
-              <button type="button">Answer choice</button>
-              <button type="button">Answer choice</button>
-              <button type="button">Answer choice</button>
-              <button type="button">Answer choice</button>
-            </div>
-          </section>
+
+          <div class="practice-layout">
+            <section class="panel question-card" aria-live="polite">
+              <div class="question-topline">
+                <span id="questionCounter">Question 1 of 4</span>
+                <span id="questionMeta">AP World History</span>
+              </div>
+              <div class="stimulus-box" id="questionStimulus"></div>
+              <h2 id="questionPrompt">Loading question...</h2>
+              <div class="answer-stack" id="answerStack"></div>
+              <div class="feedback-box" id="feedbackBox" hidden></div>
+              <div class="question-actions">
+                <button class="secondary-button" id="resetPractice" type="button">Reset</button>
+                <button class="primary-button" id="nextQuestion" type="button">Next Question</button>
+              </div>
+            </section>
+
+            <aside class="panel source-panel">
+              <span class="panel-label">Content pipeline</span>
+              <h2>Review status</h2>
+              <div class="source-list">
+                <div>
+                  <strong>Official College Board CED exam</strong>
+                  <span>47 pages extracted locally</span>
+                </div>
+                <div>
+                  <strong>Official AP Central FRQs</strong>
+                  <span>2024, 2023, 2022 queued</span>
+                </div>
+                <div>
+                  <strong>High School Test Prep</strong>
+                  <span>Unit 1 scraped to local review cache</span>
+                </div>
+              </div>
+              <p>Copied source questions stay out of the public site until we have approval to publish them.</p>
+            </aside>
+          </div>
         </section>
 
         <section class="view" id="review">

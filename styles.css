@@ -611,6 +611,54 @@ h3 {
   gap: 16px;
 }
 
+.practice-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 16px;
+  align-items: start;
+}
+
+.question-card {
+  min-height: 560px;
+}
+
+.question-topline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.question-topline span {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--muted);
+  padding: 0 10px;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.stimulus-box {
+  margin-bottom: 18px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+.question-card h2 {
+  margin-bottom: 16px;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  line-height: 1.16;
+}
+
 .question-placeholder {
   min-height: 330px;
   display: grid;
@@ -625,6 +673,79 @@ h3 {
   display: grid;
   align-content: start;
   gap: 10px;
+}
+
+.answer-stack button {
+  min-height: auto;
+  padding: 14px;
+  line-height: 1.4;
+}
+
+.answer-stack button.selected {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--blue) 18%, transparent);
+}
+
+.answer-stack button.correct {
+  border-color: var(--teal);
+  background: color-mix(in srgb, var(--teal) 14%, var(--surface));
+}
+
+.answer-stack button.incorrect {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, var(--surface));
+}
+
+.feedback-box {
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.feedback-box strong {
+  display: block;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.question-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+
+.source-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.source-list {
+  display: grid;
+  gap: 10px;
+}
+
+.source-list div {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.source-list strong,
+.source-list span {
+  display: block;
+}
+
+.source-list span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
 .form-panel {
@@ -683,7 +804,8 @@ h3 {
   }
 
   .layout-grid,
-  .practice-shell {
+  .practice-shell,
+  .practice-layout {
     grid-template-columns: 1fr;
   }
 
