@@ -1,0 +1,66 @@
+{
+  "course": {
+    "id": "ap-world-history-modern",
+    "name": "AP World History: Modern",
+    "source_owner": "College Board"
+  },
+  "rights_note": "User-provided College Board AP World History PDFs. Extracted text, images, and question candidates must stay in the private content-cache unless rights are reviewed. Do not publish copied questions directly to the public website.",
+  "sources": [
+    {
+      "id": "apwh-sample-questions",
+      "title": "Sample Questions for the AP World History Exam",
+      "year": null,
+      "type": "sample_questions",
+      "local_filename": "sample-questions-ap-world-history-exam.pdf",
+      "priority": 1
+    },
+    {
+      "id": "apwh-ced-practice-exam-copy-2",
+      "title": "AP World History CED Practice Exam",
+      "year": 2017,
+      "type": "course_and_exam_description_practice_exam",
+      "local_filename": "ap-world-history-ced-practice-exam (2).pdf",
+      "priority": 2
+    },
+    {
+      "id": "apwh-ced-practice-exam-copy-1",
+      "title": "AP World History CED Practice Exam",
+      "year": 2017,
+      "type": "course_and_exam_description_practice_exam",
+      "local_filename": "ap-world-history-ced-practice-exam (1).pdf",
+      "priority": 3
+    },
+    {
+      "id": "apwh-practice-test-14",
+      "title": "AP World History Practice Test 14",
+      "year": null,
+      "type": "practice_test",
+      "local_filename": "Practice Test 14 (1).pdf",
+      "priority": 4
+    },
+    {
+      "id": "apwh-practice-exam-2013",
+      "title": "AP World History Practice Exam 2013",
+      "year": 2013,
+      "type": "practice_exam",
+      "local_filename": "ap-world-history-practice-exam-2013.pdf",
+      "priority": 5
+    },
+    {
+      "id": "apwh-practice-exam-2014",
+      "title": "AP World History Practice Exam 2014",
+      "year": 2014,
+      "type": "practice_exam",
+      "local_filename": "2014_ap_world_history_practice_exam.pdf",
+      "priority": 6
+    },
+    {
+      "id": "apwh-practice-test-3",
+      "title": "AP World History Practice Test 3",
+      "year": null,
+      "type": "practice_test",
+      "local_filename": "Practice Test 3.pdf",
+      "priority": 7
+    }
+  ]
+}
