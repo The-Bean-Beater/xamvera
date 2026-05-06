@@ -132,6 +132,10 @@ const seedReviewQueue = {
 };
 
 function showView(viewId) {
+  if (viewId === "review" && window.location.hash !== "#admin-review") {
+    window.location.hash = "admin-review";
+  }
+
   views.forEach((view) => {
     view.classList.toggle("active", view.id === viewId);
   });
@@ -141,6 +145,12 @@ function showView(viewId) {
   });
 
   sidebar.classList.remove("open");
+}
+
+function showInitialViewFromHash() {
+  if (window.location.hash === "#admin-review") {
+    showView("review");
+  }
 }
 
 function applyTheme(theme) {
@@ -559,3 +569,4 @@ document.getElementById("revisionFeedback")?.addEventListener("input", (event) =
 applyTheme(localStorage.getItem(themeStorageKey) || "system");
 loadPracticeSet();
 loadReviewQueue();
+showInitialViewFromHash();
