@@ -153,9 +153,9 @@ img {
 .hero-seal {
   display: grid;
   place-items: center;
-  border: 1px solid var(--logo-tile-border);
+  border: 0;
   border-radius: var(--radius);
-  background: var(--logo-tile);
+  background: transparent;
   overflow: hidden;
 }
 
@@ -379,7 +379,7 @@ img {
   height: clamp(104px, 12vw, 152px);
   margin-bottom: 24px;
   padding: 0;
-  box-shadow: var(--shadow);
+  box-shadow: none;
 }
 
 .hero-seal img {
