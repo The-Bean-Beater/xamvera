@@ -375,7 +375,7 @@ let activePracticeMode = "MCQ";
 let reviewItems = [];
 let approvedQuestionBank = [];
 let selectedReviewIndex = 0;
-let activeReviewFilter = "all";
+let activeReviewFilter = "needs_review";
 
 const seedReviewQueue = {
   items: [
@@ -1084,6 +1084,36 @@ function resetPractice() {
 
 async function loadPracticeSet() {
   try {
+    const localPublishedBank = localStorage.getItem("xamvera-published-approved-question-bank");
+    if (localPublishedBank) {
+      const bank = JSON.parse(localPublishedBank);
+      if (bank.questions?.length) {
+        practiceSet = {
+          course: "AP World History: Modern",
+          unit: "Approved Question Bank",
+          rights: "Approved XamVera questions published from admin review.",
+          questions: bank.questions
+        };
+        renderPracticeWorkspace();
+        return;
+      }
+    }
+
+    const bankResponse = await fetch("data/admin/approved-question-bank.json");
+    if (bankResponse.ok) {
+      const bank = await bankResponse.json();
+      if (bank.questions?.length) {
+        practiceSet = {
+          course: "AP World History: Modern",
+          unit: "Approved Question Bank",
+          rights: "Approved XamVera questions published from admin review.",
+          questions: bank.questions
+        };
+        renderPracticeWorkspace();
+        return;
+      }
+    }
+
     const response = await fetch("data/practice/ap-world-history-sample.json");
     if (!response.ok) throw new Error("Practice data unavailable");
     practiceSet = await response.json();
@@ -1316,6 +1346,7 @@ function renderReviewMetrics() {
   document.getElementById("needsRevisionCount").textContent = counts.needs_revision || 0;
   document.getElementById("approvedCount").textContent = counts.approved || 0;
   document.getElementById("questionBankCount").textContent = approvedQuestionBank.length;
+  renderPublishPackage();
 }
 
 function renderReviewQueue() {
@@ -1323,15 +1354,20 @@ function renderReviewQueue() {
   if (!queue) return;
 
   const items = filteredReviewItems();
+  if (!items.length) {
+    queue.innerHTML = '<div class="empty-state-row">No questions in this filter.</div>';
+    return;
+  }
+
   queue.innerHTML = items
     .map((item) => {
       const originalIndex = reviewItems.findIndex((candidate) => candidate.id === item.id);
       return `
         <button class="queue-item ${originalIndex === selectedReviewIndex ? "active" : ""}" type="button" data-review-index="${originalIndex}">
-          <span>${formatStatus(item.status)}</span>
+          <span class="queue-status ${item.status}">${formatStatus(item.status)}</span>
           <strong>${item.skill}</strong>
-          <span>${item.set_title || item.unit}</span>
-          ${item.set_question_count ? `<span>Set question ${item.set_question_number} of ${item.set_question_count}</span>` : ""}
+          <span>${item.unit}</span>
+          <small>${formatStatus(item.stimulus_format || "short_scenario")}${item.set_question_count ? ` | Set ${item.set_question_number}/${item.set_question_count}` : ""}</small>
         </button>
       `;
     })
@@ -1487,6 +1523,12 @@ function renderReviewDetail() {
   renderApprovedBank();
 }
 
+function selectFirstFilteredReviewItem() {
+  const items = filteredReviewItems();
+  if (!items.length) return;
+  selectedReviewIndex = reviewItems.findIndex((item) => item.id === items[0].id);
+}
+
 function renderReviewWorkspace() {
   renderReviewMetrics();
   renderReviewQueue();
@@ -1578,6 +1620,75 @@ function renderApprovedBank() {
     .join("");
 }
 
+function buildApprovedBankPayload() {
+  return {
+    bank_name: "XamVera Approved Question Bank",
+    published_at: new Date().toISOString(),
+    question_count: approvedQuestionBank.length,
+    questions: approvedQuestionBank
+      .slice()
+      .sort((a, b) => String(a.unit || "").localeCompare(String(b.unit || "")) || String(a.id).localeCompare(String(b.id)))
+  };
+}
+
+function renderPublishPackage() {
+  const output = document.getElementById("publishOutput");
+  const download = document.getElementById("downloadPublishJsonButton");
+  if (!output && !download) return;
+
+  const json = JSON.stringify(buildApprovedBankPayload(), null, 2);
+  if (output) output.value = json;
+
+  if (download) {
+    const blob = new Blob([json], { type: "application/json" });
+    if (download.dataset.objectUrl) URL.revokeObjectURL(download.dataset.objectUrl);
+    const objectUrl = URL.createObjectURL(blob);
+    download.href = objectUrl;
+    download.dataset.objectUrl = objectUrl;
+  }
+}
+
+function setPublishMessage(message, type = "") {
+  const element = document.getElementById("publishMessage");
+  if (!element) return;
+  element.hidden = !message;
+  element.textContent = message;
+  element.className = `generator-message ${type}`;
+}
+
+async function copyPublishJson() {
+  const output = document.getElementById("publishOutput");
+  if (!output?.value) {
+    renderPublishPackage();
+  }
+  const json = output?.value || JSON.stringify(buildApprovedBankPayload(), null, 2);
+
+  try {
+    await navigator.clipboard.writeText(json);
+    setPublishMessage("Copied approved question bank JSON.", "success");
+  } catch {
+    output?.select();
+    setPublishMessage("Select the JSON box and copy it manually.", "error");
+  }
+}
+
+function publishApprovedQuestions() {
+  if (!approvedQuestionBank.length) {
+    setPublishMessage("Approve at least one question before publishing.", "error");
+    return;
+  }
+
+  const payload = buildApprovedBankPayload();
+  const json = JSON.stringify(payload, null, 2);
+  localStorage.setItem("xamvera-published-approved-question-bank", json);
+  renderPublishPackage();
+  loadPracticeSet();
+  setPublishMessage(
+    `Prepared ${payload.question_count} approved question${payload.question_count === 1 ? "" : "s"} for public practice. Download or copy this JSON into data/admin/approved-question-bank.json, then commit and push to publish for everyone.`,
+    "success"
+  );
+}
+
 function seedApprovedBankFromQueue() {
   reviewItems
     .filter((item) => item.status === "approved" && allGatesPassed(item))
@@ -1614,6 +1725,9 @@ function updateReviewStatus(status) {
   }
 
   saveReviewQueue();
+  if (activeReviewFilter !== "all" && item.status !== activeReviewFilter) {
+    selectFirstFilteredReviewItem();
+  }
   renderReviewWorkspace();
   setReviewMessage(message, messageType);
 }
@@ -1623,6 +1737,7 @@ async function loadReviewQueue() {
   if (savedBank) {
     approvedQuestionBank = JSON.parse(savedBank);
   }
+  renderPublishPackage();
 
   let fetchedItems = seedReviewQueue.items;
 
@@ -1748,6 +1863,8 @@ document.getElementById("nextQuestion")?.addEventListener("click", nextQuestion)
 document.getElementById("resetPractice")?.addEventListener("click", resetPractice);
 document.getElementById("generateDraftsButton")?.addEventListener("click", generateDraftsForReview);
 document.getElementById("reloadReviewQueueButton")?.addEventListener("click", reloadDeployedReviewQueue);
+document.getElementById("publishApprovedButton")?.addEventListener("click", publishApprovedQuestions);
+document.getElementById("copyPublishJsonButton")?.addEventListener("click", copyPublishJson);
 document.getElementById("reviewFilter")?.addEventListener("change", (event) => {
   activeReviewFilter = event.target.value;
   const items = filteredReviewItems();

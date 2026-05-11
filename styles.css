@@ -481,7 +481,8 @@ p {
 
 .study-card,
 .panel,
-.course-card {
+.course-card,
+.metric-card {
   min-width: 0;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -991,11 +992,10 @@ meter {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
-  margin-bottom: 14px;
 }
 
 .metric-card {
-  min-height: 104px;
+  min-height: 86px;
 }
 
 .metric-card strong {
@@ -1005,11 +1005,23 @@ meter {
   line-height: 1;
 }
 
-.review-generator-panel {
+.review-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.7fr);
+  gap: 14px;
+  align-items: end;
   margin-bottom: 14px;
 }
 
-.generator-header {
+.review-tools-panel {
+  margin-bottom: 14px;
+}
+
+.review-tools-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
   margin-bottom: 14px;
 }
 
@@ -1019,8 +1031,63 @@ meter {
   gap: 10px;
 }
 
+.compact-generator {
+  grid-template-columns: repeat(3, minmax(130px, 1fr)) minmax(150px, 0.7fr);
+  align-items: stretch;
+}
+
+.generate-inline-button {
+  min-height: 100%;
+}
+
 .generator-control.disabled {
   opacity: 0.62;
+}
+
+.publish-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  margin-top: 10px;
+  padding: 12px;
+}
+
+.publish-box strong,
+.publish-box span {
+  display: block;
+}
+
+.publish-box span {
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+code {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--ink);
+  padding: 1px 5px;
+  font-size: 0.9em;
+}
+
+.publish-output {
+  width: 100%;
+  min-height: 110px;
+  margin-top: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  padding: 11px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  resize: vertical;
 }
 
 .generator-message,
@@ -1047,7 +1114,7 @@ meter {
 
 .review-workspace {
   display: grid;
-  grid-template-columns: minmax(250px, 290px) minmax(0, 1fr) minmax(270px, 310px);
+  grid-template-columns: minmax(250px, 280px) minmax(0, 1fr) minmax(310px, 360px);
   gap: 14px;
   align-items: start;
 }
@@ -1060,7 +1127,7 @@ meter {
 
 .queue-item {
   width: 100%;
-  min-height: 92px;
+  min-height: 82px;
   color: var(--ink);
   text-align: left;
 }
@@ -1071,12 +1138,39 @@ meter {
 }
 
 .queue-item strong,
-.queue-item span {
+.queue-item span,
+.queue-item small {
   display: block;
 }
 
 .queue-item strong {
   margin: 6px 0;
+}
+
+.queue-item small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.queue-status {
+  width: fit-content;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.queue-status.approved {
+  color: var(--success);
+}
+
+.queue-status.needs_revision,
+.queue-status.rejected {
+  color: var(--danger);
 }
 
 .review-detail-panel {
@@ -1095,6 +1189,15 @@ meter {
 
 .review-section {
   margin-bottom: 16px;
+}
+
+.stimulus-review-section p {
+  max-height: 220px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  padding: 12px;
 }
 
 .source-detail-grid {
@@ -1129,6 +1232,18 @@ meter {
 
 .review-choice.correct {
   border-color: var(--success);
+}
+
+.decision-stack {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.decision-stack .primary-button,
+.decision-stack .secondary-button {
+  width: 100%;
 }
 
 .review-notes-label textarea {
@@ -1233,7 +1348,8 @@ meter {
   .dashboard-grid,
   .course-layout,
   .practice-layout,
-  .review-workspace {
+  .review-workspace,
+  .review-header {
     grid-template-columns: 1fr;
   }
 
@@ -1259,6 +1375,15 @@ meter {
 
   .generator-actions button {
     flex: 1;
+  }
+
+  .review-tools-header,
+  .publish-box {
+    display: grid;
+  }
+
+  .compact-generator {
+    grid-template-columns: 1fr;
   }
 }
 

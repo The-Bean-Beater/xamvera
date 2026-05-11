@@ -13,7 +13,7 @@
         document.documentElement.dataset.theme = savedTheme;
       }
     </script>
-    <link rel="stylesheet" href="styles.css?v=9">
+    <link rel="stylesheet" href="styles.css?v=10">
   </head>
   <body>
     <div class="app-shell">
@@ -296,52 +296,55 @@
         </section>
 
         <section class="view" id="review">
-          <div class="page-heading">
-            <p class="eyebrow">Admin</p>
-            <h1>Question Review</h1>
-            <p>Approve only questions that are accurate, original, sourced, and ready for students.</p>
+          <div class="review-header">
+            <div class="page-heading">
+              <p class="eyebrow">Admin</p>
+              <h1>Review queue</h1>
+              <p>Move fast, but only approve questions that are accurate, original, sourced, and student-ready.</p>
+            </div>
+
+            <div class="review-metrics" aria-label="Review status">
+              <section class="metric-card">
+                <span class="panel-label">Review</span>
+                <strong id="needsReviewCount">0</strong>
+              </section>
+              <section class="metric-card">
+                <span class="panel-label">Revision</span>
+                <strong id="needsRevisionCount">0</strong>
+              </section>
+              <section class="metric-card">
+                <span class="panel-label">Approved</span>
+                <strong id="approvedCount">0</strong>
+              </section>
+              <section class="metric-card">
+                <span class="panel-label">Bank</span>
+                <strong id="questionBankCount">0</strong>
+              </section>
+            </div>
           </div>
 
-          <div class="review-metrics">
-            <section class="panel metric-card">
-              <span class="panel-label">Needs review</span>
-              <strong id="needsReviewCount">0</strong>
-            </section>
-            <section class="panel metric-card">
-              <span class="panel-label">Needs revision</span>
-              <strong id="needsRevisionCount">0</strong>
-            </section>
-            <section class="panel metric-card">
-              <span class="panel-label">Approved</span>
-              <strong id="approvedCount">0</strong>
-            </section>
-            <section class="panel metric-card">
-              <span class="panel-label">Question bank</span>
-              <strong id="questionBankCount">0</strong>
-            </section>
-          </div>
-
-          <section class="panel review-generator-panel">
-            <div class="generator-header">
+          <section class="panel review-tools-panel">
+            <div class="review-tools-header">
               <div>
-                <span class="panel-label">Draft generator</span>
-                <h2>Generate questions for review</h2>
+                <span class="panel-label">Queue tools</span>
+                <h2>Generate, reload, publish</h2>
               </div>
               <div class="generator-actions">
-                <button class="secondary-button" type="button" id="reloadReviewQueueButton">Reload Deployed Queue</button>
-                <button class="primary-button" type="button" id="generateDraftsButton">Generate Drafts</button>
+                <button class="secondary-button" type="button" id="reloadReviewQueueButton">Reload Queue</button>
+                <button class="secondary-button" type="button" id="copyPublishJsonButton">Copy Publish JSON</button>
+                <button class="primary-button" type="button" id="publishApprovedButton">Publish Approved</button>
               </div>
             </div>
 
-            <div class="generator-grid">
+            <div class="generator-grid compact-generator">
               <label class="generator-control">
-                <span>Image stimulus sets</span>
-                <small>3 linked questions per set</small>
+                <span>Image sets</span>
+                <small>3 questions each</small>
                 <input type="number" id="imageSetCount" min="0" max="8" value="1">
               </label>
               <label class="generator-control">
-                <span>Document stimulus sets</span>
-                <small>3 linked questions per set</small>
+                <span>Document sets</span>
+                <small>3 questions each</small>
                 <input type="number" id="documentSetCount" min="0" max="8" value="1">
               </label>
               <label class="generator-control">
@@ -349,19 +352,20 @@
                 <small>1 question each</small>
                 <input type="number" id="shortScenarioCount" min="0" max="20" value="4">
               </label>
-              <label class="generator-control disabled">
-                <span>No-stimulus</span>
-                <small>Planned</small>
-                <input type="number" min="0" value="0" disabled>
-              </label>
-              <label class="generator-control disabled">
-                <span>Data / map / chart</span>
-                <small>Planned</small>
-                <input type="number" min="0" value="0" disabled>
-              </label>
+              <button class="primary-button generate-inline-button" type="button" id="generateDraftsButton">Generate Drafts</button>
             </div>
 
+            <div class="publish-box">
+              <div>
+                <strong>Publish path</strong>
+                <span>Replace <code>data/admin/approved-question-bank.json</code>, commit, and push. Public practice loads this file automatically.</span>
+              </div>
+              <a class="secondary-button compact" id="downloadPublishJsonButton" href="#" download="approved-question-bank.json">Download JSON</a>
+            </div>
+
+            <textarea id="publishOutput" class="publish-output" rows="5" readonly aria-label="Approved question bank JSON"></textarea>
             <div class="generator-message" id="generatorMessage" hidden></div>
+            <div class="generator-message" id="publishMessage" hidden></div>
           </section>
 
           <div class="review-workspace">
@@ -369,8 +373,8 @@
               <div class="panel-heading-inline">
                 <span class="panel-label">Queue</span>
                 <select id="reviewFilter" aria-label="Filter review queue">
-                  <option value="all">All</option>
                   <option value="needs_review">Needs review</option>
+                  <option value="all">All</option>
                   <option value="needs_revision">Needs revision</option>
                   <option value="approved">Approved</option>
                   <option value="rejected">Rejected</option>
@@ -388,14 +392,9 @@
                 <span class="status-badge" id="reviewStatus">Needs review</span>
               </div>
 
-              <div class="review-section">
+              <div class="review-section stimulus-review-section">
                 <span class="panel-label">Stimulus</span>
                 <p id="reviewStimulus"></p>
-              </div>
-
-              <div class="review-section" id="reviewSourceSection" hidden>
-                <span class="panel-label">Source and set details</span>
-                <div class="source-detail-grid" id="reviewSourceDetails"></div>
               </div>
 
               <div class="review-section">
@@ -408,35 +407,40 @@
                 <p id="reviewExplanation"></p>
               </div>
 
-              <label class="review-notes-label">
-                Reviewer notes
-                <textarea id="reviewNotes" rows="4"></textarea>
-              </label>
-
-              <label class="review-notes-label">
-                Revision feedback
-                <textarea id="revisionFeedback" rows="4" placeholder="If this needs revision, write exactly what must change before approval."></textarea>
-              </label>
-
-              <div class="review-message" id="reviewMessage" hidden></div>
-
-              <div class="review-actions">
-                <button class="secondary-button" type="button" data-review-action="needs_revision">Needs Revision</button>
-                <button class="secondary-button danger" type="button" data-review-action="rejected">Reject</button>
-                <button class="primary-button" type="button" data-review-action="approved">Approve</button>
+              <div class="review-section" id="reviewSourceSection" hidden>
+                <span class="panel-label">Source and set details</span>
+                <div class="source-detail-grid" id="reviewSourceDetails"></div>
               </div>
             </section>
 
             <aside class="panel review-check-panel">
-              <span class="panel-label">Metadata</span>
-              <div class="metadata-list" id="reviewMetadata"></div>
+              <div class="decision-stack">
+                <button class="primary-button" type="button" data-review-action="approved">Approve</button>
+                <button class="secondary-button" type="button" data-review-action="needs_revision">Needs Revision</button>
+                <button class="secondary-button danger" type="button" data-review-action="rejected">Reject</button>
+              </div>
+
+              <div class="review-message" id="reviewMessage" hidden></div>
 
               <span class="panel-label">Review gates</span>
               <div class="gate-list" id="reviewGates"></div>
 
+              <label class="review-notes-label">
+                Reviewer notes
+                <textarea id="reviewNotes" rows="3"></textarea>
+              </label>
+
+              <label class="review-notes-label">
+                Revision feedback
+                <textarea id="revisionFeedback" rows="3" placeholder="Required before sending back for revision."></textarea>
+              </label>
+
+              <span class="panel-label">Metadata</span>
+              <div class="metadata-list" id="reviewMetadata"></div>
+
               <div class="review-warning">
-                <strong>Rule</strong>
-                Do not approve copied College Board or third-party questions. Verify originality and accuracy before publishing.
+                <strong>Approval rule</strong>
+                No copied College Board or third-party questions. Verify originality, answer, explanation, and source rights before publishing.
               </div>
 
               <span class="panel-label">Approved bank</span>
@@ -481,6 +485,6 @@
       </main>
     </div>
 
-    <script src="script.js?v=9"></script>
+    <script src="script.js?v=10"></script>
   </body>
 </html>
