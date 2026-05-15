@@ -13,10 +13,79 @@
         document.documentElement.dataset.theme = savedTheme;
       }
     </script>
-    <link rel="stylesheet" href="styles.css?v=10">
+    <link rel="stylesheet" href="styles.css?v=11">
   </head>
   <body>
-    <div class="app-shell">
+    <section class="auth-gate" id="authGate" aria-labelledby="authTitle">
+      <div class="auth-hero">
+        <a class="auth-brand" href="#" aria-label="XamVera home">
+          <span class="brand-mark" aria-hidden="true">
+            <img src="assets/xanvera-mark-tight-192.png?v=3" alt="">
+          </span>
+          <span>
+            <strong>XamVera</strong>
+            <small>Adaptive AP exam practice</small>
+          </span>
+        </a>
+
+        <div class="auth-copy">
+          <p class="eyebrow">Personalized study starts here</p>
+          <h1 id="authTitle">Sign in to build your AP practice plan</h1>
+          <p>XamVera tracks what you miss, finds weak concepts, and turns practice into a focused study plan for your next session.</p>
+        </div>
+
+        <div class="auth-proof-grid" aria-label="Product highlights">
+          <div>
+            <strong>Concept tracking</strong>
+            <span>Every answer updates mastery by skill, unit, and difficulty.</span>
+          </div>
+          <div>
+            <strong>Adaptive plans</strong>
+            <span>Your dashboard recommends what to study next.</span>
+          </div>
+          <div>
+            <strong>AP focused</strong>
+            <span>Built around AP World now, with more courses staged.</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="auth-card" aria-label="Sign in options">
+        <span class="panel-label">Account</span>
+        <h2>Continue to XamVera</h2>
+        <p>Create an account for specialized practice, saved progress, and a personal weakness plan.</p>
+
+        <button class="secondary-button auth-google-button" id="googleSignInButton" type="button">
+          <span class="google-dot" aria-hidden="true">G</span>
+          Continue with Google
+        </button>
+
+        <div class="auth-divider">
+          <span>Email</span>
+        </div>
+
+        <form class="auth-form" id="emailAuthForm">
+          <label>
+            Email
+            <input id="authEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </label>
+          <label>
+            Password
+            <input id="authPassword" name="password" type="password" autocomplete="new-password" placeholder="8+ characters" minlength="8" required>
+          </label>
+          <button class="primary-button" type="submit">Create account</button>
+        </form>
+
+        <button class="guest-button" id="guestButton" type="button">
+          Use as guest
+          <span>Guest mode can try practice, but it cannot save progress or generate specialized practice for you.</span>
+        </button>
+
+        <p class="auth-note" id="authMessage" role="status">For tomorrow's live demo, email accounts run in demo mode on GitHub Pages.</p>
+      </section>
+    </section>
+
+    <div class="app-shell" id="appShell" hidden>
       <aside class="sidebar" id="sidebar">
         <a class="brand" href="#" aria-label="XamVera home" data-view-link="home">
           <span class="brand-mark" aria-hidden="true">
@@ -57,8 +126,10 @@
           </div>
 
           <div class="topbar-actions">
+            <span class="account-pill" id="accountPill">Guest</span>
             <button class="secondary-button compact" type="button" data-view-target="courses">Courses</button>
             <button class="primary-button compact" type="button" data-view-target="practice">Start Practice</button>
+            <button class="secondary-button compact" type="button" id="signOutButton">Sign Out</button>
           </div>
         </header>
 
@@ -485,6 +556,6 @@
       </main>
     </div>
 
-    <script src="script.js?v=10"></script>
+    <script src="script.js?v=11"></script>
   </body>
 </html>

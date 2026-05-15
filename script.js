@@ -6,6 +6,14 @@ const views = document.querySelectorAll(".view");
 const themeButtons = document.querySelectorAll("[data-theme-option]");
 const themeStorageKey = "xamvera-theme";
 const sidebarStorageKey = "xamvera-sidebar-collapsed";
+const sessionStorageKey = "xamvera-demo-session";
+const authGate = document.getElementById("authGate");
+const emailAuthForm = document.getElementById("emailAuthForm");
+const googleSignInButton = document.getElementById("googleSignInButton");
+const guestButton = document.getElementById("guestButton");
+const authMessage = document.getElementById("authMessage");
+const accountPill = document.getElementById("accountPill");
+const signOutButton = document.getElementById("signOutButton");
 
 const apCourses = [
   {
@@ -777,6 +785,71 @@ function isNarrowViewport() {
   return window.matchMedia("(max-width: 980px)").matches;
 }
 
+function getSavedSession() {
+  try {
+    return JSON.parse(localStorage.getItem(sessionStorageKey) || "null");
+  } catch {
+    localStorage.removeItem(sessionStorageKey);
+    return null;
+  }
+}
+
+function displayNameFromEmail(email) {
+  const name = String(email || "").split("@")[0] || "Student";
+  return name
+    .split(/[._-]/)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ") || "Student";
+}
+
+function updateAccountPill(session) {
+  if (!accountPill) return;
+
+  if (!session) {
+    accountPill.textContent = "Signed out";
+    accountPill.title = "Signed out";
+    return;
+  }
+
+  const label = session.mode === "guest" ? "Guest preview" : session.name || "Student account";
+  accountPill.textContent = label;
+  accountPill.title =
+    session.mode === "guest"
+      ? "Guest mode cannot save progress or build specialized practice."
+      : "Demo account: progress personalization is available in the Supabase build.";
+}
+
+function unlockApp(session) {
+  authGate.hidden = true;
+  appShell.hidden = false;
+  updateAccountPill(session);
+  showView("home");
+}
+
+function saveSession(session) {
+  localStorage.setItem(sessionStorageKey, JSON.stringify(session));
+  unlockApp(session);
+}
+
+function initializeAccessGate() {
+  const session = getSavedSession();
+
+  if (session) {
+    unlockApp(session);
+    return;
+  }
+
+  authGate.hidden = false;
+  appShell.hidden = true;
+  updateAccountPill(null);
+}
+
+function showAuthMessage(message) {
+  if (!authMessage) return;
+  authMessage.textContent = message;
+}
+
 function applySidebarPreference() {
   if (!appShell) return;
   const collapsed = localStorage.getItem(sidebarStorageKey) === "true";
@@ -800,6 +873,8 @@ function toggleSidebar() {
 }
 
 function showView(viewId) {
+  if (appShell?.hidden) return;
+
   if (viewId === "review" && window.location.hash !== "#admin-review") {
     window.location.hash = "admin-review";
   }
@@ -1859,6 +1934,51 @@ themeButtons.forEach((button) => {
   button.addEventListener("click", () => applyTheme(button.dataset.themeOption));
 });
 
+googleSignInButton?.addEventListener("click", () => {
+  saveSession({
+    mode: "account",
+    provider: "google",
+    name: "Google Demo Student",
+    createdAt: new Date().toISOString()
+  });
+  showAuthMessage("Signed in with Google demo mode. Connect the Supabase project for real Google OAuth on production hosting.");
+});
+
+emailAuthForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const formData = new FormData(emailAuthForm);
+  const email = String(formData.get("email") || "").trim();
+  const password = String(formData.get("password") || "");
+
+  if (!email || password.length < 8) {
+    showAuthMessage("Use a real email format and at least 8 password characters.");
+    return;
+  }
+
+  saveSession({
+    mode: "account",
+    provider: "email",
+    email,
+    name: displayNameFromEmail(email),
+    createdAt: new Date().toISOString()
+  });
+});
+
+guestButton?.addEventListener("click", () => {
+  saveSession({
+    mode: "guest",
+    name: "Guest",
+    createdAt: new Date().toISOString()
+  });
+});
+
+signOutButton?.addEventListener("click", () => {
+  localStorage.removeItem(sessionStorageKey);
+  window.location.hash = "";
+  initializeAccessGate();
+  showAuthMessage("Signed out. Create an account to save progress and unlock specialized practice.");
+});
+
 document.getElementById("nextQuestion")?.addEventListener("click", nextQuestion);
 document.getElementById("resetPractice")?.addEventListener("click", resetPractice);
 document.getElementById("generateDraftsButton")?.addEventListener("click", generateDraftsForReview);
@@ -1898,4 +2018,5 @@ renderCourseCatalog();
 renderPracticeCourseSelect();
 loadPracticeSet();
 loadReviewQueue();
+initializeAccessGate();
 showInitialViewFromHash();
