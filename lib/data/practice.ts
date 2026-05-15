@@ -1,0 +1,91 @@
+export type PracticeQuestion = {
+  id: string;
+  conceptId: string;
+  skill: string;
+  period: string;
+  difficulty: "Easy" | "Medium" | "Hard";
+  stimulus: string;
+  prompt: string;
+  choices: string[];
+  answerIndex: number;
+  explanation: string;
+};
+
+export const seedPracticeQuestions: PracticeQuestion[] = [
+  {
+    id: "xan-apwh-001",
+    conceptId: "apwh-state-trade-networks",
+    skill: "Contextualization",
+    period: "c. 1200-c. 1450",
+    difficulty: "Medium",
+    stimulus:
+      "A ruler sponsors religious scholars, repairs roads used by merchants, and grants privileges to long-distance trading communities that connect inland cities to ports.",
+    prompt: "Which broader historical process is best reflected by these actions?",
+    choices: [
+      "The decline of state support for commercial exchange",
+      "The use of state power to strengthen regional and interregional trade",
+      "The replacement of land-based trade by Atlantic maritime routes",
+      "The spread of industrial production through imperial charter companies"
+    ],
+    answerIndex: 1,
+    explanation:
+      "States often supported trade by protecting routes, standardizing rules, and encouraging merchant activity. Atlantic and industrial patterns belong to later periods."
+  },
+  {
+    id: "xan-apwh-002",
+    conceptId: "apwh-global-silver",
+    skill: "Causation",
+    period: "c. 1450-c. 1750",
+    difficulty: "Medium",
+    stimulus:
+      "Silver mined in the Americas moved across the Atlantic and Pacific, financing state expansion and linking markets in Europe, the Americas, and Asia.",
+    prompt: "Which development most directly contributed to the pattern described?",
+    choices: [
+      "The growth of transoceanic empires and global maritime commerce",
+      "The collapse of all centralized states in East Asia",
+      "The end of coerced labor systems in the Americas",
+      "The disappearance of luxury-goods trade across Afro-Eurasia"
+    ],
+    answerIndex: 0,
+    explanation:
+      "The Spanish empire, American silver production, and Pacific trade through Manila helped connect regional economies into wider global networks."
+  },
+  {
+    id: "xan-apwh-003",
+    conceptId: "apwh-industrial-extraction",
+    skill: "Comparison",
+    period: "c. 1750-c. 1900",
+    difficulty: "Hard",
+    stimulus:
+      "Industrial factories concentrated workers, increased demand for raw materials, and encouraged states to invest in railroads, ports, and military power.",
+    prompt: "Which comparison best describes industrialization in this period?",
+    choices: [
+      "Industrialization reduced global economic inequality by eliminating imperial competition.",
+      "Industrialization only affected Europe and had no relationship to colonial economies.",
+      "Industrialization increased the economic and military power of some states while intensifying extraction from other regions.",
+      "Industrialization ended urban growth because most production returned to rural households."
+    ],
+    answerIndex: 2,
+    explanation:
+      "Industrialization strengthened some states and firms while deepening global demand for labor, land, raw materials, and colonial markets."
+  },
+  {
+    id: "xan-apwh-004",
+    conceptId: "apwh-decolonization-economies",
+    skill: "Continuity and Change",
+    period: "c. 1900-present",
+    difficulty: "Medium",
+    stimulus:
+      "After the Second World War, many colonies became independent states, but their governments often still depended on exporting a narrow range of raw materials.",
+    prompt: "Which statement best explains both change and continuity in the situation described?",
+    choices: [
+      "Political sovereignty often changed, while economic relationships shaped by imperialism frequently persisted.",
+      "New states usually rejected participation in the global economy entirely.",
+      "Imperial borders disappeared immediately after independence.",
+      "Former colonies quickly became the dominant industrial powers in every region."
+    ],
+    answerIndex: 0,
+    explanation:
+      "Decolonization changed formal political control, but many economic patterns from imperial rule continued through trade, debt, and resource dependency."
+  }
+];
