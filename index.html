@@ -81,7 +81,7 @@
           <span>Guest mode can try practice, but it cannot save progress or generate specialized practice for you.</span>
         </button>
 
-        <p class="auth-note" id="authMessage" role="status">For tomorrow's live demo, email accounts run in demo mode on GitHub Pages.</p>
+        <p class="auth-note" id="authMessage" role="status">Connect Supabase to turn on real Google and email login. Guest mode skips saved personalization.</p>
       </section>
     </section>
 
@@ -178,17 +178,17 @@
               <div class="snapshot-list">
                 <div>
                   <span>Course mastery</span>
-                  <strong>35%</strong>
-                  <meter min="0" max="100" value="35">35%</meter>
+                  <strong id="homeMasteryValue">35%</strong>
+                  <meter id="homeMasteryMeter" min="0" max="100" value="35">35%</meter>
                 </div>
                 <div>
                   <span>Recent accuracy</span>
-                  <strong>Baseline</strong>
-                  <meter min="0" max="100" value="50">50%</meter>
+                  <strong id="homeAccuracyValue">Baseline</strong>
+                  <meter id="homeAccuracyMeter" min="0" max="100" value="50">50%</meter>
                 </div>
                 <div>
                   <span>Next review</span>
-                  <strong>Missed MCQs</strong>
+                  <strong id="homeNextReviewValue">Missed MCQs</strong>
                 </div>
               </div>
             </aside>
@@ -226,22 +226,22 @@
                 <span class="panel-label">Recommended next</span>
                 <span class="status-badge">10 min</span>
               </div>
-              <h2>Unit 2 MCQ warmup</h2>
+              <h2 id="dashboardRecommendedFocus">Unit 2 MCQ warmup</h2>
               <div class="task-list">
                 <button type="button" data-view-target="practice">
                   <span>01</span>
                   <strong>Start practice</strong>
-                  <small>Answer one short set without switching tabs.</small>
+                  <small id="dashboardPracticeSummary">Answer one short set without switching tabs.</small>
                 </button>
                 <button type="button" data-view-target="practice">
                   <span>02</span>
                   <strong>Review misses</strong>
-                  <small>Read the explanation before moving on.</small>
+                  <small id="dashboardReviewSummary">Read the explanation before moving on.</small>
                 </button>
                 <button type="button" data-view-target="courses">
                   <span>03</span>
                   <strong>Pick next unit</strong>
-                  <small>Move only after the current unit feels stable.</small>
+                  <small id="dashboardStreakSummary">Move only after the current unit feels stable.</small>
                 </button>
               </div>
             </section>
@@ -252,18 +252,18 @@
               <div class="readiness-list">
                 <div>
                   <strong>AP World History</strong>
-                  <span>Active practice course</span>
-                  <meter min="0" max="100" value="35">35%</meter>
+                  <span id="dashboardMasteryLabel">Active practice course</span>
+                  <meter id="dashboardMasteryMeter" min="0" max="100" value="35">35%</meter>
                 </div>
                 <div>
-                  <strong>Unit 2</strong>
-                  <span>Recommended today</span>
-                  <meter min="0" max="100" value="42">42%</meter>
+                  <strong id="dashboardWeakUnitName">Unit 2</strong>
+                  <span id="dashboardWeakUnitLabel">Recommended today</span>
+                  <meter id="dashboardWeakUnitMeter" min="0" max="100" value="42">42%</meter>
                 </div>
                 <div>
-                  <strong>Review queue</strong>
-                  <span>Missed questions after each set</span>
-                  <meter min="0" max="100" value="18">18%</meter>
+                  <strong>Recent accuracy</strong>
+                  <span id="dashboardAccuracyLabel">Missed questions after each set</span>
+                  <meter id="dashboardAccuracyMeter" min="0" max="100" value="18">18%</meter>
                 </div>
               </div>
             </section>
@@ -271,7 +271,7 @@
             <section class="panel wide pipeline-panel">
               <span class="panel-label">Study focus</span>
               <h2>Use the next set to test these skills</h2>
-              <div class="pipeline-grid">
+              <div class="pipeline-grid" id="dashboardFocusGrid">
                 <div>
                   <strong>Contextualization</strong>
                   <span>Connect events to a broader process or period.</span>
@@ -556,6 +556,8 @@
       </main>
     </div>
 
-    <script src="script.js?v=12"></script>
+    <script src="supabase-config.js?v=1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js?v=13"></script>
   </body>
 </html>

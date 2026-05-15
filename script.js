@@ -14,6 +14,10 @@ const guestButton = document.getElementById("guestButton");
 const authMessage = document.getElementById("authMessage");
 const accountPill = document.getElementById("accountPill");
 const signOutButton = document.getElementById("signOutButton");
+const supabaseConfig = window.XAMVERA_SUPABASE || {};
+let supabaseClient = null;
+let supabaseUser = null;
+let questionStartedAt = Date.now();
 
 const apCourses = [
   {
@@ -372,6 +376,39 @@ const seedPracticeSet = {
         "Decolonization changed formal political control, but many economic patterns from imperial rule continued through trade, debt, and resource dependency."
     }
   ]
+};
+
+const questionConcepts = {
+  "xan-apwh-001": {
+    conceptId: "apwh-state-trade-networks",
+    conceptName: "State support for interregional trade",
+    unitName: "Networks of Exchange",
+    importanceWeight: 1.15
+  },
+  "xan-apwh-002": {
+    conceptId: "apwh-global-silver",
+    conceptName: "Global circulation of American silver",
+    unitName: "Transoceanic Interconnections",
+    importanceWeight: 1.3
+  },
+  "xan-apwh-003": {
+    conceptId: "apwh-industrial-extraction",
+    conceptName: "Industrialization and imperial extraction",
+    unitName: "Consequences of Industrialization",
+    importanceWeight: 1.35
+  },
+  "xan-apwh-004": {
+    conceptId: "apwh-decolonization-economies",
+    conceptName: "Political decolonization and economic continuity",
+    unitName: "Cold War and Decolonization",
+    importanceWeight: 1.2
+  }
+};
+
+const difficultyWeights = {
+  Easy: 0.8,
+  Medium: 1,
+  Hard: 1.25
 };
 
 let practiceSet = seedPracticeSet;
@@ -794,6 +831,29 @@ function getSavedSession() {
   }
 }
 
+function isSupabaseReady() {
+  return Boolean(
+    supabaseConfig.url &&
+      supabaseConfig.anonKey &&
+      !String(supabaseConfig.url).includes("YOUR-") &&
+      window.supabase?.createClient
+  );
+}
+
+function getSupabaseClient() {
+  if (supabaseClient || !isSupabaseReady()) return supabaseClient;
+
+  supabaseClient = window.supabase.createClient(supabaseConfig.url, supabaseConfig.anonKey, {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true
+    }
+  });
+
+  return supabaseClient;
+}
+
 function displayNameFromEmail(email) {
   const name = String(email || "").split("@")[0] || "Student";
   return name
@@ -817,7 +877,7 @@ function updateAccountPill(session) {
   accountPill.title =
     session.mode === "guest"
       ? "Guest mode cannot save progress or build specialized practice."
-      : "Demo account: progress personalization is available in the Supabase build.";
+      : "Signed in. Practice attempts can save to Supabase when the database is configured.";
 }
 
 function unlockApp(session) {
@@ -825,6 +885,7 @@ function unlockApp(session) {
   appShell.hidden = false;
   updateAccountPill(session);
   showView("home");
+  refreshPersonalizedDashboard();
 }
 
 function saveSession(session) {
@@ -832,7 +893,54 @@ function saveSession(session) {
   unlockApp(session);
 }
 
-function initializeAccessGate() {
+function sessionFromSupabaseUser(user) {
+  return {
+    mode: "account",
+    provider: "supabase",
+    email: user.email || "",
+    name: user.user_metadata?.full_name || user.user_metadata?.name || displayNameFromEmail(user.email),
+    createdAt: new Date().toISOString()
+  };
+}
+
+async function ensureSupabaseProfile(user) {
+  const client = getSupabaseClient();
+  if (!client || !user) return;
+
+  await client.from("profiles").upsert({
+    id: user.id,
+    username: user.email?.split("@")[0] || user.user_metadata?.name || null,
+    selected_course: "ap-world-history-modern"
+  });
+}
+
+async function initializeAccessGate() {
+  const client = getSupabaseClient();
+
+  if (client) {
+    const { data } = await client.auth.getSession();
+    supabaseUser = data.session?.user || null;
+
+    client.auth.onAuthStateChange(async (_event, session) => {
+      supabaseUser = session?.user || null;
+      if (supabaseUser) {
+        localStorage.removeItem(sessionStorageKey);
+        await ensureSupabaseProfile(supabaseUser);
+        unlockApp(sessionFromSupabaseUser(supabaseUser));
+      }
+    });
+
+    if (supabaseUser) {
+      localStorage.removeItem(sessionStorageKey);
+      await ensureSupabaseProfile(supabaseUser);
+      unlockApp(sessionFromSupabaseUser(supabaseUser));
+      if (window.location.search.includes("code=")) {
+        window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
+      }
+      return;
+    }
+  }
+
   const session = getSavedSession();
 
   if (session) {
@@ -1057,6 +1165,7 @@ function renderQuestion() {
   }
 
   selectedAnswerIndex = null;
+  questionStartedAt = Date.now();
   const question = practiceSet.questions[currentQuestionIndex];
 
   elements.counter.textContent = `Question ${currentQuestionIndex + 1} of ${practiceSet.questions.length}`;
@@ -1119,6 +1228,203 @@ function renderPracticeWorkspace() {
   renderQuestion();
 }
 
+function clampScore(score) {
+  return Math.max(0, Math.min(100, Math.round(score)));
+}
+
+function decayMasteryScore(score, lastReviewed) {
+  if (!lastReviewed) return score;
+
+  const elapsedMs = Date.now() - new Date(lastReviewed).getTime();
+  const elapsedDays = Math.max(0, elapsedMs / 86_400_000);
+  const decay = Math.min(18, elapsedDays * 0.28);
+
+  return clampScore(score - decay);
+}
+
+function calculateUpdatedMastery({ correct, currentScore, difficulty, lastReviewed }) {
+  const decayedScore = decayMasteryScore(currentScore, lastReviewed);
+  const weight = difficultyWeights[difficulty] || 1;
+  const delta = correct ? 8 * weight : -5 * weight;
+
+  return clampScore(decayedScore + delta);
+}
+
+function setMeter(id, value) {
+  const meter = document.getElementById(id);
+  if (!meter) return;
+  meter.value = value;
+  meter.textContent = `${value}%`;
+}
+
+function setText(id, value) {
+  const element = document.getElementById(id);
+  if (element) element.textContent = value;
+}
+
+async function savePracticeAttempt(question, answerIndex, correct) {
+  const client = getSupabaseClient();
+  if (!client || !supabaseUser) {
+    return "Sign in with Google or email to save this attempt and update your personalized plan.";
+  }
+
+  const concept = questionConcepts[question.id];
+  if (!concept) {
+    return "This question can be practiced, but it is not mapped to a Supabase concept yet.";
+  }
+
+  const responseTime = Math.max(0, Date.now() - questionStartedAt);
+
+  const { error: attemptError } = await client.from("attempts").insert({
+    user_id: supabaseUser.id,
+    question_id: question.id,
+    correct,
+    response_time: responseTime
+  });
+
+  if (attemptError) {
+    return `Could not save attempt: ${attemptError.message}. Make sure supabase/schema.sql and supabase/seed.sql have been run.`;
+  }
+
+  const { data: existingMastery } = await client
+    .from("mastery")
+    .select("id, mastery_score, last_reviewed")
+    .eq("user_id", supabaseUser.id)
+    .eq("concept_id", concept.conceptId)
+    .maybeSingle();
+
+  const nextMasteryScore = calculateUpdatedMastery({
+    correct,
+    currentScore: existingMastery?.mastery_score ?? 30,
+    difficulty: question.difficulty,
+    lastReviewed: existingMastery?.last_reviewed
+  });
+
+  if (existingMastery) {
+    await client
+      .from("mastery")
+      .update({
+        mastery_score: nextMasteryScore,
+        last_reviewed: new Date().toISOString()
+      })
+      .eq("id", existingMastery.id)
+      .eq("user_id", supabaseUser.id);
+  } else {
+    await client.from("mastery").insert({
+      user_id: supabaseUser.id,
+      concept_id: concept.conceptId,
+      mastery_score: nextMasteryScore,
+      last_reviewed: new Date().toISOString()
+    });
+  }
+
+  const { data: profile } = await client.from("profiles").select("xp, streak").eq("id", supabaseUser.id).maybeSingle();
+  await client.from("profiles").upsert({
+    id: supabaseUser.id,
+    username: supabaseUser.email?.split("@")[0] || null,
+    xp: (profile?.xp ?? 0) + (correct ? 10 : 2),
+    streak: Math.max(profile?.streak ?? 0, 1),
+    selected_course: "ap-world-history-modern"
+  });
+
+  await refreshPersonalizedDashboard();
+
+  return `Progress saved. ${concept.conceptName} mastery is now ${nextMasteryScore}%.`;
+}
+
+async function refreshPersonalizedDashboard() {
+  const client = getSupabaseClient();
+  if (!client || !supabaseUser) return;
+
+  const [{ data: attempts }, { data: mastery }, { data: profile }] = await Promise.all([
+    client
+      .from("attempts")
+      .select("question_id, correct, created_at")
+      .eq("user_id", supabaseUser.id)
+      .order("created_at", { ascending: false })
+      .limit(20),
+    client.from("mastery").select("concept_id, mastery_score").eq("user_id", supabaseUser.id),
+    client.from("profiles").select("xp, streak").eq("id", supabaseUser.id).maybeSingle()
+  ]);
+
+  const recentAttempts = attempts || [];
+  const masteryRows = mastery || [];
+  const correctCount = recentAttempts.filter((attempt) => attempt.correct).length;
+  const recentAccuracy = recentAttempts.length ? Math.round((correctCount / recentAttempts.length) * 100) : 0;
+  const masteryProgress = masteryRows.length
+    ? Math.round(masteryRows.reduce((total, row) => total + row.mastery_score, 0) / masteryRows.length)
+    : 0;
+
+  const conceptById = new Map(Object.values(questionConcepts).map((concept) => [concept.conceptId, concept]));
+  const weakRows = masteryRows
+    .slice()
+    .sort((a, b) => {
+      const aWeight = conceptById.get(a.concept_id)?.importanceWeight || 1;
+      const bWeight = conceptById.get(b.concept_id)?.importanceWeight || 1;
+      return a.mastery_score / aWeight - b.mastery_score / bWeight;
+    });
+
+  const weakest = weakRows[0];
+  const weakestConcept = weakest ? conceptById.get(weakest.concept_id) : null;
+  const recommendedFocus = weakestConcept
+    ? `Review ${weakestConcept.conceptName}; it is your highest-priority weak concept right now.`
+    : "Start with one AP World MCQ set to establish your baseline.";
+
+  setText("dashboardRecommendedFocus", recommendedFocus);
+  setText(
+    "dashboardPracticeSummary",
+    recentAttempts.length ? `${recentAccuracy}% recent accuracy across ${recentAttempts.length} saved attempts.` : "Answer one short set to establish your baseline."
+  );
+  setText(
+    "dashboardReviewSummary",
+    weakestConcept ? `Focus your review on ${weakestConcept.unitName}.` : "Read each explanation before moving on."
+  );
+  setText("dashboardStreakSummary", `${profile?.streak ?? 0} day streak and ${profile?.xp ?? 0} XP saved.`);
+  setText("dashboardMasteryLabel", masteryProgress ? `${masteryProgress}% average concept mastery` : "Ready for first saved set");
+  setMeter("dashboardMasteryMeter", masteryProgress);
+  setText("dashboardWeakUnitName", weakestConcept?.unitName || "Unit 2");
+  setText("dashboardWeakUnitLabel", weakest ? `${weakest.mastery_score}% current mastery` : "Recommended today");
+  setMeter("dashboardWeakUnitMeter", weakest?.mastery_score ?? 42);
+  setText("dashboardAccuracyLabel", recentAttempts.length ? `${recentAccuracy}% across latest attempts` : "No saved attempts yet");
+  setMeter("dashboardAccuracyMeter", recentAccuracy || 18);
+  setText("homeMasteryValue", masteryProgress ? `${masteryProgress}%` : "Baseline");
+  setMeter("homeMasteryMeter", masteryProgress || 35);
+  setText("homeAccuracyValue", recentAttempts.length ? `${recentAccuracy}%` : "Baseline");
+  setMeter("homeAccuracyMeter", recentAccuracy || 50);
+  setText("homeNextReviewValue", weakestConcept?.conceptName || "Missed MCQs");
+
+  const focusGrid = document.getElementById("dashboardFocusGrid");
+  if (focusGrid) {
+    const rows = weakRows.slice(0, 3);
+    focusGrid.innerHTML = rows.length
+      ? rows
+          .map((row) => {
+            const concept = conceptById.get(row.concept_id);
+            return `
+              <div>
+                <strong>${concept?.conceptName || "Practice concept"}</strong>
+                <span>${concept?.unitName || "AP World"} - ${row.mastery_score}% mastery</span>
+              </div>
+            `;
+          })
+          .join("")
+      : `
+          <div>
+            <strong>Contextualization</strong>
+            <span>Connect events to a broader process or period.</span>
+          </div>
+          <div>
+            <strong>Causation</strong>
+            <span>Identify the development that most directly explains a pattern.</span>
+          </div>
+          <div>
+            <strong>Comparison</strong>
+            <span>Separate real similarities from tempting distractors.</span>
+          </div>
+        `;
+  }
+}
+
 function selectAnswer(answerIndex) {
   if (!isActiveMcqPractice()) return;
 
@@ -1139,6 +1445,13 @@ function selectAnswer(answerIndex) {
     <strong>${isCorrect ? "Correct" : "Not quite"}</strong>
     ${question.explanation}
   `;
+
+  savePracticeAttempt(question, answerIndex, isCorrect).then((message) => {
+    if (!message) return;
+    const saveStatus = document.createElement("small");
+    saveStatus.textContent = message;
+    elements.feedback.append(saveStatus);
+  });
 }
 
 function nextQuestion() {
@@ -1934,17 +2247,26 @@ themeButtons.forEach((button) => {
   button.addEventListener("click", () => applyTheme(button.dataset.themeOption));
 });
 
-googleSignInButton?.addEventListener("click", () => {
-  saveSession({
-    mode: "account",
-    provider: "google",
-    name: "Google Demo Student",
-    createdAt: new Date().toISOString()
-  });
-  showAuthMessage("Signed in with Google demo mode. Connect the Supabase project for real Google OAuth on production hosting.");
+googleSignInButton?.addEventListener("click", async () => {
+  const client = getSupabaseClient();
+
+  if (client) {
+    showAuthMessage("Opening Google sign in...");
+    const { error } = await client.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: window.location.origin + window.location.pathname
+      }
+    });
+
+    if (error) showAuthMessage(error.message);
+    return;
+  }
+
+  showAuthMessage("Add your Supabase URL and anon key in supabase-config.js to enable real Google login on GitHub Pages.");
 });
 
-emailAuthForm?.addEventListener("submit", (event) => {
+emailAuthForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
   const formData = new FormData(emailAuthForm);
   const email = String(formData.get("email") || "").trim();
@@ -1955,13 +2277,43 @@ emailAuthForm?.addEventListener("submit", (event) => {
     return;
   }
 
-  saveSession({
-    mode: "account",
-    provider: "email",
+  const client = getSupabaseClient();
+
+  if (!client) {
+    showAuthMessage("Add your Supabase URL and anon key in supabase-config.js to enable real email accounts.");
+    return;
+  }
+
+  showAuthMessage("Creating account...");
+  const { data, error } = await client.auth.signUp({
     email,
-    name: displayNameFromEmail(email),
-    createdAt: new Date().toISOString()
+    password,
+    options: {
+      emailRedirectTo: window.location.origin + window.location.pathname
+    }
   });
+
+  if (error) {
+    const { data: loginData, error: loginError } = await client.auth.signInWithPassword({ email, password });
+    if (loginError) {
+      showAuthMessage(error.message);
+      return;
+    }
+
+    supabaseUser = loginData.user;
+    await ensureSupabaseProfile(supabaseUser);
+    unlockApp(sessionFromSupabaseUser(supabaseUser));
+    return;
+  }
+
+  if (data.session?.user) {
+    supabaseUser = data.session.user;
+    await ensureSupabaseProfile(supabaseUser);
+    unlockApp(sessionFromSupabaseUser(supabaseUser));
+    return;
+  }
+
+  showAuthMessage("Check your email to confirm the account, then come back and log in.");
 });
 
 guestButton?.addEventListener("click", () => {
@@ -1972,7 +2324,10 @@ guestButton?.addEventListener("click", () => {
   });
 });
 
-signOutButton?.addEventListener("click", () => {
+signOutButton?.addEventListener("click", async () => {
+  const client = getSupabaseClient();
+  if (client) await client.auth.signOut();
+  supabaseUser = null;
   localStorage.removeItem(sessionStorageKey);
   window.location.hash = "";
   initializeAccessGate();
